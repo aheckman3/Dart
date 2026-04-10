@@ -23,12 +23,12 @@ func _enter_tree():
 
 @export_category("Movement")
 @export_subgroup("Settings")
-@export var SPEED := 5.0
+@export var SPEED := 4.0
 @export var ACCEL := 50.0
 @export var IN_AIR_SPEED := 3.0
 @export var IN_AIR_ACCEL := 5.0
 @export var JUMP_VELOCITY := 7
-@export var SPRINT_SPEED := 8
+@export var SPRINT_SPEED := 7
 @export_subgroup("Head Bob")
 @export var HEAD_BOB := true
 @export var HEAD_BOB_FREQUENCY := 0.3
@@ -43,7 +43,7 @@ var base_hba := HEAD_BOB_AMPLITUDE
 @export_category("Key Binds")
 @export_subgroup("Mouse")
 @export var MOUSE_ACCEL := true
-@export var KEY_BIND_MOUSE_SENS := 0.005
+@export var KEY_BIND_MOUSE_SENS := 0.003
 @export var KEY_BIND_MOUSE_ACCEL := 50
 @export_subgroup("Movement")
 @export var KEY_BIND_UP := "move_forward"
@@ -75,6 +75,7 @@ var tick = 0
 var DartScene := preload("res://Scenes/dart.tscn")
 var can_shoot := true
 
+
 func _ready():
 	if Engine.is_editor_hint():
 		return
@@ -84,7 +85,7 @@ func _ready():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	head_start_pos = $Head.position
-
+	print_tree_pretty()
 func _physics_process(delta):
 	if Engine.is_editor_hint():
 		return
@@ -201,10 +202,15 @@ func shoot():
 		return
 	can_shoot = false
 	
+	var camera = $Head/Camera3D
+	var direction = -camera.global_transform.basis.z
+	
 	var dart = DartScene.instantiate()
 	var shoot_point = $Head/ShootPoint
 	dart.global_transform = shoot_point.global_transform
+	dart.direction = -camera.global_transform.basis.z
 	get_tree().current_scene.add_child(dart)
+	
 	
 	start_shoot_cooldown()
 	

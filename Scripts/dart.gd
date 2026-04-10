@@ -3,17 +3,17 @@ extends RigidBody3D
 @export var speed := 60
 @export var lifetime := 15.0
 var stuck := false
+var direction: Vector3 = Vector3.ZERO
 
 func _ready():
+	if direction != Vector3.ZERO:
+		linear_velocity = direction.normalized() * speed
 	await get_tree().create_timer(lifetime).timeout
 	queue_free()
 
 func _physics_process(_delta):
 	if stuck:
 		return
-		
-	linear_velocity = transform.basis.z * -speed
-
 
 func _integrate_forces(state):
 	if stuck:

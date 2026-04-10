@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://xxjf1voyo3pu"]
+
+[ext_resource type="Script" uid="uid://cxbhv20m5p06u" path="res://Scripts/balloon_spawner.gd" id="1_7akhp"]
+[ext_resource type="PackedScene" uid="uid://ch4astw8vx4qr" path="res://Scenes/balloon.tscn" id="2_vhisc"]
+
+[node name="BalloonSpawner" type="Node3D" unique_id=1551640606]
+script = ExtResource("1_7akhp")
+balloon_scene = ExtResource("2_vhisc")
