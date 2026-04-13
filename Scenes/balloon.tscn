@@ -1,6 +1,14 @@
-[gd_scene format=3 uid="uid://ch4astw8vx4qr"]
+[gd_scene format=4 uid="uid://ch4astw8vx4qr"]
 
 [ext_resource type="Script" uid="uid://dyqfyt5ua6ocg" path="res://Scripts/balloon.gd" id="1_hkhi7"]
+[ext_resource type="AudioStream" uid="uid://dcv7u3c7csru5" path="res://Assets/SFX/pop_four.wav" id="2_nrerx"]
+[ext_resource type="AudioStream" uid="uid://baq6xk0xjuli5" path="res://Assets/SFX/pop_one.wav" id="3_kbj1d"]
+[ext_resource type="AudioStream" uid="uid://be2hb0nostyh5" path="res://Assets/SFX/pop_two.wav" id="5_xyim1"]
+
+[sub_resource type="AudioStreamWAV" id="AudioStreamWAV_5iodc"]
+data = PackedByteArray("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")
+format = 3
+mix_rate = 48000
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hkhi7"]
 size = Vector3(0.6442871, 0.82836914, 0.6582031)
@@ -10,47 +18,10 @@ size = Vector3(0.6442871, 0.82836914, 0.6582031)
 [sub_resource type="SphereMesh" id="SphereMesh_4wcav"]
 material = SubResource("StandardMaterial3D_hkhi7")
 
-[sub_resource type="Animation" id="Animation_5iodc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0.35547113)]
-}
-
-[sub_resource type="Animation" id="Animation_nrerx"]
-resource_name = "wobble"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.3, 1.3333334),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, -0.27619842), Vector3(0, 0, 0.35547113)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kbj1d"]
-_data = {
-&"RESET": SubResource("Animation_5iodc"),
-&"wobble": SubResource("Animation_nrerx")
-}
-
 [node name="Balloon" type="Area3D" unique_id=1731891885]
 transform = Transform3D(0.9374826, -0.3480321, 0, 0.3480321, 0.9374826, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_hkhi7")
+pop_sounds = Array[AudioStream]([ExtResource("2_nrerx"), ExtResource("3_kbj1d"), SubResource("AudioStreamWAV_5iodc"), ExtResource("5_xyim1")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=445323186]
 shape = SubResource("BoxShape3D_hkhi7")
@@ -59,7 +30,8 @@ shape = SubResource("BoxShape3D_hkhi7")
 transform = Transform3D(0.7187099, 0.25456262, 0, -0.21636184, 0.8456052, 0, 0, 0, 0.7191671, 0, 0, 0)
 mesh = SubResource("SphereMesh_4wcav")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=99908617]
-libraries/ = SubResource("AnimationLibrary_kbj1d")
+[node name="Audio" type="AudioStreamPlayer3D" parent="." unique_id=1955820501]
+max_db = 6.0
+max_distance = 30.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

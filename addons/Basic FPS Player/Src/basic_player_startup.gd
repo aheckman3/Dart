@@ -47,6 +47,9 @@ func _enter_tree():
 @export_category("Advanced")
 @export var UPDATE_PLAYER_ON_PHYS_STEP := true
 
+@export_category("Sounds")
+@export var footstep_sounds: Array[AudioStream] = []
+
 #INTERNAL VARIABLES
 #__________________________________________________________________________________________________#
 var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity") * 1.3
@@ -60,6 +63,8 @@ var tick := 0
 
 var DartScene := preload("res://Scenes/dart.tscn")
 var can_shoot := true
+var last_bob_sign := 0
+var footstep_ready := true
 
 # STATE MACHINE
 #__________________________________________________________________________________________________#
@@ -91,6 +96,9 @@ func _physics_process(delta):
 		if velocity.length() > 0.1 and is_on_floor():
 			head_bob_motion()
 		reset_head_bob(delta)
+		
+	if HEAD_BOB and is_on_floor() and velocity.length() > 0.2:
+		check_footstep()
 			
 func _process(delta):
 		if Engine.is_editor_hint():
@@ -279,4 +287,28 @@ func start_shoot_cooldown():
 	can_shoot = true
 	
 	can_shoot
+
+# Audio
+#______________________________________________________________________________#
+
+func check_footstep():
+	var bob_value = sin(tick * HEAD_BOB_FREQUENCY)
+	var bob_sign = sign(bob_value)
 	
+	if bob_sign < 0 and last_bob_sign >= 0 and footstep_ready:
+		play_footstep()
+		footstep_ready = false
+	if bob_sign > 0:
+		footstep_ready = true
+	last_bob_sign = bob_sign
+	
+func play_footstep():
+	if footstep_sounds.is_empty():
+		return
+	var audio = $FootstepAudio
+	audio.stream = footstep_sounds.pick_random()
+	
+	var base_pitch = 1.3 if state == PlayerState.SPRINTING else 1.0
+	audio.pitch_scale = base_pitch * randf_range(0.95, 1.05)
+	
+	audio.play()

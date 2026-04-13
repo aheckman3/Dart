@@ -4,6 +4,7 @@ extends Area3D
 @export var lifetime: float = 10.0
 @export var wobble_amount: float = 0.8
 @export var wobble_speed: float = 2.0
+@export var pop_sounds: Array[AudioStream]
 
 var time_alive := 0.0
 var wobble_offset := randf() * 10
@@ -27,8 +28,6 @@ func _ready():
 	$MeshInstance3D.material_override.albedo_color = colors.pick_random()
 
 
-
-
 func _process(delta):
 	translate(Vector3(0, float_speed * delta, 0))
 	
@@ -48,7 +47,28 @@ func _process(delta):
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("dart"):
 		pop()
+		
+func play_random_pop():
+	if pop_sounds.is_empty():
+		return
+		
+	var audio = $Audio
+	audio.stream = pop_sounds.pick_random()
+	
+	audio.pitch_scale = randf_range(0.9, 1.1)
+	audio.play()
+	print("POP SOUND CALLED")
+
 
 func pop():
-	print("popped")
+	var audio = $Audio
+	audio.stream = pop_sounds.pick_random()
+	audio.pitch_scale = randf_range(0.9, 1.1)
+	
+	remove_child(audio)
+	get_tree().current_scene.add_child(audio)
+	
+	audio.global_transform = global_transform
+	audio.play()
 	queue_free()
+	
