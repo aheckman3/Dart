@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var balloon_scene: PackedScene 
-@export var spawn_interval: float = 1.5
+@export var spawn_interval: float =0.2
 @export var spawn_area_x: float = 10.0
 @export var spawn_area_z: float = 10.0
 @export var spawn_height: float = 0.0

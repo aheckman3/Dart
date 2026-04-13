@@ -56,7 +56,7 @@ script = ExtResource("1_hkhi7")
 shape = SubResource("BoxShape3D_hkhi7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=124808883]
-transform = Transform3D(0.7505708, 0, 0, 0, 0.8830914, 0, 0, 0, 0.7191672, 0, 0, 0)
+transform = Transform3D(0.7187099, 0.25456262, 0, -0.21636184, 0.8456052, 0, 0, 0, 0.7191671, 0, 0, 0)
 mesh = SubResource("SphereMesh_4wcav")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=99908617]

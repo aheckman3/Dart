@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-@export var speed := 60
+@export var speed := 45
 @export var lifetime := 15.0
 var stuck := false
 var direction: Vector3 = Vector3.ZERO
