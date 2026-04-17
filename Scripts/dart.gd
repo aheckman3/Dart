@@ -35,6 +35,10 @@ func stick_to_surface(state):
 	
 	var collider_id = PhysicsServer3D.body_get_object_instance_id(collider_rid)
 	var collider_node = instance_from_id(collider_id)
+	
+	if collider_node and collider_node.is_in_group("player"):
+		queue_free()
+		return
 
 	global_transform.origin = world_pos
 	look_at(world_pos + world_normal, Vector3.UP)

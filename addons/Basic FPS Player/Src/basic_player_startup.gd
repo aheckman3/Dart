@@ -69,6 +69,10 @@ var can_shoot := true
 var last_bob_sign := 0
 var footstep_ready := true
 var ui
+var shake_strength: float = 0.0
+var shake_time: float = 0.0
+var shake_decay: float = 5.0
+var noise := FastNoiseLite.new()
 #__________________________________________________________________________________________________#
 # STATE MACHINE
 #__________________________________________________________________________________________________#
@@ -131,6 +135,11 @@ func _process(delta):
 		shoot()
 	if ui:
 		ui.set_crosshair_targeted(is_aiming_at_target())
+	if shake_strength > 0:
+		shake_time += delta * 30.0
+		var offset = Vector3(noise.get_noise_1d(shake_time) * shake_strength, noise.get_noise_1d(shake_time + 100) * shake_strength, 0)
+		$Head.rotation_degrees += offset
+		shake_strength = lerp(shake_strength, 0.0, 5.0 * delta)
 	
 #__________________________________________________________________________________________________#
 # INPUT
@@ -341,4 +350,12 @@ func play_footstep():
 
 func take_damage(amount):
 	print("Player took damage:", amount)
+	ui.flash_damage()
+	camera_shake(2)
+	
+func camera_shake(amount := 0.2):
+	var shake_time := 0.0
+	shake_strength = amount
+	shake_time = 0.0
+	
 	

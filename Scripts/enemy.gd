@@ -9,7 +9,6 @@ func _enter_tree():
 func _ready():
 	print("Enemy _ready()")
 	player = get_tree().current_scene.get_node("player")
-	connect("area_entered", Callable(self, "_on_area_entered"))
 	connect("body_entered", Callable(self, "_on_body_entered"))
 	
 func _physics_process(delta):
