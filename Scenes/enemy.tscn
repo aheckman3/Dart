@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cbcki4swdvroh"]
+
+[ext_resource type="Script" uid="uid://cqnbwn6ss6lfe" path="res://Scripts/enemy.gd" id="1_hghv2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_30ppt"]
+size = Vector3(0.560791, 0.6364746, 0.51586914)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hkhi7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ivv0v"]
+material = SubResource("StandardMaterial3D_hkhi7")
+
+[node name="enemy" type="Area3D" unique_id=1321534358 groups=["enemy", "target"]]
+script = ExtResource("1_hghv2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1133293636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0018017292)
+shape = SubResource("BoxShape3D_30ppt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1333838282]
+transform = Transform3D(0.5328951, -0.003873885, 0, 0.0032925012, 0.6269828, 0, 0, 0, 0.5106086, 0, 0, 0)
+mesh = SubResource("SphereMesh_ivv0v")

@@ -6,9 +6,10 @@ extends Control
 func _ready():
 	set_process(true)
 	
-func _process(delta):
+func _process(_delta):
 	queue_redraw()
 	
 func _draw():
 	var center = size / 2
 	draw_circle(center, dot_size, dot_color)
+	

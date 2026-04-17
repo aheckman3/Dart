@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cq0kblluuykdp" path="res://Scenes/player.tscn" id="1_1xis7"]
 [ext_resource type="Script" uid="uid://blehhaegydds2" path="res://Scripts/crosshair.gd" id="1_5ugfd"]
+[ext_resource type="Script" uid="uid://bjj848o6s13l6" path="res://Scripts/ui.gd" id="1_kcxld"]
 [ext_resource type="PackedScene" uid="uid://xxjf1voyo3pu" path="res://Scenes/balloon_spawner.tscn" id="2_p4yaa"]
+[ext_resource type="PackedScene" uid="uid://dsckd62qvl4mx" path="res://Scenes/enemyspawner.tscn" id="5_b0lxd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1xis7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -37,9 +39,10 @@ size = Vector3(3, 2, 3)
 
 [node name="proto_level" type="Node3D" unique_id=84065362]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=41248062]
+[node name="UI" type="CanvasLayer" parent="." unique_id=41248062]
+script = ExtResource("1_kcxld")
 
-[node name="Crosshair" type="Control" parent="CanvasLayer" unique_id=1972286807]
+[node name="Crosshair" type="Control" parent="UI" unique_id=1972286807]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 3
 anchors_preset = 8
@@ -103,8 +106,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_p4yaa")
 shape = SubResource("BoxShape3D_5ugfd")
 
 [node name="BalloonSpawner" parent="." unique_id=1551640606 instance=ExtResource("2_p4yaa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6660795, 1.4364014, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8801422, 1.4364014, 0)
 
-[node name="Basic FPS Player" parent="." unique_id=1257616633 instance=ExtResource("1_1xis7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.216858, 1.1499996, 6.698184)
-SPRINT_HEAD_BOB_AMPLITUDE = 0.02
+[node name="enemyspawner" parent="." unique_id=362215387 instance=ExtResource("5_b0lxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="player" parent="." unique_id=1257616633 instance=ExtResource("1_1xis7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8849535, 1.1500001, -0.46289825)

@@ -13,9 +13,11 @@ func _enter_tree():
 		add_child(s)
 		s.owner = get_tree().edited_scene_root
 		addedHead = true
-
+	print("Player _enter_tree()")
+#__________________________________________________________________________________________________#
 # PLAYER SETTINGS
 #__________________________________________________________________________________________________#
+signal player_ready
 @export var CAPTURE_ON_START := true
 
 @export_category("Movement")
@@ -50,6 +52,7 @@ func _enter_tree():
 @export_category("Sounds")
 @export var footstep_sounds: Array[AudioStream] = []
 
+#__________________________________________________________________________________________________#
 #INTERNAL VARIABLES
 #__________________________________________________________________________________________________#
 var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity") * 1.3
@@ -65,11 +68,13 @@ var DartScene := preload("res://Scenes/dart.tscn")
 var can_shoot := true
 var last_bob_sign := 0
 var footstep_ready := true
-
+var ui
+#__________________________________________________________________________________________________#
 # STATE MACHINE
 #__________________________________________________________________________________________________#
 enum PlayerState { IDLE, WALKING, SPRINTING, JUMPING, FALLING}
 var state := PlayerState.IDLE
+
 
 func _ready():
 	if Engine.is_editor_hint():
@@ -79,6 +84,19 @@ func _ready():
 	
 	head_start_pos = $Head.position
 	
+	call_deferred("_find_ui")
+	emit_signal("player_ready")
+	print("Player _ready()")
+	
+func _find_ui():
+	ui = get_tree().current_scene.get_node("UI")
+
+func is_aiming_at_target() -> bool:
+	if $Head/RayCast3D.is_colliding():
+		var obj = $Head/RayCast3D.get_collider()
+		return obj and obj.is_in_group("target")
+	return false
+#__________________________________________________________________________________________________#
 # PROCESSING
 #__________________________________________________________________________________________________#
 	
@@ -100,17 +118,21 @@ func _physics_process(delta):
 	if HEAD_BOB and is_on_floor() and velocity.length() > 0.2:
 		check_footstep()
 			
+
 func _process(delta):
-		if Engine.is_editor_hint():
-			return
+	if Engine.is_editor_hint():
+		return
 			
-		if not UPDATE_PLAYER_ON_PHYS_STEP:
-			rotate_player(delta)
-			state_machine(delta)
-		
-		if Input.is_action_just_pressed("shoot"):
-			shoot()
-			
+	if not UPDATE_PLAYER_ON_PHYS_STEP:
+		rotate_player(delta)
+		state_machine(delta)
+
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
+	if ui:
+		ui.set_crosshair_targeted(is_aiming_at_target())
+	
+#__________________________________________________________________________________________________#
 # INPUT
 #__________________________________________________________________________________________________#
 func _input(event):
@@ -127,7 +149,7 @@ func set_rotation_target(mouse_motion: Vector2):
 	rotation_target_player += -mouse_motion.x * KEY_BIND_MOUSE_SENS
 	rotation_target_head += -mouse_motion.y * KEY_BIND_MOUSE_SENS
 	rotation_target_head = clamp(rotation_target_head, deg_to_rad(-90), deg_to_rad(90))
-	
+	#______________________________________________________________________________________________#
 	# ROTATION
 	#______________________________________________________________________________________________#
 	
@@ -138,7 +160,7 @@ func rotate_player(delta):
 	else:
 		quaternion = Quaternion(Vector3.UP, rotation_target_player)
 		$Head.quaternion = Quaternion(Vector3.RIGHT, rotation_target_head)
-		
+#__________________________________________________________________________________________________#
 # STATE MACHINE DISPATCHER
 #__________________________________________________________________________________________________#
 func state_machine(delta):
@@ -153,8 +175,8 @@ func state_machine(delta):
 			state_jumping(delta)
 		PlayerState.FALLING:
 			state_falling(delta)
-	print(state)
 
+#__________________________________________________________________________________________________#
 # STATE FUNCTIONS
 #__________________________________________________________________________________________________#
 func state_idle(delta):
@@ -227,7 +249,7 @@ func state_falling(delta):
 		
 	if is_on_floor():
 		state = PlayerState.IDLE
-
+#__________________________________________________________________________________________________#
 # MOVEMENT HELPERS
 #__________________________________________________________________________________________________#
 
@@ -249,7 +271,7 @@ func apply_gravity(delta):
 		
 func jump():
 	velocity.y = JUMP_VELOCITY
-	
+#__________________________________________________________________________________________________#
 # HEAD BOB
 #__________________________________________________________________________________________________#
 
@@ -263,7 +285,7 @@ func reset_head_bob(delta):
 	if $Head.position == head_start_pos:
 		pass
 	$Head.position = lerp($Head.position, head_start_pos, 2 * (1 / HEAD_BOB_FREQUENCY) * delta)
-	
+#__________________________________________________________________________________________________#
 # SHOOTING
 #__________________________________________________________________________________________________#
 func shoot():
@@ -287,9 +309,9 @@ func start_shoot_cooldown():
 	can_shoot = true
 	
 	can_shoot
-
+#__________________________________________________________________________________________________#
 # Audio
-#______________________________________________________________________________#
+#__________________________________________________________________________________________________#
 
 func check_footstep():
 	var bob_value = sin(tick * HEAD_BOB_FREQUENCY)
@@ -312,3 +334,11 @@ func play_footstep():
 	audio.pitch_scale = base_pitch * randf_range(0.95, 1.05)
 	
 	audio.play()
+	
+#______________________________________________________________________________#
+# COMBAT
+#______________________________________________________________________________#
+
+func take_damage(amount):
+	print("Player took damage:", amount)
+	

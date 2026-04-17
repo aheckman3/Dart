@@ -14,7 +14,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvnsp"]
 albedo_color = Color(1, 1, 0.023529412, 1)
 
-[node name="Basic FPS Player" type="CharacterBody3D" unique_id=1257616633]
+[node name="player" type="CharacterBody3D" unique_id=1257616633 groups=["player"]]
 script = ExtResource("1_cvnsp")
 KEY_BIND_MOUSE_SENS = 0.005
 KEY_BIND_DOWN = "move_backward"
@@ -26,6 +26,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5665753, 0)
 
 [node name="ShootPoint" type="Marker3D" parent="Head" unique_id=145327761]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.13964134, -0.00888741, -1.1324224)
+
+[node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=478186563]
+target_position = Vector3(0, 0, -100)
+collide_with_areas = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=523599340]
 shape = SubResource("CapsuleShape3D_vgqql")

@@ -18,12 +18,12 @@ size = Vector3(0.6442871, 0.82836914, 0.6582031)
 [sub_resource type="SphereMesh" id="SphereMesh_4wcav"]
 material = SubResource("StandardMaterial3D_hkhi7")
 
-[node name="Balloon" type="Area3D" unique_id=1731891885]
+[node name="Balloon" type="Area3D" unique_id=1731891885 groups=["target"]]
 transform = Transform3D(0.9374826, -0.3480321, 0, 0.3480321, 0.9374826, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_hkhi7")
 pop_sounds = Array[AudioStream]([ExtResource("2_nrerx"), ExtResource("3_kbj1d"), SubResource("AudioStreamWAV_5iodc"), ExtResource("5_xyim1")])
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=445323186]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=445323186 groups=["target"]]
 shape = SubResource("BoxShape3D_hkhi7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=124808883]
