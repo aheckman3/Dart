@@ -17,10 +17,8 @@ background_mode = 2
 sky = SubResource("Sky_p4yaa")
 tonemap_mode = 2
 glow_enabled = true
-fog_enabled = true
 fog_sky_affect = 0.41
 fog_height = 9.6
-volumetric_fog_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_sqnpp"]
 size = Vector3(50, 0.3, 50)

@@ -19,28 +19,37 @@ size = Vector3(0.6442871, 0.82836914, 0.6582031)
 material = SubResource("StandardMaterial3D_hkhi7")
 
 [sub_resource type="Gradient" id="Gradient_5iodc"]
-offsets = PackedFloat32Array(0, 0.7522124, 0.7920354, 1)
-colors = PackedColorArray(0.99, 0, 0, 1, 0.07800002, 0.32369992, 0.78, 1, 1, 0.9686667, 0.060000002, 1, 0.98, 0.3528, 0.89637345, 1)
+offsets = PackedFloat32Array(0.14797688, 0.33410406, 0.5618497, 0.77572256, 1)
+colors = PackedColorArray(1, 0.01999998, 0.01999998, 1, 1, 0.26999998, 0.8296665, 1, 1, 0.8333334, 0, 1, 0.16666675, 1, 0, 1, 0, 0.5, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_nrerx"]
 gradient = SubResource("Gradient_5iodc")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kbj1d"]
-lifetime_randomness = 0.6
-angle_min = 154.50002
-angle_max = 154.50002
+lifetime_randomness = 1.0
+particle_flag_rotate_y = true
+angle_min = 10.0000105
+angle_max = 20.000011
+spread = 180.0
+flatness = 0.36
 initial_velocity_min = 4.0
 initial_velocity_max = 7.0
-angular_velocity_min = 9.999984
-angular_velocity_max = 19.999983
-scale_min = 0.049999997
-color = Color(1, 0.01999998, 0.01999998, 1)
+angular_velocity_min = -328.58002
+angular_velocity_max = 222.88998
+gravity = Vector3(0, -13.57, 0)
+damping_min = 3.0000002
+damping_max = 5.0
 color_ramp = SubResource("GradientTexture1D_nrerx")
-hue_variation_min = -2.2351742e-08
-hue_variation_max = -2.2351742e-08
+turbulence_enabled = true
+turbulence_noise_strength = 0.3
+turbulence_noise_speed_random = 0.7
 
-[sub_resource type="BoxMesh" id="BoxMesh_5iodc"]
-size = Vector3(0.03, 0.09, 0.03)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_syg23"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_xyim1"]
+material = SubResource("StandardMaterial3D_syg23")
+size = Vector2(0.2, 0.1)
 
 [node name="Balloon" type="Area3D" unique_id=1731891885 groups=["target"]]
 transform = Transform3D(0.9374826, -0.3480321, 0, 0.3480321, 0.9374826, 0, 0, 0, 1, 0, 0, 0)
@@ -64,7 +73,8 @@ amount = 40
 lifetime = 1.72
 one_shot = true
 explosiveness = 1.0
+randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_kbj1d")
-draw_pass_1 = SubResource("BoxMesh_5iodc")
+draw_pass_1 = SubResource("QuadMesh_xyim1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

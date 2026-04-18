@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var spawn_radius := 40.0
-@export var spawn_interval := 1.0
+@export var spawn_interval := 3.0
 @export var enemy_scene : PackedScene
 
 var player : CharacterBody3D
