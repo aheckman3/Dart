@@ -18,6 +18,30 @@ size = Vector3(0.6442871, 0.82836914, 0.6582031)
 [sub_resource type="SphereMesh" id="SphereMesh_4wcav"]
 material = SubResource("StandardMaterial3D_hkhi7")
 
+[sub_resource type="Gradient" id="Gradient_5iodc"]
+offsets = PackedFloat32Array(0, 0.7522124, 0.7920354, 1)
+colors = PackedColorArray(0.99, 0, 0, 1, 0.07800002, 0.32369992, 0.78, 1, 1, 0.9686667, 0.060000002, 1, 0.98, 0.3528, 0.89637345, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nrerx"]
+gradient = SubResource("Gradient_5iodc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kbj1d"]
+lifetime_randomness = 0.6
+angle_min = 154.50002
+angle_max = 154.50002
+initial_velocity_min = 4.0
+initial_velocity_max = 7.0
+angular_velocity_min = 9.999984
+angular_velocity_max = 19.999983
+scale_min = 0.049999997
+color = Color(1, 0.01999998, 0.01999998, 1)
+color_ramp = SubResource("GradientTexture1D_nrerx")
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[sub_resource type="BoxMesh" id="BoxMesh_5iodc"]
+size = Vector3(0.03, 0.09, 0.03)
+
 [node name="Balloon" type="Area3D" unique_id=1731891885 groups=["target"]]
 transform = Transform3D(0.9374826, -0.3480321, 0, 0.3480321, 0.9374826, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_hkhi7")
@@ -33,5 +57,14 @@ mesh = SubResource("SphereMesh_4wcav")
 [node name="Audio" type="AudioStreamPlayer3D" parent="." unique_id=1955820501]
 max_db = 6.0
 max_distance = 30.0
+
+[node name="Confetti" type="GPUParticles3D" parent="." unique_id=616001492]
+emitting = false
+amount = 40
+lifetime = 1.72
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_kbj1d")
+draw_pass_1 = SubResource("BoxMesh_5iodc")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -61,14 +61,15 @@ func play_random_pop():
 
 
 func pop():
-	var audio = $Audio
-	audio.stream = pop_sounds.pick_random()
-	audio.pitch_scale = randf_range(0.9, 1.1)
+	play_random_pop()
 	
-	remove_child(audio)
-	get_tree().current_scene.add_child(audio)
+	var confetti = $Confetti
+
 	
-	audio.global_transform = global_transform
-	audio.play()
+	remove_child(confetti)
+	get_tree().current_scene.add_child(confetti)
+	confetti.global_transform = global_transform
+	confetti.restart()
+	await get_tree().create_timer(0.1).timeout
+	
 	queue_free()
-	

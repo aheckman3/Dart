@@ -25,7 +25,7 @@ signal player_ready
 @export var ACCEL := 50.0
 @export var IN_AIR_SPEED := 3.0
 @export var IN_AIR_ACCEL := 5.0
-@export var JUMP_VELOCITY := 7
+@export var JUMP_VELOCITY := 8.5
 @export var SPRINT_SPEED := 8
 
 @export_category("Head Bob")
