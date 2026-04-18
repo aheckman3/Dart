@@ -17,6 +17,10 @@ background_mode = 2
 sky = SubResource("Sky_p4yaa")
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_energy = 0.16
+fog_density = 1.0
 fog_sky_affect = 0.41
 fog_height = 9.6
 
@@ -46,8 +50,8 @@ size = Vector3(3, 2, 3)
 environment = SubResource("Environment_5ugfd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1575292897]
-transform = Transform3D(-0.67115027, -0.65156955, -0.35357395, -0.54731834, 0.11382954, 0.82914746, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_color = Color(1, 1, 0.78431374, 1)
+transform = Transform3D(-0.6711503, -0.6515695, -0.35357383, -0.7400286, 0.56071115, 0.3714304, -0.043759927, 0.51094043, -0.8585016, 0, 0, 0)
+light_color = Color(1, 0.6933333, 0.19999999, 1)
 shadow_enabled = true
 
 [node name="RigidBody3D" type="StaticBody3D" parent="." unique_id=1779796149]
