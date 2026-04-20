@@ -11,7 +11,7 @@ format = 3
 mix_rate = 48000
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hkhi7"]
-size = Vector3(0.6442871, 0.82836914, 0.6582031)
+size = Vector3(0.6738281, 0.8557129, 0.6582031)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hkhi7"]
 

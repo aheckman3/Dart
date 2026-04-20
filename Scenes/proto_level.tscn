@@ -54,7 +54,7 @@ transform = Transform3D(-0.6711503, -0.6515695, -0.35357383, -0.7400286, 0.56071
 light_color = Color(1, 0.6933333, 0.19999999, 1)
 shadow_enabled = true
 
-[node name="RigidBody3D" type="StaticBody3D" parent="." unique_id=1779796149]
+[node name="RigidBody3D" type="StaticBody3D" parent="." unique_id=1779796149 groups=["floor"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=112850137]
 mesh = SubResource("BoxMesh_sqnpp")
