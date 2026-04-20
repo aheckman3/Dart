@@ -2,7 +2,7 @@ extends Area3D
 
 @onready var enemy_mesh := $"."
 @export var bob_speed := 3.0
-@export var bob_height := 0.25
+@export var bob_height := 0.01
 @export var rotate_speed := 20.0
 @export var speed := 1.5
 @export var speed_after_time := 3.0
@@ -26,8 +26,6 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	if not is_inside_tree():
-		return
 	if not player:
 		return
 		
@@ -38,16 +36,19 @@ func _physics_process(delta):
 	if alive_time >= speed_increase_delay:
 		speed = speed_after_time
 	
+	enemy_mesh.look_at(player.global_transform.origin, Vector3.UP)
+	var rot = enemy_mesh.rotation
+	enemy_mesh.rotation = Vector3(0, rot.y, 0)
+
+
 	bob_time += delta
 	var bob_offset = sin(bob_time * bob_speed) * bob_height
-	global_position.y += bob_offset * delta
+	global_position.y += bob_offset
 	
 	rotation.z = sin(bob_time * 1.5) * deg_to_rad(10)
 	rotation.x = sin(bob_time * 0.7) * deg_to_rad(5)
-	if player:
-		enemy_mesh.look_at(player.global_transform.origin, Vector3.UP)
-	var rot = enemy_mesh.rotation
-	enemy_mesh.rotation = Vector3(0, rot.y, 0)
+
+
 	
 	var dist = global_position.distance_to(player.global_position)
 	if dist <= grow_radius:
