@@ -69,7 +69,7 @@ max_distance = 30.0
 
 [node name="Confetti" type="GPUParticles3D" parent="." unique_id=616001492]
 emitting = false
-amount = 40
+amount = 120
 lifetime = 1.72
 one_shot = true
 explosiveness = 1.0
