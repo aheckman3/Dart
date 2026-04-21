@@ -63,7 +63,8 @@ var rotation_target_player := 0.0
 var rotation_target_head := 0.0
 var head_start_pos : Vector3
 var tick := 0
-
+var max_health : int = 100
+var health : int = 100
 var DartScene := preload("res://Scenes/dart.tscn")
 var can_shoot := true
 var last_bob_sign := 0
@@ -352,6 +353,11 @@ func take_damage(amount):
 	print("Player took damage:", amount)
 	ui.flash_damage()
 	camera_shake(2)
+	health -= amount
+	health = clamp(health, 0, max_health)
+	
+	var ui = get_tree().get_first_node_in_group("ui")
+	ui.set_health(health)
 	
 func camera_shake(amount := 0.2):
 	var shake_time := 0.0
