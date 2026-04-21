@@ -155,6 +155,18 @@ func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
+	if Input.is_action_just_pressed("ui_uncapture"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+	if Input.is_action_just_pressed("shoot"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
+	if Input.is_action_just_pressed("toggle_fullscreen"):
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		
 func set_rotation_target(mouse_motion: Vector2):
 	rotation_target_player += -mouse_motion.x * KEY_BIND_MOUSE_SENS
 	rotation_target_head += -mouse_motion.y * KEY_BIND_MOUSE_SENS
