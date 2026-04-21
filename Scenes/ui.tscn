@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bjj848o6s13l6" path="res://Scripts/ui.gd" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://blehhaegydds2" path="res://Scripts/crosshair.gd" id="2_nf4gj"]
+[ext_resource type="Texture2D" uid="uid://bmhvgjjutark2" path="res://Assets/Art/HealthBar.png" id="3_nf4gj"]
 
-[node name="UI" type="CanvasLayer" unique_id=766366771]
+[node name="GameUI" type="CanvasLayer" unique_id=766366771 groups=["ui"]]
 script = ExtResource("1_qdvrb")
 
 [node name="Crosshair" type="Control" parent="." unique_id=720142941]
@@ -31,3 +32,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.050000012, 0.050000012, 0.6666667)
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1329374048]
+offset_left = 2.13
+offset_right = 1922.13
+offset_bottom = 400.0
+scale = Vector2(0.105, 0.105)
+value = 100.0
+texture_progress = ExtResource("3_nf4gj")

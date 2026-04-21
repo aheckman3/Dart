@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cbcki4swdvroh"]
 
 [ext_resource type="Script" uid="uid://cqnbwn6ss6lfe" path="res://Scripts/enemy.gd" id="1_hghv2"]
-[ext_resource type="Texture2D" uid="uid://s8fi6bg7xk37" path="res://Assets/enemyface-1.png.png" id="2_1f0kj"]
+[ext_resource type="Texture2D" uid="uid://s8fi6bg7xk37" path="res://Assets/Art/enemyface-1.png.png" id="2_1f0kj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_30ppt"]
 size = Vector3(0.560791, 0.6364746, 0.51586914)
