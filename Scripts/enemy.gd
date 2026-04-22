@@ -4,8 +4,8 @@ extends Area3D
 @export var bob_speed := 3.0
 @export var bob_height := 0.01
 @export var rotate_speed := 20.0
-@export var speed := 1.5
-@export var speed_after_time := 3.0
+@export var speed := 3
+@export var speed_after_time := 5.0
 @export var speed_increase_delay := 15.0
 @export var grow_radius := 4.0
 @export var grow_speed := 0.5

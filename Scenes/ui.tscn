@@ -2,7 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bjj848o6s13l6" path="res://Scripts/ui.gd" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://blehhaegydds2" path="res://Scripts/crosshair.gd" id="2_nf4gj"]
-[ext_resource type="Texture2D" uid="uid://bmhvgjjutark2" path="res://Assets/Art/HealthBar.png" id="3_nf4gj"]
+
+[sub_resource type="Gradient" id="Gradient_qdvrb"]
+offsets = PackedFloat32Array(0, 0.99708456, 1)
+colors = PackedColorArray(0.9813333, 1, 0.98, 1, 0.62084347, 1, 0.59376097, 1, 0.08533323, 1, 0.01999998, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nf4gj"]
+gradient = SubResource("Gradient_qdvrb")
+width = 350
+height = 40
+fill_from = Vector2(0.47665846, 0)
 
 [node name="GameUI" type="CanvasLayer" unique_id=766366771 groups=["ui"]]
 script = ExtResource("1_qdvrb")
@@ -33,10 +42,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.050000012, 0.050000012, 0.6666667)
 
-[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=1329374048]
-offset_left = 2.13
-offset_right = 1922.13
-offset_bottom = 400.0
-scale = Vector2(0.105, 0.105)
+[node name="HealthBarContainer" type="Control" parent="." unique_id=256494877]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HealthBar" type="TextureProgressBar" parent="HealthBarContainer" unique_id=1329374048]
+layout_mode = 1
+offset_right = 4688.93
+offset_bottom = 3393.952
+size_flags_horizontal = 4
+size_flags_vertical = 0
 value = 100.0
-texture_progress = ExtResource("3_nf4gj")
+rounded = true
+texture_progress = SubResource("GradientTexture2D_nf4gj")
+texture_progress_offset = Vector2(25, 25)

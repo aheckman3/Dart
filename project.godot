@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Dart"
-run/main_scene="uid://c13uekqinggon"
+run/main_scene="uid://baiiojl7gnuw2"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [display]
