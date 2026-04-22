@@ -2,17 +2,20 @@ extends CanvasLayer
 
 @onready var crosshair = $Crosshair
 @onready var damage_flash = $DamageFlash
-@onready var health_bar: TextureProgressBar = $HealthBar
+@onready var health_bar: TextureProgressBar = $HealthBarContainer/HealthBar
+@onready var health_bar_container = $HealthBarContainer
 var health_bar_original_pos := Vector2.ZERO
 var displayed_health := 100.0
 
 func _ready():
-	health_bar_original_pos = health_bar.position
+	health_bar_original_pos = health_bar_container.position
+	health_bar.max_value = 100
+	health_bar.value = displayed_health
+	print("READY BAR:", health_bar.value, "/", health_bar.max_value)
 
 func set_health(new_health):
 	displayed_health = float(new_health)
-	if displayed_health == 0 and health_bar.value < 0.5:
-		health_bar.value = 0
+
 	shake_health_bar()
 
 	print(displayed_health)
@@ -30,12 +33,17 @@ func flash_damage():
 func _process(delta):
 	health_bar.value = move_toward(health_bar.value, displayed_health, 60 * delta)
 	
+	if displayed_health == 0 and health_bar.value < 0.5:
+		health_bar.value = 0
 	var t = health_bar.value / health_bar.max_value
-	health_bar.tint_progress = Color(1.0 - t, t, 0.2)
+	var hue = lerp(0.0, 0.40, t)
+	var brightness = lerp(0.6, 1.0, t)
+	var saturation = lerp(1.5, 0.7, t)
+	health_bar.tint_progress = Color.from_hsv(hue, saturation, brightness)
 	
 func shake_health_bar():
 	var tween = create_tween()
 	var offset = Vector2(randf_range(-50, 50), 0)
 	
-	tween.tween_property(health_bar, "position", health_bar_original_pos + offset, 0.05)
-	tween.tween_property(health_bar, "position", health_bar_original_pos, 0.1)
+	tween.tween_property(health_bar_container, "position", health_bar_original_pos + offset, 0.05)
+	tween.tween_property(health_bar_container, "position", health_bar_original_pos, 0.1)

@@ -363,13 +363,15 @@ func play_footstep():
 
 func take_damage(amount):
 	print("Player took damage:", amount)
-	ui.flash_damage()
-	camera_shake(2)
+
 	health -= amount
 	health = clamp(health, 0, max_health)
 	
 	var ui = get_tree().get_first_node_in_group("ui")
 	ui.set_health(health)
+	
+	ui.flash_damage()
+	camera_shake(2)
 	
 func camera_shake(amount := 0.2):
 	var shake_time := 0.0
