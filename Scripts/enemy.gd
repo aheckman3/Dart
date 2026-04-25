@@ -4,8 +4,8 @@ extends Area3D
 @export var bob_speed := 3.0
 @export var bob_height := 0.01
 @export var rotate_speed := 20.0
-@export var speed := 3
-@export var speed_after_time := 5.0
+@export var speed := randf_range(2.5, 4.5)
+@export var speed_after_time := randf_range(5.0, 7.0)
 @export var speed_increase_delay := 15.0
 @export var grow_radius := 4.0
 @export var grow_speed := 0.5
@@ -64,7 +64,8 @@ func _on_body_entered(body):
 
 	if body.is_in_group("player"):
 		body.take_damage(10)
-		pop()
+		queue_free()
 		
 func pop():
+	GameManager.add_score(5)
 	queue_free()

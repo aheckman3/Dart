@@ -1,9 +1,9 @@
 extends Area3D
 
-@export var float_speed: float = 0.8
+@export var float_speed: float = randf_range(0.3, 1.7)
 @export var lifetime: float = 10.0
-@export var wobble_amount: float = 0.8
-@export var wobble_speed: float = 2.0
+@export var wobble_amount: float = randf_range(0.3, 1.3)
+@export var wobble_speed: float = randf_range(0.4, 1.5)
 @export var pop_sounds: Array[AudioStream]
 
 var time_alive := 0.0
@@ -62,6 +62,7 @@ func play_random_pop():
 
 func pop():
 	play_random_pop()
+	GameManager.add_score(1)
 	
 	var confetti = $Confetti
 

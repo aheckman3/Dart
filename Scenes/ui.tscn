@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bjj848o6s13l6" path="res://Scripts/ui.gd" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://blehhaegydds2" path="res://Scripts/crosshair.gd" id="2_nf4gj"]
+[ext_resource type="FontFile" uid="uid://b0m3absd73hyc" path="res://Assets/Fonts/PaperHand-Regular-Black.ttf" id="3_nf4gj"]
 
 [sub_resource type="Gradient" id="Gradient_qdvrb"]
 offsets = PackedFloat32Array(0, 0.99708456, 1)
@@ -56,3 +57,16 @@ value = 100.0
 rounded = true
 texture_progress = SubResource("GradientTexture2D_nf4gj")
 texture_progress_offset = Vector2(25, 25)
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=456282384]
+anchors_preset = -1
+anchor_left = 0.024
+anchor_top = 0.113000005
+anchor_right = 0.135
+anchor_bottom = 0.19000001
+offset_left = 0.35199928
+offset_top = -0.22400665
+offset_right = -0.5200043
+offset_bottom = -0.120010376
+theme_override_colors/font_color = Color(0.95859617, 0.2262114, 0.19950148, 1)
+theme_override_fonts/font = ExtResource("3_nf4gj")
