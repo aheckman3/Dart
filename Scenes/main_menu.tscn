@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://baiiojl7gnuw2"]
 
-[ext_resource type="Script" uid="uid://cg5lnwvfy7s1p" path="res://Scenes/main_menu.gd" id="1_1ehe0"]
+[ext_resource type="Script" uid="uid://cg5lnwvfy7s1p" path="res://Scripts/main_menu.gd" id="1_1ehe0"]
 [ext_resource type="Theme" uid="uid://i1jnl1q8gxb6" path="res://new_theme.tres" id="1_48xlc"]
 [ext_resource type="FontFile" uid="uid://b0m3absd73hyc" path="res://Assets/Fonts/PaperHand-Regular-Black.ttf" id="2_1ehe0"]
 
