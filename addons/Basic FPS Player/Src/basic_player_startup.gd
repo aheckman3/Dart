@@ -94,7 +94,7 @@ func _ready():
 	print("Player _ready()")
 	
 func _find_ui():
-	ui = get_tree().current_scene.get_node("UI")
+	ui = get_tree().get_first_node_in_group("UI")
 
 func is_aiming_at_target() -> bool:
 	if $Head/RayCast3D.is_colliding():
@@ -157,7 +157,6 @@ func _input(event):
 		
 	if Input.is_action_just_pressed("shoot"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		
 		
 func set_rotation_target(mouse_motion: Vector2):
 	rotation_target_player += -mouse_motion.x * KEY_BIND_MOUSE_SENS
@@ -321,8 +320,6 @@ func shoot():
 func start_shoot_cooldown():
 	await get_tree().create_timer(0.5).timeout
 	can_shoot = true
-	
-	can_shoot
 #__________________________________________________________________________________________________#
 # Audio
 #__________________________________________________________________________________________________#
