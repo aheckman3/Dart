@@ -1,12 +1,15 @@
 extends Node3D
 
-@onready var pause_menu: Control = $UI/PauseMenu
+@onready var pause_menu: Control = $PauseMenu
+@onready var hud: CanvasLayer = $"../UI"
 
 func _ready():
-	pause_menu.visible = false
+	pass
 	
 func _process(_delta):
 	if GameManager.game_state == "paused":
 		pause_menu.show()
+		hud.hide()
 	else:
 		pause_menu.hide()
+		hud.show()

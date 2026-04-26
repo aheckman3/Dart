@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dfwhxfua2porb"]
 
 [ext_resource type="FontFile" uid="uid://b0m3absd73hyc" path="res://Assets/Fonts/PaperHand-Regular-Black.ttf" id="1_emv3i"]
-[ext_resource type="Script" uid="uid://c8olhet6ot25x" path="res://Scripts/pause_menu.gd" id="1_k0w1u"]
+[ext_resource type="Script" uid="uid://c7tmpw0xqkca7" path="res://Scenes/pause_menu.gd" id="1_k0w1u"]
 
-[node name="PauseMenu" type="Control" unique_id=1778234643]
+[node name="PauseMenu" type="Control" unique_id=78794224]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,8 +13,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k0w1u")
 
-[node name="pauselabel" type="Label" parent="." unique_id=1457205612]
-process_mode = 2
+[node name="Panel" type="Panel" parent="." unique_id=28428323]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=786352907]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -21,29 +29,26 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -53.0
-offset_top = -11.5
+offset_top = -36.0
 offset_right = 53.0
-offset_bottom = 11.5
+offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=308908692]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_emv3i")
-theme_override_font_sizes/font_size = 89
 text = "Game Paused"
 
-[node name="resume" type="Button" parent="." unique_id=2135882534]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -73.63501
-offset_top = 100.22
-offset_right = -3.6347656
-offset_bottom = 131.22
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.945, 1.945)
+[node name="Resume" type="Button" parent="VBoxContainer" unique_id=407914837]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_emv3i")
 text = "Resume"
 
-[connection signal="pressed" from="resume" to="." method="_on_resume_pressed"]
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=1926254302]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_emv3i")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

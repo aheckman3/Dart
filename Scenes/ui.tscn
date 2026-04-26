@@ -15,6 +15,7 @@ height = 40
 fill_from = Vector2(0.47665846, 0)
 
 [node name="GameUI" type="CanvasLayer" unique_id=766366771 groups=["ui"]]
+process_mode = 3
 script = ExtResource("1_qdvrb")
 
 [node name="Crosshair" type="Control" parent="." unique_id=720142941]

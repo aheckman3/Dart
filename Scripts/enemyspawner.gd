@@ -18,7 +18,7 @@ func _init_spawner():
 	
 func spawn_loop():
 	while true:
-		await get_tree().create_timer(spawn_interval).timeout
+		await get_tree().create_timer(spawn_interval, false).timeout
 		spawn_enemy()
 		
 func spawn_enemy():

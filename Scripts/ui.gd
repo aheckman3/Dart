@@ -67,5 +67,5 @@ func animate_score(direction := 1):
 	bulge.tween_property(score_label, "scale", Vector2(1, 1), 0.1)
 	
 	var shake = create_tween()
-	shake.tween_property(score_label, "position:x", score_label.position.x + (6 * direction), 0.2)
+	shake.tween_property(score_label, "position:x", score_label.position.x + (10 * direction), 0.2)
 	shake.tween_property(score_label, "position:x", score_label.position.x, 0.05)

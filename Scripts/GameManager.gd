@@ -1,13 +1,14 @@
 extends Node
 
 signal score_changed(new_score)
-
 var game_state := "menu"
 var score := 0 
 
 
 func _ready():
 	game_state = "playing"
+	print(game_state)
+
 	
 func _input(event):
 	if event.is_action_pressed("toggle_fullscreen"):
@@ -29,12 +30,14 @@ func _input(event):
 func pause_game():
 	game_state = "paused"
 	get_tree().paused = true
-	print("GAME PAUSED")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	print(game_state)
 	
 func resume_game():
 	game_state = "playing"
 	get_tree().paused = false
-	print("GAME RESUMED")
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	print(game_state)
 	
 func add_score(amount):
 	score += amount
