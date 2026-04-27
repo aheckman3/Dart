@@ -74,6 +74,7 @@ var shake_strength: float = 0.0
 var shake_time: float = 0.0
 var shake_decay: float = 5.0
 var noise := FastNoiseLite.new()
+var can_air_control := true
 #__________________________________________________________________________________________________#
 # STATE MACHINE
 #__________________________________________________________________________________________________#
@@ -270,11 +271,13 @@ func is_moving() -> bool:
 	return Input.is_action_pressed(KEY_BIND_UP) or Input.is_action_pressed(KEY_BIND_DOWN) or Input.is_action_pressed(KEY_BIND_LEFT) or Input.is_action_pressed(KEY_BIND_RIGHT)
 	
 func handle_movement(delta):
-	var input_dir = Input.get_vector(KEY_BIND_LEFT, KEY_BIND_RIGHT, KEY_BIND_UP, KEY_BIND_DOWN)
+	var input_dir = Vector2.ZERO
+	if is_on_floor() or can_air_control:
+		input_dir = Input.get_vector(KEY_BIND_LEFT, KEY_BIND_RIGHT, KEY_BIND_UP, KEY_BIND_DOWN)
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	velocity.x = move_toward(velocity.x, direction.x * speed, accel * delta)
-	velocity.z = move_toward(velocity.z, direction.z * speed, accel * delta)
+	if input_dir != Vector2.ZERO:
+		velocity.x = move_toward(velocity.x, direction.x * speed, accel * delta)
+		velocity.z = move_toward(velocity.z, direction.z * speed, accel * delta)
 	
 	move_and_slide()
 	
@@ -284,6 +287,14 @@ func apply_gravity(delta):
 		
 func jump():
 	velocity.y = JUMP_VELOCITY
+	
+func apply_balloon_push(dir: Vector3, strength: float):
+	velocity += dir * strength
+	
+func apply_knockback(direction: Vector3, horizontal_strength: float, vertical_strength: float):
+	velocity += direction * horizontal_strength
+	velocity.y = vertical_strength
+	can_air_control = false
 #__________________________________________________________________________________________________#
 # HEAD BOB
 #__________________________________________________________________________________________________#
