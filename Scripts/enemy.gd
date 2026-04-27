@@ -11,6 +11,9 @@ extends Area3D
 @export var grow_speed := 0.5
 @export var max_scale := 5.0
 @export var min_scale := 1.0
+@export var max_health := 10
+var health := 10
+var launch_velocity: Vector3 = Vector3.ZERO
 
 
 var bob_time := 0.0
@@ -58,9 +61,14 @@ func _physics_process(delta):
 		var new_scale = lerp(scale.x, min_scale, grow_speed * delta)
 		scale = Vector3(new_scale, new_scale, new_scale)
 	
+	if launch_velocity.length() > 0.01:
+		global_position += launch_velocity * delta
+		launch_velocity = launch_velocity.move_toward(Vector3.ZERO, delta * 2.0)
+		
 func _on_body_entered(body):
 	if body.is_in_group("dart"):
-		pop()
+		take_damage(body.damage)
+		body.queue_free()
 
 	if body.is_in_group("player"):
 		body.take_damage(10)
@@ -69,3 +77,8 @@ func _on_body_entered(body):
 func pop():
 	GameManager.add_score(5)
 	queue_free()
+	
+func take_damage(amount):
+	health -= amount
+	if health <= 0:
+		pop()

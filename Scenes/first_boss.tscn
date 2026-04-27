@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://21cgkvjcmi6l"]
+
+[ext_resource type="Script" uid="uid://dqh65taedyqko" path="res://first_boss.gd" id="1_e8ksu"]
+[ext_resource type="PackedScene" uid="uid://cbcki4swdvroh" path="res://Scenes/enemy.tscn" id="2_lxb3b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxb3b"]
+albedo_color = Color(0.5647059, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_cylyx"]
+material = SubResource("StandardMaterial3D_lxb3b")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kuchj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lxb3b"]
+radius = 0.31256872
+
+[node name="FirstBoss" type="Area3D" unique_id=297085036]
+script = ExtResource("1_e8ksu")
+minion_scene = ExtResource("2_lxb3b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1792383559]
+transform = Transform3D(2.4317894, 0, 0, 0, 2.9767191, 0, 0, 0, 2.4063692, 0, 0, 0)
+mesh = SubResource("SphereMesh_cylyx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=728398084]
+transform = Transform3D(2.2386146, 0, 0, 0, 2.7330427, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_kuchj")
+
+[node name="DodgeDetector" type="Area3D" parent="." unique_id=1535624044]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DodgeDetector" unique_id=1518723864]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_lxb3b")

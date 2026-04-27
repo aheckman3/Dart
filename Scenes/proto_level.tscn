@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://xxjf1voyo3pu" path="res://Scenes/balloon_spawner.tscn" id="2_p4yaa"]
 [ext_resource type="PackedScene" uid="uid://dsckd62qvl4mx" path="res://Scenes/enemyspawner.tscn" id="5_b0lxd"]
 [ext_resource type="PackedScene" uid="uid://dfwhxfua2porb" path="res://Scenes/pause_menu.tscn" id="6_0gqda"]
+[ext_resource type="PackedScene" uid="uid://b00km43swhpdv" path="res://Scenes/boss_spawner.tscn" id="7_2wofx"]
+[ext_resource type="PackedScene" uid="uid://21cgkvjcmi6l" path="res://Scenes/first_boss.tscn" id="8_wkkq1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1xis7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -110,3 +112,7 @@ script = ExtResource("1_b0lxd")
 
 [node name="PauseMenu" parent="GameController" unique_id=78794224 instance=ExtResource("6_0gqda")]
 visible = false
+
+[node name="BossSpawner" parent="." unique_id=176709985 instance=ExtResource("7_2wofx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6960044, 5.6763134, -3.7418766)
+boss_scene = ExtResource("8_wkkq1")
