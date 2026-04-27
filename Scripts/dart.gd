@@ -2,6 +2,7 @@ extends RigidBody3D
 
 @export var speed := 45
 @export var lifetime := 15.0
+@export var damage := 10
 var stuck := false
 var direction: Vector3 = Vector3.ZERO
 

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b00km43swhpdv"]
+
+[ext_resource type="Script" uid="uid://c46kjg6ul04mf" path="res://boss_spawner.gd" id="1_f1a6u"]
+[ext_resource type="PackedScene" uid="uid://21cgkvjcmi6l" path="res://Scenes/first_boss.tscn" id="2_ifrts"]
+
+[node name="BossSpawner" type="Node3D" unique_id=176709985]
+script = ExtResource("1_f1a6u")
+boss_scene = ExtResource("2_ifrts")
