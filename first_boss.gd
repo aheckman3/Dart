@@ -138,6 +138,12 @@ func start_dodge():
 func _on_dodge_detector_entered(body):
 	if body.is_in_group("dart"):
 		try_dodge()
+	
+	if body.is_in_group("player"):
+		var away = (body.global_position - global_position).normalized()
+		var horizontal_strength = 23.0
+		var vertical_strength = 12.0
+		body.apply_knockback(away, horizontal_strength, vertical_strength)
 		
 func try_dodge():
 	if randf() <= dodge_chance:

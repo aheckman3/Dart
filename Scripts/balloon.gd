@@ -8,6 +8,7 @@ extends Area3D
 
 var time_alive := 0.0
 var wobble_offset := randf() * 10
+var push_velocity : Vector3 = Vector3.ZERO
 
 
 func _ready():
@@ -29,6 +30,9 @@ func _ready():
 
 
 func _process(delta):
+	if push_velocity.length() > 0.01:
+		global_position += push_velocity * delta
+		push_velocity = push_velocity.move_toward(Vector3.ZERO, delta * 1.5)
 	translate(Vector3(0, float_speed * delta, 0))
 	
 	var wobble = sin(Time.get_ticks_msec() * 0.001 * wobble_speed + wobble_offset) * wobble_amount
@@ -47,6 +51,12 @@ func _process(delta):
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("dart"):
 		pop()
+		
+	if body.is_in_group("player"):
+		var away = (global_position - body.global_position).normalized()
+		var push_strength = 3.0
+		push_velocity = away * push_strength
+		body.apply_balloon_push(-away, 0.5)
 		
 func play_random_pop():
 	if pop_sounds.is_empty():
