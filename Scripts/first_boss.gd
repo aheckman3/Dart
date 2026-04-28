@@ -145,6 +145,7 @@ func _on_dodge_detector_entered(body):
 		var vertical_strength = 12.0
 		body.apply_knockback(away, horizontal_strength, vertical_strength)
 		
+		body.take_damage(25)
 func try_dodge():
 	if randf() <= dodge_chance:
 		start_dodge()
