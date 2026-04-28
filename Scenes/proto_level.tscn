@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cq0kblluuykdp" path="res://Scenes/player.tscn" id="1_1xis7"]
 [ext_resource type="Script" uid="uid://2anrh100v1qr" path="res://Scripts/GameController.gd" id="1_b0lxd"]
 [ext_resource type="PackedScene" uid="uid://yo7xrj1nt6o1" path="res://Scenes/ui.tscn" id="1_kcxld"]
-[ext_resource type="PackedScene" uid="uid://xxjf1voyo3pu" path="res://Scenes/balloon_spawner.tscn" id="2_p4yaa"]
-[ext_resource type="PackedScene" uid="uid://dsckd62qvl4mx" path="res://Scenes/enemyspawner.tscn" id="5_b0lxd"]
+[ext_resource type="PackedScene" uid="uid://d1ephw3ruxf6u" path="res://Scenes/spawner.tscn" id="5_wkkq1"]
 [ext_resource type="PackedScene" uid="uid://dfwhxfua2porb" path="res://Scenes/pause_menu.tscn" id="6_0gqda"]
-[ext_resource type="PackedScene" uid="uid://b00km43swhpdv" path="res://Scenes/boss_spawner.tscn" id="7_2wofx"]
+[ext_resource type="PackedScene" uid="uid://ch4astw8vx4qr" path="res://Scenes/balloon.tscn" id="6_gaguf"]
+[ext_resource type="PackedScene" uid="uid://cbcki4swdvroh" path="res://Scenes/enemy.tscn" id="7_a0uty"]
 [ext_resource type="PackedScene" uid="uid://21cgkvjcmi6l" path="res://Scenes/first_boss.tscn" id="8_wkkq1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1xis7"]
@@ -97,12 +97,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_p4yaa")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4" unique_id=1571321892]
 shape = SubResource("BoxShape3D_5ugfd")
 
-[node name="BalloonSpawner" parent="." unique_id=1551640606 instance=ExtResource("2_p4yaa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8801422, 1.4364014, 0)
-
-[node name="enemyspawner" parent="." unique_id=362215387 instance=ExtResource("5_b0lxd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
-
 [node name="player" parent="." unique_id=1257616633 instance=ExtResource("1_1xis7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8849535, 1.1500001, -0.46289825)
 
@@ -113,6 +107,19 @@ script = ExtResource("1_b0lxd")
 [node name="PauseMenu" parent="GameController" unique_id=78794224 instance=ExtResource("6_0gqda")]
 visible = false
 
-[node name="BossSpawner" parent="." unique_id=176709985 instance=ExtResource("7_2wofx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6960044, 5.6763134, -3.7418766)
-boss_scene = ExtResource("8_wkkq1")
+[node name="Spawner" parent="." unique_id=1676879371 instance=ExtResource("5_wkkq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.894754, -1.0185995, 0.11698151)
+scene_to_spawn = ExtResource("6_gaguf")
+spawn_interval = 0.07
+spawn_radius = 15.0
+
+[node name="Spawner2" parent="." unique_id=710262119 instance=ExtResource("5_wkkq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.054487, 1.3468037, -0.9486313)
+scene_to_spawn = ExtResource("7_a0uty")
+spawn_radius = 60.0
+
+[node name="Spawner3" parent="." unique_id=350657093 instance=ExtResource("5_wkkq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.429553, 7.8010087, -10.91517)
+scene_to_spawn = ExtResource("8_wkkq1")
+spawn_once = true
+start_delay = 20.0

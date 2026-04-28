@@ -275,7 +275,14 @@ func handle_movement(delta):
 	if is_on_floor() or can_air_control:
 		input_dir = Input.get_vector(KEY_BIND_LEFT, KEY_BIND_RIGHT, KEY_BIND_UP, KEY_BIND_DOWN)
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	var target_x = direction.x * speed
+	var target_z = direction.z * speed
+	
 	if input_dir != Vector2.ZERO:
+		velocity.x = move_toward(velocity.x, target_x, accel * delta)
+		velocity.z = move_toward(velocity.z, target_z, accel * delta)
+	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, direction.x * speed, accel * delta)
 		velocity.z = move_toward(velocity.z, direction.z * speed, accel * delta)
 	
