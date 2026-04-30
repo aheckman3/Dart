@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://21cgkvjcmi6l"]
 
 [ext_resource type="Script" uid="uid://dqh65taedyqko" path="res://Scripts/first_boss.gd" id="1_e8ksu"]
-[ext_resource type="PackedScene" uid="uid://cbcki4swdvroh" path="res://Scenes/enemy.tscn" id="2_lxb3b"]
+[ext_resource type="PackedScene" uid="uid://dd7i0iw4ffor7" path="res://Scenes/enemymodel.tscn" id="2_lxb3b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxb3b"]
 albedo_color = Color(0.5647059, 0, 1, 1)

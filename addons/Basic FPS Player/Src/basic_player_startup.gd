@@ -107,6 +107,8 @@ func is_aiming_at_target() -> bool:
 #__________________________________________________________________________________________________#
 	
 func _physics_process(delta):
+	if is_on_floor():
+		can_air_control = true
 	if Engine.is_editor_hint():
 		return
 	
@@ -133,8 +135,6 @@ func _process(delta):
 		rotate_player(delta)
 		state_machine(delta)
 
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
 	if ui:
 		ui.set_crosshair_targeted(is_aiming_at_target())
 	if shake_strength > 0:
@@ -156,8 +156,9 @@ func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
-	if Input.is_action_just_pressed("shoot"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if event.is_action_pressed("shoot"):
+		print("SHOOT INPUT RECEIVED")
+		shoot()
 		
 func set_rotation_target(mouse_motion: Vector2):
 	rotation_target_player += -mouse_motion.x * KEY_BIND_MOUSE_SENS
@@ -283,8 +284,8 @@ func handle_movement(delta):
 		velocity.x = move_toward(velocity.x, target_x, accel * delta)
 		velocity.z = move_toward(velocity.z, target_z, accel * delta)
 	elif is_on_floor():
-		velocity.x = move_toward(velocity.x, direction.x * speed, accel * delta)
-		velocity.z = move_toward(velocity.z, direction.z * speed, accel * delta)
+		velocity.x = move_toward(velocity.x, 0.0 * speed, accel * delta)
+		velocity.z = move_toward(velocity.z, 0.0 * speed, accel * delta)
 	
 	move_and_slide()
 	
@@ -331,7 +332,7 @@ func shoot():
 	dart.global_transform = shoot_point.global_transform
 	dart.direction = -camera.global_transform.basis.z
 	
-	get_tree().current_scene.add_child(dart)
+	get_tree(). get_root().add_child(dart)
 	
 	start_shoot_cooldown()
 	

@@ -12,7 +12,7 @@ var push_velocity : Vector3 = Vector3.ZERO
 
 
 func _ready():
-	var mesh: MeshInstance3D = $MeshInstance3D
+	var mesh: MeshInstance3D = $Sphere
 
 	var mat := StandardMaterial3D.new()
 	mesh.material_override = mat
@@ -26,7 +26,7 @@ func _ready():
 		Color.KHAKI
 	]
 	
-	$MeshInstance3D.material_override.albedo_color = colors.pick_random()
+	$Sphere.material_override.albedo_color = colors.pick_random()
 
 
 func _process(delta):

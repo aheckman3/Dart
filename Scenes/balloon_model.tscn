@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bcobxj3ajwn66"]
+
+[ext_resource type="PackedScene" uid="uid://bk33dh4wd4qcv" path="res://Assets/Art/Untitled.glb" id="1_0rny4"]
+[ext_resource type="Script" uid="uid://dyqfyt5ua6ocg" path="res://Scripts/balloon.gd" id="1_hpw6i"]
+[ext_resource type="AudioStream" uid="uid://baq6xk0xjuli5" path="res://Assets/SFX/pop_one.wav" id="3_1npb4"]
+[ext_resource type="AudioStream" uid="uid://be2hb0nostyh5" path="res://Assets/SFX/pop_two.wav" id="4_utrb1"]
+[ext_resource type="AudioStream" uid="uid://dcx67vem56jls" path="res://Assets/SFX/pop_three.wav" id="5_vnldh"]
+[ext_resource type="AudioStream" uid="uid://dcv7u3c7csru5" path="res://Assets/SFX/pop_four.wav" id="6_ilm0t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8g0y"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0rny4"]
+radius = 0.3131252
+
+[sub_resource type="Gradient" id="Gradient_0rny4"]
+offsets = PackedFloat32Array(0.14797688, 0.33410406, 0.5618497, 0.77572256, 1)
+colors = PackedColorArray(1, 0.01999998, 0.01999998, 1, 1, 0.26999998, 0.8296665, 1, 1, 0.8333334, 0, 1, 0.16666675, 1, 0, 1, 0, 0.5, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hpw6i"]
+gradient = SubResource("Gradient_0rny4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hh6s4"]
+lifetime_randomness = 1.0
+particle_flag_rotate_y = true
+angle_min = 10.0000105
+angle_max = 20.000011
+spread = 180.0
+flatness = 0.36
+initial_velocity_min = 4.0
+initial_velocity_max = 7.0
+angular_velocity_min = -328.58002
+angular_velocity_max = 222.88998
+gravity = Vector3(0, -13.57, 0)
+damping_min = 3.0000002
+damping_max = 5.0
+color_ramp = SubResource("GradientTexture1D_hpw6i")
+turbulence_enabled = true
+turbulence_noise_strength = 0.3
+turbulence_noise_speed_random = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aw5f1"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_1npb4"]
+material = SubResource("StandardMaterial3D_aw5f1")
+size = Vector2(0.2, 0.1)
+
+[node name="BalloonModel" unique_id=1070901192 instance=ExtResource("1_0rny4")]
+script = ExtResource("1_hpw6i")
+pop_sounds = Array[AudioStream]([ExtResource("3_1npb4"), ExtResource("4_utrb1"), ExtResource("5_vnldh"), ExtResource("6_ilm0t")])
+
+[node name="Sphere" parent="." index="0" unique_id=1728588650]
+surface_material_override/0 = SubResource("StandardMaterial3D_a8g0y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=192269480 groups=["target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.044484437, 0)
+shape = SubResource("SphereShape3D_0rny4")
+
+[node name="Audio" type="AudioStreamPlayer3D" parent="." index="3" unique_id=11542407]
+max_db = 6.0
+max_distance = 30.0
+
+[node name="Confetti" type="GPUParticles3D" parent="." index="4" unique_id=1396278466]
+emitting = false
+amount = 120
+lifetime = 1.72
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_hh6s4")
+draw_pass_1 = SubResource("QuadMesh_1npb4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dd7i0iw4ffor7"]
+
+[ext_resource type="PackedScene" uid="uid://esak11a2ol1p" path="res://Assets/Art/enemymodel.glb" id="1_t80wj"]
+[ext_resource type="Script" uid="uid://cqnbwn6ss6lfe" path="res://Scripts/enemy.gd" id="2_k3c5i"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ej5kx"]
+radius = 0.30356875
+
+[node name="enemymodel" unique_id=2055160682 instance=ExtResource("1_t80wj")]
+script = ExtResource("2_k3c5i")
+
+[node name="Sphere" parent="." index="0" unique_id=1150324985]
+transform = Transform3D(0.02634194, 0, 0.30108956, 0, 0.30223966, 0, -0.30108956, 0, 0.02634194, 0, 0.06604481, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1670661754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02509673, 0)
+shape = SubResource("SphereShape3D_ej5kx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

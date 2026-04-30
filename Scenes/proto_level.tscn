@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://yo7xrj1nt6o1" path="res://Scenes/ui.tscn" id="1_kcxld"]
 [ext_resource type="PackedScene" uid="uid://d1ephw3ruxf6u" path="res://Scenes/spawner.tscn" id="5_wkkq1"]
 [ext_resource type="PackedScene" uid="uid://dfwhxfua2porb" path="res://Scenes/pause_menu.tscn" id="6_0gqda"]
-[ext_resource type="PackedScene" uid="uid://ch4astw8vx4qr" path="res://Scenes/balloon.tscn" id="6_gaguf"]
-[ext_resource type="PackedScene" uid="uid://cbcki4swdvroh" path="res://Scenes/enemy.tscn" id="7_a0uty"]
+[ext_resource type="PackedScene" uid="uid://bcobxj3ajwn66" path="res://Scenes/balloon_model.tscn" id="6_wkkq1"]
+[ext_resource type="PackedScene" uid="uid://dd7i0iw4ffor7" path="res://Scenes/enemymodel.tscn" id="7_wkkq1"]
 [ext_resource type="PackedScene" uid="uid://21cgkvjcmi6l" path="res://Scenes/first_boss.tscn" id="8_wkkq1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1xis7"]
@@ -47,6 +47,7 @@ albedo_color = Color(0.99215686, 0.6392157, 0.5058824, 1)
 size = Vector3(3, 2, 3)
 
 [node name="proto_level" type="Node3D" unique_id=84065362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.30981, 0)
 
 [node name="UI" parent="." unique_id=766366771 instance=ExtResource("1_kcxld")]
 
@@ -109,13 +110,13 @@ visible = false
 
 [node name="Spawner" parent="." unique_id=1676879371 instance=ExtResource("5_wkkq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.894754, -1.0185995, 0.11698151)
-scene_to_spawn = ExtResource("6_gaguf")
+scene_to_spawn = ExtResource("6_wkkq1")
 spawn_interval = 0.07
 spawn_radius = 15.0
 
 [node name="Spawner2" parent="." unique_id=710262119 instance=ExtResource("5_wkkq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.054487, 1.3468037, -0.9486313)
-scene_to_spawn = ExtResource("7_a0uty")
+scene_to_spawn = ExtResource("7_wkkq1")
 spawn_radius = 60.0
 
 [node name="Spawner3" parent="." unique_id=350657093 instance=ExtResource("5_wkkq1")]
