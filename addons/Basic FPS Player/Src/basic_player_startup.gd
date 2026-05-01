@@ -95,12 +95,20 @@ func _ready():
 	print("Player _ready()")
 	
 func _find_ui():
-	ui = get_tree().get_first_node_in_group("UI")
+	ui = get_tree().get_first_node_in_group("ui")
 
 func is_aiming_at_target() -> bool:
-	if $Head/RayCast3D.is_colliding():
-		var obj = $Head/RayCast3D.get_collider()
-		return obj and obj.is_in_group("target")
+	var ray = $Head/RayCast3D
+	if not ray.is_colliding():
+		return false
+		
+	var obj = ray.get_collider()
+	var node = obj
+	
+	while node:
+		if node.is_in_group("target"):
+			return true
+		node = node.get_parent()
 	return false
 #__________________________________________________________________________________________________#
 # PROCESSING

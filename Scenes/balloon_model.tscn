@@ -45,7 +45,7 @@ vertex_color_use_as_albedo = true
 material = SubResource("StandardMaterial3D_aw5f1")
 size = Vector2(0.2, 0.1)
 
-[node name="BalloonModel" unique_id=1070901192 instance=ExtResource("1_0rny4")]
+[node name="BalloonModel" unique_id=1070901192 groups=["target"] instance=ExtResource("1_0rny4")]
 script = ExtResource("1_hpw6i")
 pop_sounds = Array[AudioStream]([ExtResource("3_1npb4"), ExtResource("4_utrb1"), ExtResource("5_vnldh"), ExtResource("6_ilm0t")])
 

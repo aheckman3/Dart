@@ -123,4 +123,3 @@ spawn_radius = 60.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.429553, 7.8010087, -10.91517)
 scene_to_spawn = ExtResource("8_wkkq1")
 spawn_once = true
-start_delay = 20.0

@@ -2,14 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dqh65taedyqko" path="res://Scripts/first_boss.gd" id="1_e8ksu"]
 [ext_resource type="PackedScene" uid="uid://dd7i0iw4ffor7" path="res://Scenes/enemymodel.tscn" id="2_lxb3b"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxb3b"]
-albedo_color = Color(0.5647059, 0, 1, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_cylyx"]
-material = SubResource("StandardMaterial3D_lxb3b")
+[ext_resource type="PackedScene" uid="uid://esak11a2ol1p" path="res://Assets/Art/enemymodel.glb" id="3_cylyx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kuchj"]
+size = Vector3(1.9102783, 2.4084473, 1.6663818)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lxb3b"]
 radius = 0.31256872
@@ -18,12 +14,13 @@ radius = 0.31256872
 script = ExtResource("1_e8ksu")
 minion_scene = ExtResource("2_lxb3b")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1792383559]
-transform = Transform3D(2.4317894, 0, 0, 0, 2.9767191, 0, 0, 0, 2.4063692, 0, 0, 0)
-mesh = SubResource("SphereMesh_cylyx")
+[node name="Visuals" type="Node3D" parent="." unique_id=1191684144]
+
+[node name="enemymodel" parent="Visuals" unique_id=2094460842 instance=ExtResource("3_cylyx")]
+transform = Transform3D(0.749428, 0, 3.7406662, 0, 3.815, 0, -3.7406662, 0, 0.749428, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=728398084]
-transform = Transform3D(2.2386146, 0, 0, 0, 2.7330427, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014099121, 0.03684759, -0.09161377)
 shape = SubResource("BoxShape3D_kuchj")
 
 [node name="DodgeDetector" type="Area3D" parent="." unique_id=1535624044]
@@ -31,3 +28,5 @@ shape = SubResource("BoxShape3D_kuchj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DodgeDetector" unique_id=1518723864]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("SphereShape3D_lxb3b")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

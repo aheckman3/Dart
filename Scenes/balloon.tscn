@@ -59,7 +59,7 @@ pop_sounds = Array[AudioStream]([ExtResource("2_nrerx"), ExtResource("3_kbj1d"),
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=445323186 groups=["target"]]
 shape = SubResource("BoxShape3D_hkhi7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=124808883]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=124808883 groups=["target"]]
 transform = Transform3D(0.7187099, 0.25456262, 0, -0.21636184, 0.8456052, 0, 0, 0, 0.7191671, 0, 0, 0)
 mesh = SubResource("SphereMesh_4wcav")
 
