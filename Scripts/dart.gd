@@ -37,7 +37,7 @@ func stick_to_surface(state):
 	var collider_id = PhysicsServer3D.body_get_object_instance_id(collider_rid)
 	var collider_node = instance_from_id(collider_id)
 	
-	if collider_node and collider_node.is_in_group("player") or collider_node.is_in_group("floor"):
+	if collider_node and (collider_node.is_in_group("player") or collider_node.is_in_group("floor")):
 		queue_free()
 		return
 
@@ -51,4 +51,3 @@ func reparent_to(new_parent):
 	get_parent().remove_child(self)
 	new_parent.add_child(self)
 	global_transform = old_transform
-	

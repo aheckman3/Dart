@@ -45,6 +45,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_emv3i")
 text = "Resume"
 
+[node name="Settings" type="Button" parent="VBoxContainer" unique_id=1560394221]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_emv3i")
+text = "Settings"
+
 [node name="Quit" type="Button" parent="VBoxContainer" unique_id=1926254302]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_emv3i")

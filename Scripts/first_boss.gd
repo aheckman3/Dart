@@ -21,8 +21,9 @@ extends Area3D
 @export var dodge_speed := 20.0
 @export var dodge_duration := 0.25
 @export var dodge_chance := 0.4
+@export var hover_height := 2.5
 
-var health := 1000
+var health := 500
 var has_spawned_minions := false
 var minion_spawn_timer := 0.0
 var dodge_timer := 0.0
@@ -40,9 +41,8 @@ var visual_scale := 1.0
 var dodge_start_scale := 1.0
 
 func _enter_tree():
-	print("Enemy root entered tree:", self)
 	scale = Vector3.ONE
-	
+	print("Boss has Spawned!")
 func _ready():
 	print("Enemy _ready()")
 	player = get_tree().get_first_node_in_group("player")
@@ -54,7 +54,11 @@ func _physics_process(delta):
 		return
 		
 	var dir = (player.global_position - global_position).normalized()
-	global_position += dir * speed * delta
+	var move = dir * speed * delta
+	move.y = 0 
+	global_position += move
+
+	global_position.y = move_toward(global_position.y, hover_height, delta * 1)
 	
 	alive_time += delta
 	if alive_time >= speed_increase_delay:
