@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://hmk186cm2bcw"]
+
+[ext_resource type="Script" uid="uid://cmhpysmdt34g7" path="res://Scripts/screen_transition.gd" id="1_w0r0h"]
+
+[sub_resource type="Animation" id="Animation_w0r0h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u83yi"]
+resource_name = "fade_in"
+length = 0.43333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0.9647059), Color(0, 0, 0, 0.382353), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cmets"]
+resource_name = "fade_out"
+length = 0.36666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cmets"]
+_data = {
+&"RESET": SubResource("Animation_w0r0h"),
+&"fade_in": SubResource("Animation_u83yi"),
+&"fade_out": SubResource("Animation_cmets")
+}
+
+[node name="ScreenTransition" type="Control" unique_id=2134699657]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w0r0h")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1199625301]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=869402971]
+libraries/ = SubResource("AnimationLibrary_cmets")
