@@ -2,7 +2,8 @@ extends Control
 
 
 
-
+func _ready() -> void:
+	print("VIEWPORT TYPE:", get_viewport())
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

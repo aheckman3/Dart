@@ -3,13 +3,29 @@
 [ext_resource type="Script" uid="uid://cg5lnwvfy7s1p" path="res://Scripts/main_menu.gd" id="1_1ehe0"]
 [ext_resource type="FontFile" uid="uid://b0m3absd73hyc" path="res://Assets/Fonts/PaperHand-Regular-Black.ttf" id="2_1ehe0"]
 [ext_resource type="StyleBox" uid="uid://qiwcdhyvxrwk" path="res://button_normal.tres" id="3_n45e2"]
+[ext_resource type="Texture2D" uid="uid://pkic32w770d" path="res://Assets/Art/Screenshot 2026-05-03 162208.png" id="3_yhxw7"]
 [ext_resource type="StyleBox" uid="uid://buf5wlp3eykp5" path="res://button_pressed.tres" id="4_opfnp"]
 [ext_resource type="StyleBox" uid="uid://2lctaeh5ucjc" path="res://button_hovered.tres" id="5_cp0ys"]
+[ext_resource type="PackedScene" uid="uid://d1ephw3ruxf6u" path="res://Scenes/spawner.tscn" id="6_opfnp"]
+[ext_resource type="PackedScene" uid="uid://bcobxj3ajwn66" path="res://Scenes/balloon_model.tscn" id="7_cp0ys"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cp0ys"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_yhxw7"]
+sky_material = SubResource("ProceduralSkyMaterial_cp0ys")
+
+[sub_resource type="Environment" id="Environment_trj04"]
+background_mode = 2
+sky = SubResource("Sky_yhxw7")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_n45e2"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.7678019)
-colors = PackedColorArray(1, 1, 1, 1, 0.252, 0.56, 0.48813334, 1)
+offsets = PackedFloat32Array(0, 0.74613005)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.1500001, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_opfnp"]
 gradient = SubResource("Gradient_n45e2")
@@ -22,13 +38,42 @@ texture = SubResource("GradientTexture2D_opfnp")
 [sub_resource type="LabelSettings" id="LabelSettings_n45e2"]
 font = ExtResource("2_1ehe0")
 font_size = 91
-font_color = Color(0, 0.7058824, 0.54509807, 1)
+font_color = Color(1, 0.46666667, 0, 1)
 outline_size = 18
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 28
 shadow_color = Color(0, 0, 0, 0.6901961)
 
-[node name="MainMenu" type="Control" unique_id=849828793]
+[node name="MainMenuRoot" type="Node3D" unique_id=541332664]
+transform = Transform3D(0.999998, 0.00032639626, 0.0019722057, -0.00031812058, 0.9999912, -0.0041904547, -0.0019735575, 0.0041898186, 0.9999893, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2146825774]
+environment = SubResource("Environment_trj04")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=797084868]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1708039036]
+transform = Transform3D(1.1584955, -8.961251e-09, 2.561137e-09, 1.0913936e-11, 1.0000516, 1.8626451e-09, -9.313226e-10, -4.656613e-10, 1.0003126, -0.0062583378, 0.013286337, 8.171063)
+projection = 1
+current = true
+size = 10.29
+
+[node name="BalloonLayer" type="Node3D" parent="." unique_id=732510444]
+
+[node name="Spawner" parent="BalloonLayer" unique_id=1676879371 instance=ExtResource("6_opfnp")]
+transform = Transform3D(1, -4.5474735e-12, 6.9849193e-10, 1.2732926e-11, 1, 0, -6.9849193e-10, -1.3969839e-09, 1, -0.0017204701, -6.0968146, 1.3848739)
+scene_to_spawn = ExtResource("7_cp0ys")
+spawn_interval = 0.605
+spawn_radius = 6.58
+menu_mode = true
+
+[node name="Sprite3D" type="Sprite3D" parent="BalloonLayer" unique_id=498549946]
+transform = Transform3D(2.0350397, -2.1827873e-10, 3.7252903e-09, 7.3305273e-10, 2.3806162, 7.450581e-09, -3.259629e-09, 1.8626451e-09, 0.9976341, 0.008587521, 0.38695896, -4.4183083)
+texture = ExtResource("3_yhxw7")
+
+[node name="MainMenu" type="Control" parent="." unique_id=849828793]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,7 +82,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1ehe0")
 
-[node name="Panel" type="Panel" parent="." unique_id=1919540736]
+[node name="Panel" type="Panel" parent="MainMenu" unique_id=1919540736]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +94,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_cp0ys")
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=275138394]
+[node name="CenterContainer" type="CenterContainer" parent="MainMenu" unique_id=275138394]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,13 +102,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="CenterContainer" unique_id=1689601534]
+[node name="Label" type="Label" parent="MainMenu/CenterContainer" unique_id=1689601534]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.7058824, 0.54509807, 1)
 text = "B'YOONS!!"
 label_settings = SubResource("LabelSettings_n45e2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1471016396]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1471016396]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.43400002
@@ -79,7 +125,7 @@ scale = Vector2(1.935, 1.935)
 theme_override_constants/separation = 18
 alignment = 1
 
-[node name="Play" type="Button" parent="VBoxContainer" unique_id=355339050]
+[node name="Play" type="Button" parent="MainMenu/VBoxContainer" unique_id=355339050]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -89,7 +135,7 @@ theme_override_styles/pressed = ExtResource("4_opfnp")
 theme_override_styles/hover = ExtResource("5_cp0ys")
 text = "Play"
 
-[node name="Settings" type="Button" parent="VBoxContainer" unique_id=495689701]
+[node name="Settings" type="Button" parent="MainMenu/VBoxContainer" unique_id=495689701]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_1ehe0")
 theme_override_styles/normal = ExtResource("3_n45e2")
@@ -97,7 +143,7 @@ theme_override_styles/pressed = ExtResource("4_opfnp")
 theme_override_styles/hover = ExtResource("5_cp0ys")
 text = "Settings"
 
-[node name="Quit" type="Button" parent="VBoxContainer" unique_id=1257603602]
+[node name="Quit" type="Button" parent="MainMenu/VBoxContainer" unique_id=1257603602]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_1ehe0")
@@ -106,5 +152,5 @@ theme_override_styles/pressed = ExtResource("4_opfnp")
 theme_override_styles/hover = ExtResource("5_cp0ys")
 text = "QUIT"
 
-[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Play" to="MainMenu" method="_on_play_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/Quit" to="MainMenu" method="_on_quit_pressed"]
