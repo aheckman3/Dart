@@ -76,6 +76,14 @@ func apply_upgrade(name: String):
 					apply_jump_boost(2.0),
 				func():
 					remove_jump_boost(2.0))
+		"explosive_dart":
+			apply_temp_buff(
+				"explosive_dart",
+				10.0,
+				func():
+					get_parent().get_node("WeaponManager").has_explosive_shot = true,
+				func():
+					get_parent().get_node("WeaponManager").has_explosive_shot = false)
 
 func ui_show_buff(name: String, duration: float):
 	var ui = get_tree().get_first_node_in_group("ui")

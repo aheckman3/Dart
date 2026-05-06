@@ -3,14 +3,20 @@ extends RigidBody3D
 @export var speed := 45
 @export var lifetime := 15.0
 @export var damage := 10
+@export var explosion_radius := 4.0
+@export var explosion_damage := 40
+@export var is_explosive := false
+
 var stuck := false
 var direction: Vector3 = Vector3.ZERO
 
 func _ready():
+	connect("body_entered", Callable(self, "_on_body_entered"))
 	if direction != Vector3.ZERO:
 		linear_velocity = direction.normalized() * speed
 	await get_tree().create_timer(lifetime).timeout
 	queue_free()
+	print("Dart loaded from:", get_stack())
 
 func _physics_process(_delta):
 	if stuck:
@@ -25,6 +31,11 @@ func _integrate_forces(state):
 
 
 func stick_to_surface(state):
+
+	if is_explosive:
+		explode()
+		return
+	
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
 	sleeping = true
@@ -43,6 +54,7 @@ func stick_to_surface(state):
 
 	if collider_node and collider_node.is_in_group("dart"):
 		return
+
 		
 	global_transform.origin = world_pos
 	look_at(world_pos + world_normal, Vector3.UP)
@@ -54,3 +66,38 @@ func reparent_to(new_parent):
 	get_parent().remove_child(self)
 	new_parent.add_child(self)
 	global_transform = old_transform
+
+func explode():
+	$ExplosionArea.transform.origin = Vector3.ZERO
+	$ExplosionArea.set_deferred("monitoring", true)
+	$ExplosionArea.set_deferred("monitorable", true)
+	await get_tree().process_frame
+	var bodies = $ExplosionArea.get_overlapping_bodies()
+	
+	for body in bodies:
+		if body.has_method("take_damage"):
+			body.take_damage(explosion_damage)
+	
+	spawn_explosion_effect()
+	queue_free()
+
+func spawn_explosion_effect():
+	pass
+
+func _on_body_entered(body):
+	if body.is_in_group("dart"):
+		return
+
+	if body.is_in_group("player"):
+		queue_free()
+		return
+
+	if body.is_in_group("floor"):
+		queue_free()
+		return
+
+	if is_explosive:
+		explode()
+	else:
+		queue_free()
+	

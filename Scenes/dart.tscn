@@ -8,6 +8,9 @@ height = 0.2788086
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rcx20"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_rcx20"]
+radius = 0.7945409
+
 [node name="dart" type="RigidBody3D" unique_id=1240767361 groups=["dart"]]
 gravity_scale = 0.0
 continuous_cd = true
@@ -22,3 +25,10 @@ shape = SubResource("CapsuleShape3D_sj44s")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1926735610]
 transform = Transform3D(0.051302608, 0, 0, 0, -6.204701e-09, -0.050186116, 0, 0.14194702, -2.1937048e-09, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_rcx20")
+
+[node name="ExplosionArea" type="Area3D" parent="." unique_id=419119591]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea" unique_id=297251402]
+shape = SubResource("SphereShape3D_rcx20")

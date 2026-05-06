@@ -140,3 +140,7 @@ upgrade_name = "speed_boost"
 [node name="UpgradePickup4" parent="." unique_id=332999378 instance=ExtResource("9_gaguf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6814775, 0.6500001, 4.3060794)
 upgrade_name = "jump_boost"
+
+[node name="UpgradePickup5" parent="." unique_id=146463369 instance=ExtResource("9_gaguf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8135376, 0.6499996, 3.2111502)
+upgrade_name = "explosive_dart"

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ogu32ue4mdwq"]
 
-[ext_resource type="Script" uid="uid://d0fwu2gumu56j" path="res://buff_label.gd" id="1_t5n3q"]
+[ext_resource type="Script" uid="uid://d0fwu2gumu56j" path="res://Scripts/buff_label.gd" id="1_t5n3q"]
 [ext_resource type="FontFile" uid="uid://b0m3absd73hyc" path="res://Assets/Fonts/PaperHand-Regular-Black.ttf" id="2_bt2ag"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ch3l7"]
