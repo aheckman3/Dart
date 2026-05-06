@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bcobxj3ajwn66" path="res://Scenes/balloon_model.tscn" id="6_wkkq1"]
 [ext_resource type="PackedScene" uid="uid://dd7i0iw4ffor7" path="res://Scenes/enemymodel.tscn" id="7_wkkq1"]
 [ext_resource type="PackedScene" uid="uid://21cgkvjcmi6l" path="res://Scenes/first_boss.tscn" id="8_wkkq1"]
+[ext_resource type="PackedScene" uid="uid://cx7jgdf6iixak" path="res://Scenes/upgrade_pickup.tscn" id="9_gaguf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1xis7"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -48,7 +49,7 @@ size = Vector3(3, 2, 3)
 
 [node name="proto_level" type="Node3D" unique_id=84065362]
 
-[node name="UI" parent="." unique_id=766366771 instance=ExtResource("1_kcxld")]
+[node name="GameUI" parent="." unique_id=766366771 instance=ExtResource("1_kcxld")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=943290630]
 environment = SubResource("Environment_5ugfd")
@@ -99,6 +100,7 @@ shape = SubResource("BoxShape3D_5ugfd")
 
 [node name="player" parent="." unique_id=1257616633 instance=ExtResource("1_1xis7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8849535, 1.1500001, -0.46289825)
+BASE_SPEED = 3.0
 
 [node name="GameController" type="Node3D" parent="." unique_id=1936967779]
 process_mode = 3
@@ -122,3 +124,19 @@ spawn_radius = 60.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.429553, 7.8010087, -10.91517)
 scene_to_spawn = ExtResource("8_wkkq1")
 spawn_once = true
+
+[node name="UpgradePickup" parent="." unique_id=1026917329 instance=ExtResource("9_gaguf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2828035, 1, -7.219034)
+upgrade_name = "pyramid_shot"
+
+[node name="UpgradePickup2" parent="." unique_id=818220271 instance=ExtResource("9_gaguf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7852135, 0.6500001, 17.678331)
+upgrade_name = "quick_shot"
+
+[node name="UpgradePickup3" parent="." unique_id=248959015 instance=ExtResource("9_gaguf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.690428, 0.6500001, 13.449353)
+upgrade_name = "speed_boost"
+
+[node name="UpgradePickup4" parent="." unique_id=332999378 instance=ExtResource("9_gaguf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6814775, 0.6500001, 4.3060794)
+upgrade_name = "jump_boost"

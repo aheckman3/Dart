@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var pause_menu: Control = $PauseMenu
-@onready var hud: CanvasLayer = $"../UI"
+@onready var hud: CanvasLayer = $"../GameUI"
 
 func _ready():
 	pass

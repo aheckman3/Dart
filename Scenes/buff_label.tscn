@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ogu32ue4mdwq"]
+
+[ext_resource type="Script" uid="uid://d0fwu2gumu56j" path="res://buff_label.gd" id="1_t5n3q"]
+[ext_resource type="FontFile" uid="uid://b0m3absd73hyc" path="res://Assets/Fonts/PaperHand-Regular-Black.ttf" id="2_bt2ag"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ch3l7"]
+font = ExtResource("2_bt2ag")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_jqvwb"]
+font = ExtResource("2_bt2ag")
+font_size = 20
+
+[node name="BuffLabel" type="Control" unique_id=1775298037]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+script = ExtResource("1_t5n3q")
+
+[node name="BuffName" type="Label" parent="." unique_id=1559787991]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_ch3l7")
+clip_text = true
+uppercase = true
+text_direction = 2
+
+[node name="BuffTimer" type="Label" parent="." unique_id=20122262]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -10.0
+offset_right = -20.0
+offset_bottom = -50.0
+grow_horizontal = 0
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_jqvwb")
+horizontal_alignment = 2
+text_direction = 1

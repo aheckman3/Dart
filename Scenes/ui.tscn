@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bjj848o6s13l6" path="res://Scripts/ui.gd" id="1_qdvrb"]
 [ext_resource type="Script" uid="uid://blehhaegydds2" path="res://Scripts/crosshair.gd" id="2_nf4gj"]
 [ext_resource type="FontFile" uid="uid://b0m3absd73hyc" path="res://Assets/Fonts/PaperHand-Regular-Black.ttf" id="3_nf4gj"]
+[ext_resource type="PackedScene" uid="uid://ogu32ue4mdwq" path="res://Scenes/buff_label.tscn" id="4_2246s"]
 
 [sub_resource type="Gradient" id="Gradient_qdvrb"]
 offsets = PackedFloat32Array(0, 0.99708456, 1)
@@ -71,3 +72,20 @@ offset_right = -0.5200043
 offset_bottom = -0.120010376
 theme_override_colors/font_color = Color(0.95859617, 0.2262114, 0.19950148, 1)
 theme_override_fonts/font = ExtResource("3_nf4gj")
+
+[node name="BuffLabel" parent="." unique_id=1775298037 instance=ExtResource("4_2246s")]
+offset_top = -24.0
+
+[node name="BuffList" type="VBoxContainer" parent="." unique_id=177410845]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -183.0
+offset_top = -91.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 8

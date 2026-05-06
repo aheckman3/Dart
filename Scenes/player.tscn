@@ -5,6 +5,8 @@
 [ext_resource type="AudioStream" uid="uid://bcmw8s2eb34lp" path="res://Assets/SFX/footstep_one.wav" id="3_3smsa"]
 [ext_resource type="AudioStream" uid="uid://gfwlttbgknst" path="res://Assets/SFX/footstep_three.wav" id="4_8erm5"]
 [ext_resource type="AudioStream" uid="uid://ctg534q44fljr" path="res://Assets/SFX/footstep_two.wav" id="5_f1ek2"]
+[ext_resource type="Script" uid="uid://b4jmlseyxsqr1" path="res://Scripts/WeaponManager.gd" id="6_x3wgy"]
+[ext_resource type="Script" uid="uid://b8vpxy4k3niit" path="res://Scripts/UpgradeManager.gd" id="7_3smsa"]
 
 [sub_resource type="GDScript" id="GDScript_fkybt"]
 script/source = "@tool
@@ -30,7 +32,7 @@ signal player_ready
 @export var CAPTURE_ON_START := true
 
 @export_category(\"Movement\")
-@export var SPEED := 3.0
+@export var BASE_SPEED := 3.0
 @export var ACCEL := 50.0
 @export var IN_AIR_SPEED := 3.0
 @export var IN_AIR_ACCEL := 5.0
@@ -65,7 +67,7 @@ signal player_ready
 #INTERNAL VARIABLES
 #__________________________________________________________________________________________________#
 var gravity : float = ProjectSettings.get_setting(\"physics/3d/default_gravity\") * 1.3
-var speed := SPEED
+var base_speed := BASE_SPEED
 var accel := ACCEL
 
 var rotation_target_player := 0.0
@@ -85,6 +87,7 @@ var shake_decay: float = 5.0
 var noise := FastNoiseLite.new()
 var can_air_control := true
 var has_pyramid_shot := false
+var upgrades
 #__________________________________________________________________________________________________#
 # STATE MACHINE
 #__________________________________________________________________________________________________#
@@ -93,6 +96,8 @@ var state := PlayerState.IDLE
 
 
 func _ready():
+	upgrades = get_node(\"UpgradeManager\")
+	print(\"UPGRADES:\", upgrades)
 	if Engine.is_editor_hint():
 		return
 	if CAPTURE_ON_START:
@@ -179,7 +184,7 @@ func _input(event):
 		shoot()
 	
 	if event.is_action_pressed(\"pyramid\"):
-		has_pyramid_shot = true
+		$WeaponManager.has_pyramid_shot = true
 		
 func set_rotation_target(mouse_motion: Vector2):
 	rotation_target_player += -mouse_motion.x * KEY_BIND_MOUSE_SENS
@@ -250,17 +255,17 @@ func state_walking(delta):
 		state = PlayerState.JUMPING
 		
 func state_sprinting(delta):
-	speed = SPRINT_SPEED
+	base_speed = SPRINT_SPEED
 	apply_gravity(delta)
 	handle_movement(delta)
 	
 	if not Input.is_action_pressed(\"sprint\"):
-		speed = SPEED
+		base_speed = BASE_SPEED
 		state = PlayerState.WALKING
 		return
 		
 	if not is_moving():
-		speed = SPEED
+		base_speed = BASE_SPEED
 		state = PlayerState.IDLE
 		return
 		
@@ -296,17 +301,19 @@ func handle_movement(delta):
 	var input_dir = Vector2.ZERO
 	if is_on_floor() or can_air_control:
 		input_dir = Input.get_vector(KEY_BIND_LEFT, KEY_BIND_RIGHT, KEY_BIND_UP, KEY_BIND_DOWN)
+	
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	var target_x = direction.x * speed
-	var target_z = direction.z * speed
+	var final_speed = base_speed * upgrades.speed_multiplier
+	var target_x = direction.x * final_speed
+	var target_z = direction.z * final_speed
 	
 	if input_dir != Vector2.ZERO:
 		velocity.x = move_toward(velocity.x, target_x, accel * delta)
 		velocity.z = move_toward(velocity.z, target_z, accel * delta)
 	elif is_on_floor():
-		velocity.x = move_toward(velocity.x, 0.0 * speed, accel * delta)
-		velocity.z = move_toward(velocity.z, 0.0 * speed, accel * delta)
+		velocity.x = move_toward(velocity.x, 0.0 * base_speed, accel * delta)
+		velocity.z = move_toward(velocity.z, 0.0 * base_speed, accel * delta)
 	
 	move_and_slide()
 	
@@ -315,7 +322,7 @@ func apply_gravity(delta):
 		velocity.y -= gravity * delta
 		
 func jump():
-	velocity.y = JUMP_VELOCITY
+	velocity.y = JUMP_VELOCITY * upgrades.jump_multiplier
 	
 func apply_balloon_push(dir: Vector3, strength: float):
 	velocity += dir * strength
@@ -342,62 +349,9 @@ func reset_head_bob(delta):
 # SHOOTING
 #__________________________________________________________________________________________________#
 func shoot():
-	if not can_shoot:
-		return
-	can_shoot = false
-	
-	if has_pyramid_shot:
-		pyramid_shot()
-	else:
-		normal_shot()
-		
-	start_shoot_cooldown()
-	
-func normal_shot():
-	var camera = $Head/Camera3D
-	var shoot_point = $Head/ShootPoint
-	var forward = -camera.global_transform.basis.z
-	var dart = DartScene.instantiate()
-	var spawn_transform = shoot_point.global_transform
-	spawn_transform.origin += forward * 2.0
-	
-	dart.global_transform = spawn_transform
-	dart.direction = forward
-	
-	get_tree().root.add_child(dart)
-
-func pyramid_shot():
-
-	var camera = $Head/Camera3D
-	var shoot_point = $Head/ShootPoint
-	var forward = -camera.global_transform.basis.z
-	var up = camera.global_transform.basis.y
-	var right = camera.global_transform.basis.x
-	
-	var offsets = [
-		Vector3.ZERO,
-		-right * 0.3, 
-		right * 0.3,
-		up * 0.3
-
-	]
-	for offset in offsets:
-		var dart = DartScene.instantiate()
-		var spawn_transform = shoot_point.global_transform
-		
-		spawn_transform.origin += forward * 1.8
-		spawn_transform.origin += offset
-		dart.global_transform = spawn_transform
-		dart.direction = forward
-
-		get_tree().get_root().add_child(dart)
-
+	$WeaponManager.fire(self)
 	
 
-	
-func start_shoot_cooldown():
-	await get_tree().create_timer(0.5).timeout
-	can_shoot = true
 #__________________________________________________________________________________________________#
 # Audio
 #__________________________________________________________________________________________________#
@@ -442,7 +396,6 @@ func take_damage(amount):
 	GameManager.minus_score(3)
 	
 func camera_shake(amount := 0.2):
-	var shake_time := 0.0
 	shake_strength = amount
 	shake_time = 0.0
 	
@@ -458,16 +411,16 @@ albedo_color = Color(1, 1, 0.023529412, 1)
 
 [node name="player" type="CharacterBody3D" unique_id=1257616633 groups=["player"]]
 script = SubResource("GDScript_fkybt")
+BASE_SPEED = null
 KEY_BIND_MOUSE_SENS = 0.005
 KEY_BIND_DOWN = "move_backward"
 footstep_sounds = Array[AudioStream]([ExtResource("2_x3wgy"), ExtResource("3_3smsa"), ExtResource("4_8erm5"), ExtResource("5_f1ek2")])
-metadata/_custom_type_script = "uid://doeaur7rf5bq5"
 
 [node name="Head" parent="." unique_id=619649086 instance=ExtResource("2_6t5aa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5665753, 0)
 
 [node name="ShootPoint" type="Marker3D" parent="Head" unique_id=145327761]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.13964134, -0.00888741, -0.77035856)
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.030359805, -0.00888741, -0.77035856)
 
 [node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=478186563]
 target_position = Vector3(0, 0, -100)
@@ -484,3 +437,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_cvnsp")
 volume_db = -49.142
 max_db = -12.415
 max_distance = 20.0
+
+[node name="WeaponManager" type="Node3D" parent="." unique_id=608953723]
+script = ExtResource("6_x3wgy")
+
+[node name="UpgradeManager" type="Node3D" parent="." unique_id=524729004]
+script = ExtResource("7_3smsa")
