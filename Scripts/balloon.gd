@@ -37,9 +37,11 @@ func _ready():
 	$Sphere.material_override.albedo_color = colors.pick_random()
 
 	if menu_mode:
-		scale = Vector3(3, 3, 3)
-		lifetime = 4.0
-		#confetti.position = Vector3(0, .2, 0)
+		var s = randf_range(1.0, 3.0)
+		scale = Vector3(s, s, s)
+		lifetime = randf_range(2.0, 6.0)
+		confetti.position = Vector3(0, .2, 0)
+		$Audio.volume_db = -10
 
 
 
@@ -98,17 +100,15 @@ func pop():
 	popped = true
 
 	if not menu_mode:
-		play_random_pop()
 		GameManager.add_score(1)
 
 	
-	
+	play_random_pop()
 
 	
 	remove_child(confetti)
 	var parent_3d = get_parent()
 	parent_3d.add_child(confetti)
-
 	confetti.global_transform = global_transform
 	confetti.restart()
 	await get_tree().create_timer(0.1).timeout

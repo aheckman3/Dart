@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://vupfism0y8ub"]
+[gd_scene format=3 uid="uid://vupfism0y8ub"]
 
-[ext_resource type="Script" path="res://addons/Basic FPS Player/basic_player_startup.gd" id="1_fpauf"]
-[ext_resource type="PackedScene" uid="uid://kmyakts4l64t" path="res://addons/Basic FPS Player/basic_player_head.tscn" id="2_uri1i"]
+[ext_resource type="Script" uid="uid://b3kiv1f4rcdd6" path="res://addons/Basic FPS Player/Src/basic_player_startup.gd" id="1_fpauf"]
+[ext_resource type="PackedScene" uid="uid://kmyakts4l64t" path="res://Scenes/basic_player_head.tscn" id="2_uri1i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_caja7"]
 size = Vector3(50, 0, 50)

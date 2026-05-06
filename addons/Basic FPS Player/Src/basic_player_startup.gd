@@ -335,12 +335,22 @@ func shoot():
 	
 	var camera = $Head/Camera3D
 	var shoot_point = $Head/ShootPoint
+	var forward = -camera.global_transform.basis.z
+	var spread_angles = [-4.0, 0.0, 4.0]
 	
-	var dart = DartScene.instantiate()
-	dart.global_transform = shoot_point.global_transform
-	dart.direction = -camera.global_transform.basis.z
 	
-	get_tree(). get_root().add_child(dart)
+	for angle in spread_angles:
+		var dart = DartScene.instantiate()
+		var spread_dir = forward.rotated(Vector3.UP, deg_to_rad(angle))
+		var spawn_transform = shoot_point.global_transform
+
+
+		spawn_transform.origin += spread_dir * 2.0
+		dart.global_transform = spawn_transform
+		dart.direction = spread_dir
+		print("SPAWN DART angle:", angle, "dir:", spread_dir)
+		get_tree().get_root().add_child(dart)
+
 	
 	start_shoot_cooldown()
 	

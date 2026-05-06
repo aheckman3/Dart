@@ -41,6 +41,9 @@ func stick_to_surface(state):
 		queue_free()
 		return
 
+	if collider_node and collider_node.is_in_group("dart"):
+		return
+		
 	global_transform.origin = world_pos
 	look_at(world_pos + world_normal, Vector3.UP)
 	if collider_node:

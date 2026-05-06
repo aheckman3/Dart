@@ -57,7 +57,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.044484437, 0)
 shape = SubResource("SphereShape3D_0rny4")
 
 [node name="Audio" type="AudioStreamPlayer3D" parent="." index="3" unique_id=11542407]
-max_db = 6.0
+volume_db = -7.388
+max_db = -6.07
 max_distance = 30.0
 
 [node name="Confetti" type="GPUParticles3D" parent="." index="4" unique_id=1396278466]
