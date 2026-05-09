@@ -3,7 +3,7 @@ extends Node
 signal score_changed(new_score)
 var game_state := "menu"
 var score := 0 
-
+var recapture_mouse := false
 
 func _ready():
 	game_state = "playing"
@@ -11,6 +11,9 @@ func _ready():
 
 	
 func _input(event):
+	if recapture_mouse:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		recapture_mouse = false
 	if event.is_action_pressed("toggle_fullscreen"):
 		var fs = DisplayServer.window_get_mode()
 		if fs == DisplayServer.WINDOW_MODE_FULLSCREEN:
@@ -36,7 +39,7 @@ func pause_game():
 func resume_game():
 	game_state = "playing"
 	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	recapture_mouse = true
 	print(game_state)
 	
 func add_score(amount):

@@ -2,6 +2,16 @@
 
 [ext_resource type="FontFile" uid="uid://b0m3absd73hyc" path="res://Assets/Fonts/PaperHand-Regular-Black.ttf" id="1_emv3i"]
 [ext_resource type="Script" uid="uid://c7tmpw0xqkca7" path="res://Scripts/pause_menu.gd" id="1_k0w1u"]
+[ext_resource type="StyleBox" uid="uid://qiwcdhyvxrwk" path="res://button_normal.tres" id="5_sjs17"]
+[ext_resource type="StyleBox" uid="uid://buf5wlp3eykp5" path="res://button_pressed.tres" id="6_u8tnp"]
+[ext_resource type="StyleBox" uid="uid://2lctaeh5ucjc" path="res://button_hovered.tres" id="7_stj27"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ix48p"]
+font = ExtResource("1_emv3i")
+font_size = 91
+font_color = Color(1, 0.46666667, 0, 1)
+shadow_size = 28
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="PauseMenu" type="Control" unique_id=78794224]
 process_mode = 3
@@ -12,47 +22,71 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k0w1u")
+metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="." unique_id=28428323]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=89883234]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.56, 0.3584, 0.3584, 0.30588236)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=786352907]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1292526897]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -53.0
-offset_top = -36.0
-offset_right = 53.0
-offset_bottom = 36.0
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.691
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=308908692]
+[node name="Label" type="Label" parent="CenterContainer" unique_id=308908692]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.46666667, 0, 1)
 theme_override_fonts/font = ExtResource("1_emv3i")
+theme_override_font_sizes/font_size = 56
 text = "Game Paused"
+label_settings = SubResource("LabelSettings_ix48p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=786352907]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.42200002
+anchor_top = 0.532
+anchor_right = 0.595
+anchor_bottom = 0.72700006
+offset_left = 7.8559875
+offset_top = -2.7359924
+offset_right = 11.559937
+offset_bottom = 4.903961
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 36
 
 [node name="Resume" type="Button" parent="VBoxContainer" unique_id=407914837]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_emv3i")
+theme_override_styles/normal = ExtResource("5_sjs17")
+theme_override_styles/pressed = ExtResource("6_u8tnp")
+theme_override_styles/hover = ExtResource("7_stj27")
 text = "Resume"
 
 [node name="Settings" type="Button" parent="VBoxContainer" unique_id=1560394221]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_emv3i")
+theme_override_styles/normal = ExtResource("5_sjs17")
+theme_override_styles/pressed = ExtResource("6_u8tnp")
+theme_override_styles/hover = ExtResource("7_stj27")
 text = "Settings"
 
 [node name="Quit" type="Button" parent="VBoxContainer" unique_id=1926254302]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_emv3i")
+theme_override_styles/normal = ExtResource("5_sjs17")
+theme_override_styles/pressed = ExtResource("6_u8tnp")
+theme_override_styles/hover = ExtResource("7_stj27")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Resume" to="." method="_on_resume_pressed"]

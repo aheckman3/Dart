@@ -1,10 +1,10 @@
 extends CanvasLayer
 
-@onready var score_label: Label = $ScoreLabel
-@onready var crosshair = $Crosshair
-@onready var damage_flash = $DamageFlash
-@onready var health_bar: TextureProgressBar = $HealthBarContainer/HealthBar
-@onready var health_bar_container = $HealthBarContainer
+@onready var score_label: Label = $HUD/ScoreLabel
+@onready var crosshair = $HUD/Crosshair
+@onready var damage_flash = $HUD/DamageFlash
+@onready var health_bar: TextureProgressBar = $HUD/HealthBarContainer/HealthBar
+@onready var health_bar_container = $HUD/HealthBarContainer
 var health_bar_original_pos := Vector2.ZERO
 var displayed_health := 100.0
 var score := 0

@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://ctg534q44fljr" path="res://Assets/SFX/footstep_two.wav" id="5_f1ek2"]
 [ext_resource type="Script" uid="uid://b4jmlseyxsqr1" path="res://Scripts/WeaponManager.gd" id="6_x3wgy"]
 [ext_resource type="Script" uid="uid://b8vpxy4k3niit" path="res://Scripts/UpgradeManager.gd" id="7_3smsa"]
-[ext_resource type="PackedScene" uid="uid://ogu32ue4mdwq" path="res://Scenes/buff_label.tscn" id="8_8erm5"]
 
 [sub_resource type="GDScript" id="GDScript_fkybt"]
 script/source = "@tool
@@ -443,4 +442,3 @@ script = ExtResource("6_x3wgy")
 
 [node name="UpgradeManager" type="Node3D" parent="." unique_id=524729004]
 script = ExtResource("7_3smsa")
-buff_label_scene = ExtResource("8_8erm5")

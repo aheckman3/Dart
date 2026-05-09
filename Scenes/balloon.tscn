@@ -10,9 +10,6 @@ data = PackedByteArray("cW9hZgAAFp4BALuAFAAIGAAAAAAAAAAAAAAAAOAAQAAO9ivct55dFwzz
 format = 3
 mix_rate = 48000
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hkhi7"]
-size = Vector3(0.6738281, 0.8557129, 0.6582031)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hkhi7"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_4wcav"]
@@ -55,9 +52,6 @@ size = Vector2(0.2, 0.1)
 transform = Transform3D(0.9374826, -0.3480321, 0, 0.3480321, 0.9374826, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_hkhi7")
 pop_sounds = Array[AudioStream]([ExtResource("2_nrerx"), ExtResource("3_kbj1d"), SubResource("AudioStreamWAV_5iodc"), ExtResource("5_xyim1")])
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=445323186 groups=["target"]]
-shape = SubResource("BoxShape3D_hkhi7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=124808883 groups=["target"]]
 transform = Transform3D(0.7187099, 0.25456262, 0, -0.21636184, 0.8456052, 0, 0, 0, 0.7191671, 0, 0, 0)

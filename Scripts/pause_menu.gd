@@ -1,7 +1,8 @@
 extends Control
 
 
-
+func _ready() -> void:
+	visible = false
 
 func _on_resume_pressed() -> void:
 	get_tree().paused = false

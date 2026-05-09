@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://be2hb0nostyh5" path="res://Assets/SFX/pop_two.wav" id="4_utrb1"]
 [ext_resource type="AudioStream" uid="uid://dcx67vem56jls" path="res://Assets/SFX/pop_three.wav" id="5_vnldh"]
 [ext_resource type="AudioStream" uid="uid://dcv7u3c7csru5" path="res://Assets/SFX/pop_four.wav" id="6_ilm0t"]
+[ext_resource type="PackedScene" uid="uid://cx7jgdf6iixak" path="res://Scenes/upgrade_pickup.tscn" id="7_utrb1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8g0y"]
 
@@ -48,6 +49,7 @@ size = Vector2(0.2, 0.1)
 [node name="BalloonModel" unique_id=1070901192 groups=["target"] instance=ExtResource("1_0rny4")]
 script = ExtResource("1_hpw6i")
 pop_sounds = Array[AudioStream]([ExtResource("3_1npb4"), ExtResource("4_utrb1"), ExtResource("5_vnldh"), ExtResource("6_ilm0t")])
+upgrade_pickup_scene = ExtResource("7_utrb1")
 
 [node name="Sphere" parent="." index="0" unique_id=1728588650]
 surface_material_override/0 = SubResource("StandardMaterial3D_a8g0y")
