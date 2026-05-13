@@ -12,10 +12,11 @@ height = 0.2788086
 radius = 0.7945409
 
 [node name="dart" type="RigidBody3D" unique_id=1240767361 groups=["dart"]]
+collision_mask = 3
 gravity_scale = 0.0
 continuous_cd = true
 contact_monitor = true
-max_contacts_reported = 1
+max_contacts_reported = 4
 script = ExtResource("1_rcx20")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=627852900]

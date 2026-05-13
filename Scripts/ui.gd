@@ -10,8 +10,10 @@ var displayed_health := 100.0
 var score := 0
 var displayed_score := 0
 var last_score := 0
+var score_label_original_pos := Vector2.ZERO
 
 func _ready():
+	score_label_original_pos = score_label.position
 	health_bar_original_pos = health_bar_container.position
 	health_bar.max_value = 100
 	health_bar.value = displayed_health
@@ -67,5 +69,5 @@ func animate_score(direction := 1):
 	bulge.tween_property(score_label, "scale", Vector2(1, 1), 0.1)
 	
 	var shake = create_tween()
-	shake.tween_property(score_label, "position:x", score_label.position.x + (10 * direction), 0.2)
-	shake.tween_property(score_label, "position:x", score_label.position.x, 0.05)
+	shake.tween_property(score_label, "position", score_label_original_pos + Vector2(10 * direction, 0), 0.1)
+	shake.tween_property(score_label, "position", score_label_original_pos, 0.1)

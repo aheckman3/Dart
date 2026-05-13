@@ -1,27 +1,98 @@
 [gd_scene format=3 uid="uid://cx7jgdf6iixak"]
 
+[ext_resource type="PackedScene" uid="uid://c1d4in6s1ul8t" path="res://Assets/Art/football.glb" id="1_ac0s8"]
 [ext_resource type="Script" uid="uid://1nb4m11u6cmf" path="res://Scripts/UpgradePickup.gd" id="1_lc1b8"]
+[ext_resource type="Texture2D" uid="uid://unebpifxxm5t" path="res://Assets/Art/T_fire01.png" id="3_0ptbj"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ptbj"]
-albedo_color = Color(1, 0.65, 0, 1)
-metallic = 1.0
-roughness = 0.0
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0ptbj"]
+radius = 0.10107422
+height = 0.28808594
 
-[sub_resource type="SphereMesh" id="SphereMesh_fa8m1"]
-material = SubResource("StandardMaterial3D_0ptbj")
+[sub_resource type="SphereShape3D" id="SphereShape3D_fa8m1"]
+radius = 0.485
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_lc1b8"]
-radius = 1.00845
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fa8m1"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("3_0ptbj")
+albedo_texture_force_srgb = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
-[node name="UpgradePickup" type="CharacterBody3D" unique_id=283252191]
+[sub_resource type="Curve" id="Curve_qo4xa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4766355, 0.9101124), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_k7n8i"]
+curve = SubResource("Curve_qo4xa")
+
+[sub_resource type="Gradient" id="Gradient_15r74"]
+offsets = PackedFloat32Array(0, 0.5319149, 1)
+colors = PackedColorArray(0.98234254, 0.9823423, 0.9823424, 1, 0.51718444, 0.5171845, 0.5171844, 1, 0.12591085, 0.12591085, 0.12591082, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ugoyu"]
+gradient = SubResource("Gradient_15r74")
+
+[sub_resource type="Curve" id="Curve_g8n54"]
+_data = [Vector2(0, 0.49438208), 0.0, 2.2542133, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gdtea"]
+curve = SubResource("Curve_g8n54")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gfh6i"]
+lifetime_randomness = 0.08
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 0.49997765
+gravity = Vector3(0, 1, 0)
+scale_min = 0.9
+scale_max = 1.4
+scale_curve = SubResource("CurveTexture_gdtea")
+color = Color(1.4186912, 0.97282964, 0.34862342, 1)
+color_ramp = SubResource("GradientTexture1D_ugoyu")
+alpha_curve = SubResource("CurveTexture_k7n8i")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ix6b6"]
+
+[node name="upgrade_pickup" unique_id=889893990 instance=ExtResource("1_ac0s8")]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_lc1b8")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=844479575]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-mesh = SubResource("SphereMesh_fa8m1")
+[node name="Sphere" parent="." index="0" unique_id=1382312999]
+transform = Transform3D(0.3, 0, 0, 0, 0.437, 0, 0, 0, 0.3, 0, 0.43346417, 0)
 
-[node name="Detector" type="Area3D" parent="." unique_id=1390661915]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1266857843]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.43346417, -0.0040781796)
+shape = SubResource("CapsuleShape3D_0ptbj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Detector" unique_id=1632469772]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-shape = SubResource("SphereShape3D_lc1b8")
+[node name="Detector" type="Area3D" parent="." index="2" unique_id=913701333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43346417, 0)
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detector" index="0" unique_id=1351383336]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_fa8m1")
+
+[node name="Fire" type="GPUParticles3D" parent="." index="3" unique_id=1234415691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003998637, 0.4453106, 0)
+material_override = SubResource("StandardMaterial3D_fa8m1")
+emitting = false
+amount = 15
+lifetime = 0.35000000000000003
+process_material = SubResource("ParticleProcessMaterial_gfh6i")
+draw_pass_1 = SubResource("QuadMesh_ix6b6")

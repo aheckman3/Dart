@@ -411,6 +411,7 @@ func camera_shake(amount := 0.2):
 albedo_color = Color(1, 1, 0.023529412, 1)
 
 [node name="player" type="CharacterBody3D" unique_id=1257616633 groups=["player"]]
+collision_mask = 3
 script = SubResource("GDScript_fkybt")
 KEY_BIND_MOUSE_SENS = 0.005
 KEY_BIND_DOWN = "move_backward"

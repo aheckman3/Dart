@@ -14,6 +14,7 @@ extends Area3D
 @export var upgrade_pickup_scene : PackedScene
 @export var chosen_upgrade : String 
 @export var possible_drops := ["pyramid_shot", "quick_shot", "speed_boost", "jump_boost", "explosive_dart"]
+@export var drop_chance := 0.25
 var time_alive := 0.0
 var wobble_offset := randf() * 10
 var push_velocity : Vector3 = Vector3.ZERO
@@ -113,17 +114,17 @@ func pop():
 	confetti.global_transform = global_transform
 	confetti.restart()
 	await get_tree().create_timer(0.1).timeout
+	if randf() <= drop_chance and not menu_mode:
+		var pickup = upgrade_pickup_scene.instantiate()
+		chosen_upgrade = possible_drops.pick_random()
+		pickup.upgrade_name = chosen_upgrade
+		pickup.global_transform = global_transform
 
-	var pickup = upgrade_pickup_scene.instantiate()
-	chosen_upgrade = possible_drops.pick_random()
-	pickup.upgrade_name = chosen_upgrade
-	pickup.global_transform = global_transform
+		get_tree().current_scene.add_child(pickup)
 
-	get_tree().current_scene.add_child(pickup)
+		var dir = Vector3(randf_range(-1, 1), randf_range(0.5, 1.5), randf_range(-1, 1))
 
-	var dir = Vector3(randf_range(-1, 1), randf_range(0.5, 1.5), randf_range(-1, 1))
-
-	pickup.launch(dir, 6.0)
+		pickup.launch(dir, 6.0)
 	
 	queue_free()
 

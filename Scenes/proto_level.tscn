@@ -59,7 +59,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8849535, 1.1500001, -0.4628
 
 [node name="World" type="Node3D" parent="." unique_id=393916235]
 
-[node name="RigidBody3D" type="StaticBody3D" parent="World" unique_id=1779796149 groups=["floor"]]
+[node name="RigidBody3D" type="StaticBody3D" parent="World" unique_id=1779796149 groups=["wall"]]
+collision_layer = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/RigidBody3D" unique_id=112850137]
 mesh = SubResource("BoxMesh_sqnpp")
@@ -68,8 +69,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1xis7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/RigidBody3D" unique_id=2068531533]
 shape = SubResource("BoxShape3D_1xis7")
 
-[node name="RigidBody3D2" type="StaticBody3D" parent="World" unique_id=346902508]
+[node name="RigidBody3D2" type="StaticBody3D" parent="World" unique_id=346902508 groups=["wall"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.187, 1, 0)
+collision_layer = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/RigidBody3D2" unique_id=1586400547]
 mesh = SubResource("BoxMesh_1xis7")
@@ -78,8 +80,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_p4yaa")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/RigidBody3D2" unique_id=819714155]
 shape = SubResource("BoxShape3D_5ugfd")
 
-[node name="RigidBody3D3" type="StaticBody3D" parent="World" unique_id=849197693]
+[node name="RigidBody3D3" type="StaticBody3D" parent="World" unique_id=849197693 groups=["wall"]]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14.758, 2, 1.448)
+collision_layer = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/RigidBody3D3" unique_id=1216701433]
 mesh = SubResource("BoxMesh_1xis7")
@@ -88,8 +91,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_p4yaa")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/RigidBody3D3" unique_id=1494906704]
 shape = SubResource("BoxShape3D_5ugfd")
 
-[node name="RigidBody3D4" type="StaticBody3D" parent="World" unique_id=1449379395]
+[node name="RigidBody3D4" type="StaticBody3D" parent="World" unique_id=1449379395 groups=["wall"]]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 20.955, 2, 10.412)
+collision_layer = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/RigidBody3D4" unique_id=1838533916]
 mesh = SubResource("BoxMesh_1xis7")
@@ -127,22 +131,14 @@ scene_to_spawn = ExtResource("8_wkkq1")
 spawn_interval = 900.0
 spawn_once = true
 
-[node name="UpgradePickup" parent="." unique_id=1026917329 instance=ExtResource("9_gaguf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2828035, 1, -7.219034)
-upgrade_name = "pyramid_shot"
+[node name="upgrade_pickup" parent="." unique_id=889893990 instance=ExtResource("9_gaguf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9516366, 0.14616227, 2.1646883)
 
-[node name="UpgradePickup2" parent="." unique_id=818220271 instance=ExtResource("9_gaguf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7852135, 0.6500001, 17.678331)
-upgrade_name = "quick_shot"
+[node name="upgrade_pickup2" parent="." unique_id=1625566054 instance=ExtResource("9_gaguf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.010998, 0.14616227, 0.55244505)
 
-[node name="UpgradePickup3" parent="." unique_id=248959015 instance=ExtResource("9_gaguf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.690428, 0.6500001, 13.449353)
-upgrade_name = "speed_boost"
+[node name="upgrade_pickup3" parent="." unique_id=947743079 instance=ExtResource("9_gaguf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6970806, 0.14616227, 1.9069091)
 
-[node name="UpgradePickup4" parent="." unique_id=332999378 instance=ExtResource("9_gaguf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6814775, 0.6500001, 4.3060794)
-upgrade_name = "jump_boost"
-
-[node name="UpgradePickup5" parent="." unique_id=146463369 instance=ExtResource("9_gaguf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8135376, 0.6499996, 3.2111502)
-upgrade_name = "explosive_dart"
+[node name="upgrade_pickup4" parent="." unique_id=252221423 instance=ExtResource("9_gaguf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.323842, 0.14616239, 6.1457276)
