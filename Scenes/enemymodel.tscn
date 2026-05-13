@@ -2,9 +2,67 @@
 
 [ext_resource type="PackedScene" uid="uid://esak11a2ol1p" path="res://Assets/Art/enemymodel.glb" id="1_t80wj"]
 [ext_resource type="Script" uid="uid://cqnbwn6ss6lfe" path="res://Scripts/enemy.gd" id="2_k3c5i"]
+[ext_resource type="Texture2D" uid="uid://unebpifxxm5t" path="res://Assets/Art/T_fire01.png" id="3_k3c5i"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ej5kx"]
 radius = 0.30356875
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ej5kx"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("3_k3c5i")
+albedo_texture_force_srgb = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_5vqhp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4766355, 0.9101124), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_k7n8i"]
+curve = SubResource("Curve_5vqhp")
+
+[sub_resource type="Gradient" id="Gradient_1726w"]
+offsets = PackedFloat32Array(0, 0.5319149, 1)
+colors = PackedColorArray(0.98234254, 0.9823423, 0.9823424, 1, 0.51718444, 0.5171845, 0.5171844, 1, 0.12591085, 0.12591085, 0.12591082, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ugoyu"]
+gradient = SubResource("Gradient_1726w")
+
+[sub_resource type="Curve" id="Curve_0frio"]
+_data = [Vector2(0, 0.49438208), 0.0, 2.2542133, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gdtea"]
+curve = SubResource("Curve_0frio")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aoxs8"]
+lifetime_randomness = 0.08
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 15.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 0.49997765
+gravity = Vector3(0, 1, 0)
+scale_min = 0.9
+scale_max = 1.4
+scale_curve = SubResource("CurveTexture_gdtea")
+color = Color(0.076875016, 0.03680848, 0.0037989921, 0.3019608)
+color_ramp = SubResource("GradientTexture1D_ugoyu")
+alpha_curve = SubResource("CurveTexture_k7n8i")
+
+[sub_resource type="QuadMesh" id="QuadMesh_x4gt6"]
 
 [node name="enemymodel" unique_id=2055160682 groups=["target"] instance=ExtResource("1_t80wj")]
 script = ExtResource("2_k3c5i")
@@ -15,5 +73,13 @@ transform = Transform3D(0.02634194, 0, 0.30108956, 0, 0.30223966, 0, -0.30108956
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1670661754 groups=["target"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02509673, 0)
 shape = SubResource("SphereShape3D_ej5kx")
+
+[node name="Smoke" type="GPUParticles3D" parent="." index="2" unique_id=269739125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003998637, 0.10962354, 0)
+material_override = SubResource("StandardMaterial3D_ej5kx")
+amount = 15
+lifetime = 0.35000000000000003
+process_material = SubResource("ParticleProcessMaterial_aoxs8")
+draw_pass_1 = SubResource("QuadMesh_x4gt6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

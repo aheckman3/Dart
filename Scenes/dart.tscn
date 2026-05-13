@@ -1,35 +1,35 @@
 [gd_scene format=3 uid="uid://586nxkw5apxh"]
 
+[ext_resource type="PackedScene" uid="uid://di2gvutlbw53o" path="res://Assets/Art/dart.glb" id="1_drbt2"]
 [ext_resource type="Script" uid="uid://cn4dv3tqocgd1" path="res://Scripts/dart.gd" id="1_rcx20"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sj44s"]
-radius = 0.029296875
-height = 0.2788086
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_drbt2"]
+radius = 0.036
+height = 0.295
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_rcx20"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_rcx20"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_exvtn"]
 radius = 0.7945409
 
-[node name="dart" type="RigidBody3D" unique_id=1240767361 groups=["dart"]]
-collision_mask = 3
+[node name="dart" unique_id=1252082595 groups=["dart"] instance=ExtResource("1_drbt2")]
+collision_layer = 33
+collision_mask = 255
 gravity_scale = 0.0
 continuous_cd = true
 contact_monitor = true
 max_contacts_reported = 4
 script = ExtResource("1_rcx20")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=627852900]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.00015383864, -0.00012207031)
-shape = SubResource("CapsuleShape3D_sj44s")
+[node name="Cone" parent="." index="0" unique_id=307966705]
+transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, 0.01, 0, -0.01, -4.3711387e-10, 6.0236256e-05, 2.9579533e-06, -0.14096792)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1926735610]
-transform = Transform3D(0.051302608, 0, 0, 0, -6.204701e-09, -0.050186116, 0, 0.14194702, -2.1937048e-09, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_rcx20")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1903938168]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.00015383858, -0.011712149)
+shape = SubResource("CapsuleShape3D_drbt2")
 
-[node name="ExplosionArea" type="Area3D" parent="." unique_id=419119591]
+[node name="ExplosionArea" type="Area3D" parent="." index="2" unique_id=314670181]
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea" unique_id=297251402]
-shape = SubResource("SphereShape3D_rcx20")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea" index="0" unique_id=1301856716]
+shape = SubResource("SphereShape3D_exvtn")
+disabled = true

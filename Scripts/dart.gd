@@ -3,9 +3,7 @@ extends RigidBody3D
 @export var speed := 45
 @export var lifetime := 15.0
 @export var damage := 10
-@export var explosion_radius := 4.0
-@export var explosion_damage := 40
-@export var is_explosive := false
+
 
 var stuck := false
 var direction: Vector3 = Vector3.ZERO
@@ -30,36 +28,45 @@ func _integrate_forces(state):
 		stick_to_surface(state)
 
 
+
 func stick_to_surface(state):
 
-	if is_explosive:
-		explode()
-		return
-	
-	linear_velocity = Vector3.ZERO
-	angular_velocity = Vector3.ZERO
+	stuck = true
 	sleeping = true
 	freeze = true
-	
+	linear_velocity = Vector3.ZERO
+	angular_velocity = Vector3.ZERO
+
 	var world_pos = state.get_contact_local_position(0)
 	var world_normal = state.get_contact_local_normal(0)
 	var collider_rid = state.get_contact_collider(0)
+	var offset := -0.1
+	world_pos -= world_normal * offset
 	
 	var collider_id = PhysicsServer3D.body_get_object_instance_id(collider_rid)
 	var collider_node = instance_from_id(collider_id)
 	
-	if collider_node and (collider_node.is_in_group("player") or collider_node.is_in_group("floor")):
+	if collider_node and collider_node.is_in_group("player"):
+		queue_free()
+		return
+	if collider_node and collider_node.is_in_group("floor"):
 		queue_free()
 		return
 
 	if collider_node and collider_node.is_in_group("dart"):
 		return
 
+	print("Groups:", collider_node.get_groups())
 		
-	global_transform.origin = world_pos
-	look_at(world_pos + world_normal, Vector3.UP)
+	var xf = state.get_transform()
+	xf.origin = world_pos
+	xf = xf.looking_at(world_pos + world_normal, Vector3.UP)
+	xf.basis = xf.basis.rotated(Vector3.UP, PI)
+	state.set_transform(xf)
 	if collider_node:
 		call_deferred("reparent_to", collider_node)
+
+	print("Hit:", collider_node)
 		
 func reparent_to(new_parent):
 	var old_transform = global_transform
@@ -67,22 +74,6 @@ func reparent_to(new_parent):
 	new_parent.add_child(self)
 	global_transform = old_transform
 
-func explode():
-	$ExplosionArea.transform.origin = Vector3.ZERO
-	$ExplosionArea.set_deferred("monitoring", true)
-	$ExplosionArea.set_deferred("monitorable", true)
-	await get_tree().process_frame
-	var bodies = $ExplosionArea.get_overlapping_bodies()
-	
-	for body in bodies:
-		if body.has_method("take_damage"):
-			body.take_damage(explosion_damage)
-	
-	spawn_explosion_effect()
-	queue_free()
-
-func spawn_explosion_effect():
-	pass
 
 func _on_body_entered(body):
 	if body.is_in_group("dart"):
@@ -95,9 +86,3 @@ func _on_body_entered(body):
 	if body.is_in_group("floor"):
 		queue_free()
 		return
-
-	if is_explosive:
-		explode()
-	else:
-		queue_free()
-	

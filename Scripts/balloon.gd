@@ -26,17 +26,14 @@ func _ready():
 
 	var mat := StandardMaterial3D.new()
 	mesh.material_override = mat
-	var colors = [
-		Color.RED,
-		Color.BLUE,
-		Color.GREEN,
-		Color.YELLOW,
-		Color.PINK,
-		Color.AQUAMARINE,
-		Color.KHAKI
-	]
+
 	
-	$Sphere.material_override.albedo_color = colors.pick_random()
+	$Sphere.material_override.albedo_color = get_vibrant_colors()
+	mat.metallic = 0.0
+	mat.roughness = 0.1
+	mat.specular = 1.0
+	mat.clearcoat = 1.0
+	mat.clearcoat_roughness = 0.05
 
 	if menu_mode:
 		var s = randf_range(1.0, 3.0)
@@ -141,3 +138,9 @@ func apply_seperation(delta):
 			if dist < seperation_radius and dist > 0.01:
 				var push = dir.normalized() * (seperation_radius - dist) * serperation_strength
 				global_position += push * delta
+
+func get_vibrant_colors() -> Color:
+	var h = randf()
+	var s = randf_range(0.8, 1.0)
+	var v = randf_range(0.9, 1.0)
+	return Color.from_hsv(h, s, v)

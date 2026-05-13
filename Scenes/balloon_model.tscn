@@ -6,9 +6,10 @@
 [ext_resource type="AudioStream" uid="uid://be2hb0nostyh5" path="res://Assets/SFX/pop_two.wav" id="4_utrb1"]
 [ext_resource type="AudioStream" uid="uid://dcx67vem56jls" path="res://Assets/SFX/pop_three.wav" id="5_vnldh"]
 [ext_resource type="AudioStream" uid="uid://dcv7u3c7csru5" path="res://Assets/SFX/pop_four.wav" id="6_ilm0t"]
-[ext_resource type="PackedScene" uid="uid://cx7jgdf6iixak" path="res://Scenes/upgrade_pickup.tscn" id="7_utrb1"]
+[ext_resource type="PackedScene" uid="uid://bwr7ewkd26xxc" path="res://Scenes/orb.tscn" id="7_utrb1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8g0y"]
+emission_energy_multiplier = 10.82
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0rny4"]
 radius = 0.3131252
