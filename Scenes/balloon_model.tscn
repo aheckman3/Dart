@@ -51,6 +51,7 @@ size = Vector2(0.2, 0.1)
 script = ExtResource("1_hpw6i")
 pop_sounds = Array[AudioStream]([ExtResource("3_1npb4"), ExtResource("4_utrb1"), ExtResource("5_vnldh"), ExtResource("6_ilm0t")])
 upgrade_pickup_scene = ExtResource("7_utrb1")
+possible_drops = ["pyramid_shot", "quick_shot", "speed_boost", "jump_boost"]
 drop_chance = 1.0
 
 [node name="Sphere" parent="." index="0" unique_id=1728588650]

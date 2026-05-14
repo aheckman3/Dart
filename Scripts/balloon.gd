@@ -29,9 +29,9 @@ func _ready():
 
 	
 	$Sphere.material_override.albedo_color = get_vibrant_colors()
+#	mat.specular = 1.0
 	mat.metallic = 0.0
 	mat.roughness = 0.1
-	mat.specular = 1.0
 	mat.clearcoat = 1.0
 	mat.clearcoat_roughness = 0.05
 

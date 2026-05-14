@@ -79,7 +79,7 @@ alpha_curve = SubResource("CurveTexture_0ptbj")
 [sub_resource type="QuadMesh" id="QuadMesh_s0yq8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4tb7o"]
-radius = 0.18039085
+radius = 0.6027282
 
 [node name="orb" unique_id=58128623 instance=ExtResource("1_ryljl")]
 collision_layer = 4
