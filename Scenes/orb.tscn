@@ -14,7 +14,7 @@ roughness = 0.05
 roughness_texture_channel = 3
 emission_enabled = true
 emission = Color(1.2696685, 0.5556674, 1.602994, 1)
-emission_energy_multiplier = 8.65
+emission_energy_multiplier = 1.74
 rim_tint = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gn4ky"]

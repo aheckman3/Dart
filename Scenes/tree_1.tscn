@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b50fihdobf3fv"]
+
+[ext_resource type="ArrayMesh" uid="uid://68mg1ef8c28c" path="res://Scenes/tree1_fixed.tres" id="1_dwapx"]
+
+[node name="Tree1" type="Node3D" unique_id=758007005 groups=["enemy_obstacles"]]
+
+[node name="Tree1Fixed" type="MeshInstance3D" parent="." unique_id=2115612786]
+transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, -0.01, 0, 0.01, -4.3711387e-10, 0, -0.47510338, 0)
+layers = 16
+mesh = ExtResource("1_dwapx")

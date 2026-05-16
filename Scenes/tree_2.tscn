@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://kph4q2dfrb8a"]
+
+[ext_resource type="ArrayMesh" uid="uid://d1p1d14hmr8xt" path="res://Scenes/tree2_fixed.tres" id="1_yek4j"]
+
+[node name="Tree2" type="Node3D" unique_id=836781953 groups=["enemy_obstacles"]]
+
+[node name="Tree2Fixed" type="MeshInstance3D" parent="." unique_id=822110998]
+transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, -0.01, 0, 0.01, -4.3711387e-10, 0, 0, 0)
+layers = 16
+mesh = ExtResource("1_yek4j")

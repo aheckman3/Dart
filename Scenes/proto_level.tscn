@@ -22,6 +22,10 @@
 [ext_resource type="Script" uid="uid://deo0gxkmk2ahd" path="res://addons/sky_3d/src/Sky3D.gd" id="19_010tl"]
 [ext_resource type="Script" uid="uid://b4tkplvh7fq40" path="res://addons/sky_3d/src/SkyDome.gd" id="20_805sa"]
 [ext_resource type="Script" uid="uid://cjmkcj8hwm7ts" path="res://addons/sky_3d/src/TimeOfDay.gd" id="21_r8j1q"]
+[ext_resource type="PackedScene" uid="uid://cskej7adjix6g" path="res://Scenes/house.tscn" id="23_854h1"]
+[ext_resource type="PackedScene" uid="uid://b50fihdobf3fv" path="res://Scenes/tree_1.tscn" id="24_1l8ud"]
+[ext_resource type="PackedScene" uid="uid://kph4q2dfrb8a" path="res://Scenes/tree_2.tscn" id="25_duanm"]
+[ext_resource type="PackedScene" uid="uid://b06s1trdw3573" path="res://Scenes/firepit.tscn" id="26_duanm"]
 
 [sub_resource type="Gradient" id="Gradient_wkkq1"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -150,8 +154,8 @@ shader_parameter/cirrus_absorption = 2.0
 shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.048554145, 0.048554145)
-shader_parameter/cirrus_position2 = Vector2(0.048554145, 0.048554145)
+shader_parameter/cirrus_position1 = Vector2(0.22228964, 0.22228964)
+shader_parameter/cirrus_position2 = Vector2(0.22228964, 0.22228964)
 shader_parameter/cirrus_texture = ExtResource("13_6jr2x")
 shader_parameter/cumulus_visible = true
 shader_parameter/cumulus_intensity = 0.6
@@ -161,7 +165,7 @@ shader_parameter/cumulus_absorption = 2.0
 shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(0.24277626, 0.24277626)
+shader_parameter/cumulus_position = Vector2(1.1113024, 1.1113024)
 shader_parameter/cumulus_texture = ExtResource("14_854h1")
 shader_parameter/cumulus_partial_mie_phase = Vector3(0.957564, 1.042436, 0.412)
 shader_parameter/cumulus_mie_intensity = 1.0
@@ -218,11 +222,11 @@ scene_to_spawn = ExtResource("8_wkkq1")
 spawn_interval = 900.0
 spawn_once = true
 
-[node name="Terrain3D" type="Terrain3D" parent="." unique_id=1965761068 groups=["floor"]]
+[node name="Terrain3D" type="Terrain3D" parent="." unique_id=1965761068 groups=["enemy_obstacles", "floor"]]
 data_directory = "res://WorldMapData"
 material = SubResource("Terrain3DMaterial_int50")
 assets = SubResource("Terrain3DAssets_67jr4")
-collision_layer = 3
+collision_layer = 19
 collision_mask = 3
 top_level = true
 metadata/_edit_lock_ = true
@@ -233,7 +237,7 @@ camera_attributes = SubResource("CameraAttributesPractical_14udr")
 script = ExtResource("19_010tl")
 editor_time_enabled = false
 current_time = 13.851
-minutes_per_day = 1.0
+minutes_per_day = 10.0
 wind_direction = 2.35619451204804
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
@@ -261,8 +265,26 @@ cumulus_coverage = 0.0
 script = ExtResource("21_r8j1q")
 editor_time_enabled = false
 dome_path = NodePath("../SkyDome")
-minutes_per_day = 1.0
+minutes_per_day = 10.0
 current_time = 13.851
 day = 14
 month = 5
 year = 2026
+
+[node name="House" parent="Sky3D" unique_id=639323824 instance=ExtResource("23_854h1")]
+transform = Transform3D(-0.30451524, 0, 0.95250744, 0, 1, 0, -0.95250744, 0, -0.30451524, -33.362343, -0.49886513, 42.200176)
+
+[node name="Tree1" parent="Sky3D" unique_id=758007005 instance=ExtResource("24_1l8ud")]
+transform = Transform3D(0.73006684, 0, 0.6833757, 0, 1, 0, -0.6833757, 0, 0.73006684, -38.131443, 0, 30.791183)
+
+[node name="Tree3" parent="Sky3D" unique_id=412487424 instance=ExtResource("24_1l8ud")]
+transform = Transform3D(1.235664, 0, -1.3225862, 0, 1.81, 0, 1.3225862, 0, 1.235664, -47.867085, 0, 64.660736)
+
+[node name="Tree2" parent="Sky3D" unique_id=836781953 instance=ExtResource("25_duanm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.758986, 0, 53.823776)
+
+[node name="Tree4" parent="Sky3D" unique_id=3752100 instance=ExtResource("25_duanm")]
+transform = Transform3D(-0.2938068, 0, -0.95586485, 0, 1, 0, 0.95586485, 0, -0.2938068, 96.28909, 0, -45.56447)
+
+[node name="Firepit" parent="Sky3D" unique_id=108055294 instance=ExtResource("26_duanm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.776041, -0.022162199, 45.795067)

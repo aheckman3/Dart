@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b61csl4h1mkfe"]
+
+[ext_resource type="PackedScene" uid="uid://dlqo0iww1qw8l" path="res://Assets/Art/house.glb" id="1_3fosr"]
+[ext_resource type="ArrayMesh" uid="uid://6ss3smg1kegi" path="res://Scenes/house_fixed.tres" id="2_4t5gl"]
+[ext_resource type="ArrayMesh" uid="uid://1qts2mu53j6d" path="res://Scenes/firepit.tres" id="2_lxl2w"]
+[ext_resource type="ArrayMesh" uid="uid://68mg1ef8c28c" path="res://Scenes/tree1_fixed.tres" id="3_ticn1"]
+[ext_resource type="ArrayMesh" uid="uid://d1p1d14hmr8xt" path="res://Scenes/tree2_fixed.tres" id="4_lxl2w"]
+
+[node name="Outdoor_assets" unique_id=1451942634 instance=ExtResource("1_3fosr")]
+
+[node name="PQ_ASSETS" parent="." index="0" unique_id=2144851142]
+transform = Transform3D(0.01, 0, 0, 0, -3.5762788e-09, -0.01, 0, 0.01, -3.5762788e-09, 596.61554, 0, 0)
+
+[node name="Flare" parent="PQ_ASSETS" index="3" unique_id=1979201741]
+mesh = ExtResource("2_lxl2w")
+
+[node name="L_Wall_EntranceRoofWindow001" parent="PQ_ASSETS" index="14" unique_id=1985844182]
+mesh = ExtResource("2_4t5gl")
+
+[node name="Tree_01" parent="PQ_ASSETS" index="38" unique_id=633032965]
+mesh = ExtResource("3_ticn1")
+
+[node name="Tree_02" parent="PQ_ASSETS" index="39" unique_id=1824831323]
+mesh = ExtResource("4_lxl2w")

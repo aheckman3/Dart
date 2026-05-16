@@ -64,11 +64,15 @@ alpha_curve = SubResource("CurveTexture_k7n8i")
 
 [sub_resource type="QuadMesh" id="QuadMesh_x4gt6"]
 
-[node name="enemymodel" unique_id=2055160682 groups=["target"] instance=ExtResource("1_t80wj")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_k3c5i"]
+radius = 0.34
+
+[node name="enemymodel" unique_id=958358574 instance=ExtResource("1_t80wj")]
+collision_mask = 19
 script = ExtResource("2_k3c5i")
 
-[node name="Sphere" parent="." index="0" unique_id=1366152215 groups=["target"]]
-transform = Transform3D(0.02634194, 0, 0.30108956, 0, 0.30223966, 0, -0.30108956, 0, 0.02634194, 0, 0.06604481, 0)
+[node name="Sphere" parent="." index="0" unique_id=1117493681 groups=["target"]]
+transform = Transform3D(0.092297815, 0, 0.2878019, 0, 0.30223966, 0, -0.2878019, 0, 0.092297815, 0, 0.06604481, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1670661754 groups=["target"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02509673, 0)
@@ -82,4 +86,9 @@ lifetime = 0.35000000000000003
 process_material = SubResource("ParticleProcessMaterial_aoxs8")
 draw_pass_1 = SubResource("QuadMesh_x4gt6")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="Hitbox" type="Area3D" parent="." index="3" unique_id=1917949297]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" index="0" unique_id=1512114147]
+shape = SubResource("SphereShape3D_k3c5i")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

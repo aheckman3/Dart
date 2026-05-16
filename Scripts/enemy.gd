@@ -1,4 +1,4 @@
-extends Area3D
+extends CharacterBody3D
 
 @onready var enemy_mesh := $"."
 @export var bob_speed := 3.0
@@ -19,21 +19,24 @@ var launch_velocity: Vector3 = Vector3.ZERO
 var bob_time := 0.0
 var player : Node3D = null
 var alive_time := 0.0
-func _enter_tree():
-	print("Enemy root entered tree:", self)
+
 
 func _ready():
 	print("Enemy _ready()")
 	player = get_tree().get_first_node_in_group("player")
-	#connect("body_entered", Callable(self, "_on_body_entered"))
-	
+
 	
 func _physics_process(delta):
 	if not player:
 		return
-		
-	var dir = (player.global_position - global_position).normalized()
-	global_position += dir * speed * delta
+	var dir = (player.global_transform.origin - global_transform.origin).normalized()
+	velocity = dir * speed
+
+	if launch_velocity.length() > 0.01:
+		velocity += launch_velocity
+		launch_velocity = launch_velocity.move_toward(Vector3.ZERO, delta * 2.0)
+	move_and_slide()
+
 	
 	alive_time += delta
 	if alive_time >= speed_increase_delay:
@@ -51,8 +54,6 @@ func _physics_process(delta):
 	rotation.z = sin(bob_time * 1.5) * deg_to_rad(10)
 	rotation.x = sin(bob_time * 0.7) * deg_to_rad(5)
 
-
-	
 	var dist = global_position.distance_to(player.global_position)
 	if dist <= grow_radius:
 		var new_scale = lerp(scale.x, max_scale, grow_speed * delta)
@@ -60,12 +61,8 @@ func _physics_process(delta):
 	else:
 		var new_scale = lerp(scale.x, min_scale, grow_speed * delta)
 		scale = Vector3(new_scale, new_scale, new_scale)
-	
-	if launch_velocity.length() > 0.01:
-		global_position += launch_velocity * delta
-		launch_velocity = launch_velocity.move_toward(Vector3.ZERO, delta * 2.0)
-		
-func _on_body_entered(body):
+
+func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body.is_in_group("dart"):
 		take_damage(body.damage)
 		body.queue_free()
@@ -73,7 +70,6 @@ func _on_body_entered(body):
 	if body.is_in_group("player"):
 		body.take_damage(10)
 		queue_free()
-		
 func pop():
 	GameManager.add_score(5)
 	queue_free()
