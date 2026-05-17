@@ -14,6 +14,18 @@ func _input(event):
 	if recapture_mouse:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		recapture_mouse = false
+		
+	if event.is_action_pressed("pause"):
+		var ui := get_tree().current_scene.get_node("GameUI")
+		var settings := ui.get_node("SettingsMenu")
+	
+		if settings.visible:
+			settings.visible = false
+			get_tree().paused = false
+			game_state = "playing"
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			return
+		
 	if event.is_action_pressed("toggle_fullscreen"):
 		var fs = DisplayServer.window_get_mode()
 		if fs == DisplayServer.WINDOW_MODE_FULLSCREEN:
@@ -29,7 +41,7 @@ func _input(event):
 			pause_game()
 		elif game_state == "paused":
 			resume_game()
-			
+
 func pause_game():
 	game_state = "paused"
 	get_tree().paused = true
@@ -39,7 +51,7 @@ func pause_game():
 func resume_game():
 	game_state = "playing"
 	get_tree().paused = false
-	recapture_mouse = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	print(game_state)
 	
 func add_score(amount):

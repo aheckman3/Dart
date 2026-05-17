@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cq0kblluuykdp" path="res://Scenes/player.tscn" id="1_1xis7"]
 [ext_resource type="Script" uid="uid://2anrh100v1qr" path="res://Scripts/GameController.gd" id="1_b0lxd"]
 [ext_resource type="PackedScene" uid="uid://yo7xrj1nt6o1" path="res://Scenes/ui.tscn" id="1_kcxld"]
+[ext_resource type="PackedScene" uid="uid://dh864rfcs72v2" path="res://Scenes/settings_menu.tscn" id="3_mo6li"]
 [ext_resource type="PackedScene" uid="uid://d1ephw3ruxf6u" path="res://Scenes/spawner.tscn" id="5_wkkq1"]
 [ext_resource type="PackedScene" uid="uid://dfwhxfua2porb" path="res://Scenes/pause_menu.tscn" id="6_0gqda"]
 [ext_resource type="PackedScene" uid="uid://bcobxj3ajwn66" path="res://Scenes/balloon_model.tscn" id="6_wkkq1"]
@@ -154,8 +155,8 @@ shader_parameter/cirrus_absorption = 2.0
 shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.22228964, 0.22228964)
-shader_parameter/cirrus_position2 = Vector2(0.22228964, 0.22228964)
+shader_parameter/cirrus_position1 = Vector2(0.003794801, 0.003794801)
+shader_parameter/cirrus_position2 = Vector2(0.003794801, 0.003794801)
 shader_parameter/cirrus_texture = ExtResource("13_6jr2x")
 shader_parameter/cumulus_visible = true
 shader_parameter/cumulus_intensity = 0.6
@@ -165,7 +166,7 @@ shader_parameter/cumulus_absorption = 2.0
 shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(1.1113024, 1.1113024)
+shader_parameter/cumulus_position = Vector2(0.018974055, 0.018974055)
 shader_parameter/cumulus_texture = ExtResource("14_854h1")
 shader_parameter/cumulus_partial_mie_phase = Vector3(0.957564, 1.042436, 0.412)
 shader_parameter/cumulus_mie_intensity = 1.0
@@ -196,6 +197,8 @@ tonemap_white = 6.0
 [node name="GameUI" parent="." unique_id=766366771 instance=ExtResource("1_kcxld")]
 
 [node name="PauseMenu" parent="GameUI" unique_id=78794224 instance=ExtResource("6_0gqda")]
+
+[node name="SettingsMenu" parent="GameUI" unique_id=1521292289 instance=ExtResource("3_mo6li")]
 visible = false
 
 [node name="player" parent="." unique_id=1257616633 instance=ExtResource("1_1xis7")]

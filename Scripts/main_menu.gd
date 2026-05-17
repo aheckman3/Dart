@@ -13,3 +13,7 @@ func _on_play_pressed() -> void:
 	await Transition.fade_out()
 	get_tree().change_scene_to_file("res://Scenes/proto_level.tscn")
 	await Transition.fade_in()
+
+func _on_settings_pressed() -> void:
+	$"../SettingsMenu".opened_from = "main"
+	$"../SettingsMenu".visible = true

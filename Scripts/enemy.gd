@@ -29,7 +29,25 @@ func _ready():
 func _physics_process(delta):
 	if not player:
 		return
+		
+	var chase_dir = (player.global_transform.origin - global_transform.origin).normalized()
 	var dir = (player.global_transform.origin - global_transform.origin).normalized()
+	
+	var collision = get_last_slide_collision()
+	if collision:
+		var normal = collision.get_normal()
+		var dot = chase_dir.dot(normal)
+
+		if dot < -0.2:
+			var left = chase_dir.rotated(Vector3.UP, 0.8)
+			var right = chase_dir.rotated(Vector3.UP, -0.8)
+
+			if left.dot(normal) > right.dot(normal):
+				dir = left
+			else:
+				dir = right
+
+			dir = chase_dir.lerp(dir, 0.5)
 	velocity = dir * speed
 
 	if launch_velocity.length() > 0.01:

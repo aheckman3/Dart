@@ -135,14 +135,6 @@ theme_override_styles/pressed = ExtResource("4_opfnp")
 theme_override_styles/hover = ExtResource("5_cp0ys")
 text = "Play"
 
-[node name="Settings" type="Button" parent="MainMenu/VBoxContainer" unique_id=495689701]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_1ehe0")
-theme_override_styles/normal = ExtResource("3_n45e2")
-theme_override_styles/pressed = ExtResource("4_opfnp")
-theme_override_styles/hover = ExtResource("5_cp0ys")
-text = "Settings"
-
 [node name="Quit" type="Button" parent="MainMenu/VBoxContainer" unique_id=1257603602]
 layout_mode = 2
 size_flags_horizontal = 4
