@@ -1,7 +1,14 @@
 [gd_scene format=3 uid="uid://bkapslk8p2vcy"]
 
 [ext_resource type="Script" uid="uid://dnv8g7l6jer62" path="res://Scripts/GameManager.gd" id="1_oj352"]
+[ext_resource type="AudioStream" uid="uid://cs2jm0gq2l2w1" path="res://Assets/SFX/ambience.mp3" id="2_e5fcp"]
 
 [node name="GameManager" type="Node3D" unique_id=1893369513]
 process_mode = 3
 script = ExtResource("1_oj352")
+
+[node name="Ambience" type="AudioStreamPlayer2D" parent="." unique_id=584664010]
+stream = ExtResource("2_e5fcp")
+volume_db = -10.811
+autoplay = true
+parameters/looping = true

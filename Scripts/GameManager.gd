@@ -7,6 +7,7 @@ var recapture_mouse := false
 
 func _ready():
 	game_state = "playing"
+	$Ambience.play()
 	print(game_state)
 
 	

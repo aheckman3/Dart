@@ -155,8 +155,8 @@ shader_parameter/cirrus_absorption = 2.0
 shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.003794801, 0.003794801)
-shader_parameter/cirrus_position2 = Vector2(0.003794801, 0.003794801)
+shader_parameter/cirrus_position1 = Vector2(0.38732865, 0.38732865)
+shader_parameter/cirrus_position2 = Vector2(0.38732865, 0.38732865)
 shader_parameter/cirrus_texture = ExtResource("13_6jr2x")
 shader_parameter/cumulus_visible = true
 shader_parameter/cumulus_intensity = 0.6
@@ -166,7 +166,7 @@ shader_parameter/cumulus_absorption = 2.0
 shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(0.018974055, 0.018974055)
+shader_parameter/cumulus_position = Vector2(1.9367062, 1.9367062)
 shader_parameter/cumulus_texture = ExtResource("14_854h1")
 shader_parameter/cumulus_partial_mie_phase = Vector3(0.957564, 1.042436, 0.412)
 shader_parameter/cumulus_mie_intensity = 1.0
@@ -208,23 +208,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8849535, 1.1500001, -0.4628
 process_mode = 3
 script = ExtResource("1_b0lxd")
 
-[node name="Spawner" parent="." unique_id=1676879371 instance=ExtResource("5_wkkq1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.894754, -1.0185995, 0.11698151)
-scene_to_spawn = ExtResource("6_wkkq1")
-spawn_interval = 0.07
-spawn_radius = 15.0
-
-[node name="Spawner2" parent="." unique_id=710262119 instance=ExtResource("5_wkkq1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.054487, 1.3468037, -0.9486313)
-scene_to_spawn = ExtResource("7_wkkq1")
-spawn_radius = 60.0
-
-[node name="Spawner3" parent="." unique_id=350657093 instance=ExtResource("5_wkkq1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.429553, 7.8010087, -10.91517)
-scene_to_spawn = ExtResource("8_wkkq1")
-spawn_interval = 900.0
-spawn_once = true
-
 [node name="Terrain3D" type="Terrain3D" parent="." unique_id=1965761068 groups=["enemy_obstacles", "floor"]]
 data_directory = "res://WorldMapData"
 material = SubResource("Terrain3DMaterial_int50")
@@ -240,7 +223,7 @@ camera_attributes = SubResource("CameraAttributesPractical_14udr")
 script = ExtResource("19_010tl")
 editor_time_enabled = false
 current_time = 13.851
-minutes_per_day = 10.0
+minutes_per_day = 6.0
 wind_direction = 2.35619451204804
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
@@ -268,26 +251,59 @@ cumulus_coverage = 0.0
 script = ExtResource("21_r8j1q")
 editor_time_enabled = false
 dome_path = NodePath("../SkyDome")
-minutes_per_day = 10.0
+minutes_per_day = 6.0
 current_time = 13.851
 day = 14
 month = 5
 year = 2026
 
-[node name="House" parent="Sky3D" unique_id=639323824 instance=ExtResource("23_854h1")]
+[node name="SetDeco" type="Node" parent="." unique_id=689425568]
+
+[node name="House" parent="SetDeco" unique_id=639323824 instance=ExtResource("23_854h1")]
 transform = Transform3D(-0.30451524, 0, 0.95250744, 0, 1, 0, -0.95250744, 0, -0.30451524, -33.362343, -0.49886513, 42.200176)
 
-[node name="Tree1" parent="Sky3D" unique_id=758007005 instance=ExtResource("24_1l8ud")]
+[node name="Tree1" parent="SetDeco" unique_id=758007005 instance=ExtResource("24_1l8ud")]
 transform = Transform3D(0.73006684, 0, 0.6833757, 0, 1, 0, -0.6833757, 0, 0.73006684, -38.131443, 0, 30.791183)
 
-[node name="Tree3" parent="Sky3D" unique_id=412487424 instance=ExtResource("24_1l8ud")]
+[node name="Tree7" parent="SetDeco" unique_id=1560698860 instance=ExtResource("24_1l8ud")]
+transform = Transform3D(0.73006684, 0, 0.6833757, 0, 1, 0, -0.6833757, 0, 0.73006684, -26.426357, 0, 63.749348)
+
+[node name="Tree6" parent="SetDeco" unique_id=1945291247 instance=ExtResource("24_1l8ud")]
+transform = Transform3D(0.73006684, 0, 0.6833757, 0, 1, 0, -0.6833757, 0, 0.73006684, -38.131443, 0, 60.78096)
+
+[node name="Tree5" parent="SetDeco" unique_id=365231653 instance=ExtResource("24_1l8ud")]
+transform = Transform3D(0.8972705, 0, 1.7537975, 0, 1.97, 0, -1.7537975, 0, 0.8972705, -17.026402, 0, 69.51983)
+
+[node name="Tree3" parent="SetDeco" unique_id=412487424 instance=ExtResource("24_1l8ud")]
 transform = Transform3D(1.235664, 0, -1.3225862, 0, 1.81, 0, 1.3225862, 0, 1.235664, -47.867085, 0, 64.660736)
 
-[node name="Tree2" parent="Sky3D" unique_id=836781953 instance=ExtResource("25_duanm")]
+[node name="Tree8" parent="SetDeco" unique_id=1417434818 instance=ExtResource("24_1l8ud")]
+transform = Transform3D(-1.821089, 0, -1.4694335, 0, 2.34, 0, 1.4694335, 0, -1.821089, -55.777187, 0, 55.17415)
+
+[node name="Tree2" parent="SetDeco" unique_id=836781953 instance=ExtResource("25_duanm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.758986, 0, 53.823776)
 
-[node name="Tree4" parent="Sky3D" unique_id=3752100 instance=ExtResource("25_duanm")]
+[node name="Tree4" parent="SetDeco" unique_id=3752100 instance=ExtResource("25_duanm")]
 transform = Transform3D(-0.2938068, 0, -0.95586485, 0, 1, 0, 0.95586485, 0, -0.2938068, 96.28909, 0, -45.56447)
 
-[node name="Firepit" parent="Sky3D" unique_id=108055294 instance=ExtResource("26_duanm")]
+[node name="Firepit" parent="SetDeco" unique_id=108055294 instance=ExtResource("26_duanm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.776041, -0.022162199, 45.795067)
+
+[node name="Spawners" type="Node" parent="." unique_id=1843966099]
+
+[node name="Balloonspawner" parent="Spawners" unique_id=1676879371 instance=ExtResource("5_wkkq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.894754, -1.0185995, 0.11698151)
+scene_to_spawn = ExtResource("6_wkkq1")
+spawn_interval = 0.07
+spawn_radius = 50.0
+
+[node name="EnemySpawner" parent="Spawners" unique_id=710262119 instance=ExtResource("5_wkkq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.054487, 1.3468037, -0.9486313)
+scene_to_spawn = ExtResource("7_wkkq1")
+spawn_radius = 60.0
+
+[node name="BossSpawner" parent="Spawners" unique_id=350657093 instance=ExtResource("5_wkkq1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.429553, 7.8010087, -10.91517)
+scene_to_spawn = ExtResource("8_wkkq1")
+spawn_interval = 900.0
+spawn_once = true

@@ -89,6 +89,7 @@ var noise := FastNoiseLite.new()
 var can_air_control := true
 var has_pyramid_shot := false
 var upgrades
+var sensitivity := 1.0
 #__________________________________________________________________________________________________#
 # STATE MACHINE
 #__________________________________________________________________________________________________#
@@ -101,6 +102,9 @@ func _ready():
 	print(\"UPGRADES:\", upgrades)
 	if Engine.is_editor_hint():
 		return
+	var config := ConfigFile.new()
+	if config.load(\"user://settings.cfg\") == OK:
+		sensitivity = config.get_value(\"controls\", \"sensitivity\", 1.0)
 	if CAPTURE_ON_START:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
@@ -186,6 +190,10 @@ func _input(event):
 	
 	if event.is_action_pressed(\"pyramid\"):
 		$WeaponManager.has_pyramid_shot = true
+	
+	if event is InputEventMouseMotion:
+		rotate_y(-event.relative.x * sensitivity * 0.002)
+		$Head.rotate_x(-event.relative.y * sensitivity * 0.002)
 		
 func set_rotation_target(mouse_motion: Vector2):
 	rotation_target_player += -mouse_motion.x * KEY_BIND_MOUSE_SENS
@@ -393,10 +401,10 @@ func take_damage(amount):
 	ui.set_health(health)
 	
 	ui.flash_damage()
-	camera_shake(2)
+	_shake(2)
 	GameManager.minus_score(3)
 	
-func camera_shake(amount := 0.2):
+func _shake(amount := 0.2):
 	shake_strength = amount
 	shake_time = 0.0
 	

@@ -2,6 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://1qts2mu53j6d" path="res://Scenes/firepit.tres" id="1_oo36h"]
 [ext_resource type="Texture2D" uid="uid://unebpifxxm5t" path="res://Assets/Art/T_fire01.png" id="2_makgx"]
+[ext_resource type="AudioStream" uid="uid://db26a25fslm8j" path="res://Assets/SFX/fire.ogg" id="3_1fxbp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1fxbp"]
 transparency = 1
@@ -77,3 +78,10 @@ randomness = 1.0
 fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_ute4d")
 draw_pass_1 = SubResource("QuadMesh_bulf0")
+
+[node name="FireSound" type="AudioStreamPlayer3D" parent="." unique_id=2058667303]
+stream = ExtResource("3_1fxbp")
+volume_db = -4.77
+unit_size = 2.0
+autoplay = true
+parameters/looping = true

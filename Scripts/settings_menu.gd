@@ -50,6 +50,9 @@ func _on_fullscreen_toggled(pressed):
 
 func _on_sensitivity_changed(value):
 	save_setting()
+	var player = get_tree().current_scene.get_node("player")
+	if player:
+		player.sensitivity = value
 
 
 func _on_back_pressed() -> void:

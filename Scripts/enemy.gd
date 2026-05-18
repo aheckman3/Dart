@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
 @onready var enemy_mesh := $"."
+@onready var grunt_player = $Grunt
+@onready var grunt_timer = $GruntTimer
+
 @export var bob_speed := 3.0
 @export var bob_height := 0.01
 @export var rotate_speed := 20.0
@@ -12,6 +15,8 @@ extends CharacterBody3D
 @export var max_scale := 5.0
 @export var min_scale := 1.0
 @export var max_health := 10
+@export var death_sounds: Array[AudioStream]
+@export var pop_sounds: Array[AudioStream]
 var health := 10
 var launch_velocity: Vector3 = Vector3.ZERO
 
@@ -24,6 +29,7 @@ var alive_time := 0.0
 func _ready():
 	print("Enemy _ready()")
 	player = get_tree().get_first_node_in_group("player")
+
 
 	
 func _physics_process(delta):
@@ -90,9 +96,52 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 		queue_free()
 func pop():
 	GameManager.add_score(5)
+	play_random_death_sound()
 	queue_free()
 	
 func take_damage(amount):
 	health -= amount
 	if health <= 0:
 		pop()
+
+
+func _on_grunt_timer_timeout() -> void:
+	if not player:
+		return
+		
+	var dist = global_position.distance_to(player.global_position)
+	
+	if dist < 6.0:
+		grunt_player.pitch_scale = randf_range(0.9, 1.1)
+		grunt_player.play()
+		
+	grunt_timer.wait_time = randf_range(1.0, 3.0)
+	grunt_timer.start()
+	
+func play_random_death_sound():
+	if death_sounds.is_empty():
+		return
+		
+	var audio = $DeathSounds
+	if audio == null:
+		return
+	var root = get_tree().current_scene
+	audio.reparent(root)
+	
+	audio.stream = death_sounds.pick_random()
+	audio.pitch_scale = randf_range(0.9, 1.1)
+	audio.play()
+	
+func play_random_pop():
+	if pop_sounds.is_empty():
+		return
+		
+	var pop_audio = $PopSounds
+	if pop_audio == null:
+		return
+	var root = get_tree().current_scene
+	pop_audio.reparent(root)
+	pop_audio.stream = pop_sounds.pick_random()
+	
+	pop_audio.pitch_scale = randf_range(0.9, 1.1)
+	pop_audio.play()
