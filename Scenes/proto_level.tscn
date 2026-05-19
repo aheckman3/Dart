@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://b50fihdobf3fv" path="res://Scenes/tree_1.tscn" id="24_1l8ud"]
 [ext_resource type="PackedScene" uid="uid://kph4q2dfrb8a" path="res://Scenes/tree_2.tscn" id="25_duanm"]
 [ext_resource type="PackedScene" uid="uid://b06s1trdw3573" path="res://Scenes/firepit.tscn" id="26_duanm"]
+[ext_resource type="AudioStream" uid="uid://bs4fpvttotj7n" path="res://Assets/SFX/nojisuma-pleasure-12039.mp3" id="28_010tl"]
 
 [sub_resource type="Gradient" id="Gradient_wkkq1"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -155,18 +156,18 @@ shader_parameter/cirrus_absorption = 2.0
 shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.38732865, 0.38732865)
-shader_parameter/cirrus_position2 = Vector2(0.38732865, 0.38732865)
+shader_parameter/cirrus_position1 = Vector2(0.901174, 0.901174)
+shader_parameter/cirrus_position2 = Vector2(0.901174, 0.901174)
 shader_parameter/cirrus_texture = ExtResource("13_6jr2x")
 shader_parameter/cumulus_visible = true
 shader_parameter/cumulus_intensity = 0.6
-shader_parameter/cumulus_coverage = 0.0
-shader_parameter/cumulus_thickness = -0.041
+shader_parameter/cumulus_coverage = 0.55
+shader_parameter/cumulus_thickness = 0.0243
 shader_parameter/cumulus_absorption = 2.0
 shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(1.9367062, 1.9367062)
+shader_parameter/cumulus_position = Vector2(4.5065856, 4.5065856)
 shader_parameter/cumulus_texture = ExtResource("14_854h1")
 shader_parameter/cumulus_partial_mie_phase = Vector3(0.957564, 1.042436, 0.412)
 shader_parameter/cumulus_mie_intensity = 1.0
@@ -223,7 +224,7 @@ camera_attributes = SubResource("CameraAttributesPractical_14udr")
 script = ExtResource("19_010tl")
 editor_time_enabled = false
 current_time = 13.851
-minutes_per_day = 6.0
+minutes_per_day = 1.0
 wind_direction = 2.35619451204804
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
@@ -244,14 +245,12 @@ moon_azimuth = -4.811636
 moon_altitude = -1.067829
 wind_direction = 2.35619451204804
 cirrus_coverage = 0.0
-cumulus_thickness = -0.041
-cumulus_coverage = 0.0
 
 [node name="TimeOfDay" type="Node" parent="Sky3D" unique_id=1572031633]
 script = ExtResource("21_r8j1q")
 editor_time_enabled = false
 dome_path = NodePath("../SkyDome")
-minutes_per_day = 6.0
+minutes_per_day = 1.0
 current_time = 13.851
 day = 14
 month = 5
@@ -298,7 +297,7 @@ spawn_interval = 0.07
 spawn_radius = 50.0
 
 [node name="EnemySpawner" parent="Spawners" unique_id=710262119 instance=ExtResource("5_wkkq1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.054487, 1.3468037, -0.9486313)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.054487, 6.3186054, -0.9486313)
 scene_to_spawn = ExtResource("7_wkkq1")
 spawn_radius = 60.0
 
@@ -307,3 +306,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.429553, 7.8010087, -10.91
 scene_to_spawn = ExtResource("8_wkkq1")
 spawn_interval = 900.0
 spawn_once = true
+
+[node name="GameMusic" type="AudioStreamPlayer2D" parent="." unique_id=697785024]
+stream = ExtResource("28_010tl")
+volume_db = -25.0
+autoplay = true
+parameters/looping = true
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." unique_id=104379046]

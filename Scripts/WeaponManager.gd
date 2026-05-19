@@ -22,7 +22,7 @@ func fire(player):
 		normal_shot(player)
 
 	start_cooldown()
-
+	return true
 
 func normal_shot(player):
 	var camera = player.get_node("Head/Camera3D")

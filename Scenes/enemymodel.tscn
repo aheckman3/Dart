@@ -8,10 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://bjbukbvmhllrk" path="res://Assets/SFX/EnemyDeath2.ogg" id="4_x4gt6"]
 [ext_resource type="AudioStream" uid="uid://byk6ax02el6mt" path="res://Assets/SFX/EnemyDeath3.ogg" id="5_r1455"]
 [ext_resource type="AudioStream" uid="uid://d2x5d8tlfht86" path="res://Assets/SFX/EnemyDeath4.ogg" id="6_d2ohr"]
-[ext_resource type="AudioStream" uid="uid://baq6xk0xjuli5" path="res://Assets/SFX/pop_one.wav" id="7_cocfk"]
-[ext_resource type="AudioStream" uid="uid://be2hb0nostyh5" path="res://Assets/SFX/pop_two.wav" id="8_fvbu4"]
-[ext_resource type="AudioStream" uid="uid://dcx67vem56jls" path="res://Assets/SFX/pop_three.wav" id="9_j71x8"]
-[ext_resource type="AudioStream" uid="uid://dcv7u3c7csru5" path="res://Assets/SFX/pop_four.wav" id="10_haf4i"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ej5kx"]
 radius = 0.30356875
@@ -80,7 +76,6 @@ radius = 0.34
 collision_mask = 19
 script = ExtResource("2_k3c5i")
 death_sounds = Array[AudioStream]([ExtResource("3_aoxs8"), ExtResource("4_x4gt6"), ExtResource("5_r1455"), ExtResource("6_d2ohr")])
-pop_sounds = Array[AudioStream]([ExtResource("7_cocfk"), ExtResource("8_fvbu4"), ExtResource("9_j71x8"), ExtResource("10_haf4i")])
 
 [node name="Sphere" parent="." index="0" unique_id=767847973 groups=["target"]]
 transform = Transform3D(0.092297815, 0, 0.2878019, 0, 0.30223966, 0, -0.2878019, 0, 0.092297815, 0, 0.06604481, 0)
@@ -104,24 +99,20 @@ shape = SubResource("SphereShape3D_k3c5i")
 
 [node name="Grunt" type="AudioStreamPlayer3D" parent="." index="4" unique_id=1033829536]
 stream = ExtResource("4_ej5kx")
-volume_db = -8.0
+volume_db = -10.49
 unit_size = 2.0
+autoplay = true
 
 [node name="GruntTimer" type="Timer" parent="." index="5" unique_id=17278536]
 wait_time = 1.5
 autostart = true
 
 [node name="DeathSounds" type="AudioStreamPlayer3D" parent="." index="6" unique_id=1785941979]
-volume_db = -6.0
-unit_size = 2.0
-max_distance = 20.0
-attenuation_filter_db = -6.0
-
-[node name="PopSounds" type="AudioStreamPlayer3D" parent="." index="7" unique_id=699032101]
-volume_db = -6.0
+volume_db = -0.34
 unit_size = 2.0
 max_distance = 20.0
 attenuation_filter_db = -6.0
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="finished" from="Grunt" to="." method="_on_grunt_finished"]
 [connection signal="timeout" from="GruntTimer" to="." method="_on_grunt_timer_timeout"]

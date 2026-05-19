@@ -5,9 +5,18 @@
 [ext_resource type="AudioStream" uid="uid://bcmw8s2eb34lp" path="res://Assets/SFX/footstep_one.wav" id="3_3smsa"]
 [ext_resource type="AudioStream" uid="uid://gfwlttbgknst" path="res://Assets/SFX/footstep_three.wav" id="4_8erm5"]
 [ext_resource type="AudioStream" uid="uid://ctg534q44fljr" path="res://Assets/SFX/footstep_two.wav" id="5_f1ek2"]
+[ext_resource type="AudioStream" uid="uid://js0ovectl56o" path="res://Assets/SFX/PlayerHurt1.ogg" id="5_ukyrk"]
+[ext_resource type="AudioStream" uid="uid://vw4bxgbimq7t" path="res://Assets/SFX/PlayerHurt2.ogg" id="6_7dp3o"]
 [ext_resource type="Script" uid="uid://b4jmlseyxsqr1" path="res://Scripts/WeaponManager.gd" id="6_x3wgy"]
 [ext_resource type="Script" uid="uid://b8vpxy4k3niit" path="res://Scripts/UpgradeManager.gd" id="7_3smsa"]
+[ext_resource type="AudioStream" uid="uid://cc3mgc3gpuanb" path="res://Assets/SFX/PlayerHurt3.ogg" id="7_h4iuc"]
 [ext_resource type="PackedScene" uid="uid://ogu32ue4mdwq" path="res://Scenes/buff_label.tscn" id="8_8erm5"]
+[ext_resource type="AudioStream" uid="uid://d2fd2xm26pnfm" path="res://Assets/SFX/PlayerJump.ogg" id="9_f1ek2"]
+[ext_resource type="AudioStream" uid="uid://b4q28vbb5t1sv" path="res://Assets/SFX/PlayerJump2.ogg" id="9_fd4e3"]
+[ext_resource type="AudioStream" uid="uid://o8vfn6h75yl4" path="res://Assets/SFX/PlayerJump3.ogg" id="10_7dp3o"]
+[ext_resource type="AudioStream" uid="uid://fvwmxba1owjh" path="res://Assets/SFX/PlayerThrow1.ogg" id="11_qqcod"]
+[ext_resource type="AudioStream" uid="uid://bop67etxu3wsa" path="res://Assets/SFX/PlayerThrow2.ogg" id="12_igrcy"]
+[ext_resource type="AudioStream" uid="uid://c71efronmwlii" path="res://Assets/SFX/PlayerThrow3.ogg" id="13_fs7ks"]
 
 [sub_resource type="GDScript" id="GDScript_fkybt"]
 script/source = "@tool
@@ -63,6 +72,9 @@ signal player_ready
 
 @export_category(\"Sounds\")
 @export var footstep_sounds: Array[AudioStream] = []
+@export var hurt_sounds: Array[AudioStream]
+@export var jump_sounds: Array[AudioStream]
+@export var throw_sounds: Array[AudioStream]
 
 #__________________________________________________________________________________________________#
 #INTERNAL VARIABLES
@@ -332,6 +344,13 @@ func apply_gravity(delta):
 		
 func jump():
 	velocity.y = JUMP_VELOCITY * upgrades.jump_multiplier
+	var jump_audio = get_node_or_null(\"JumpSounds\")
+	if jump_audio == null:
+		return
+
+	jump_audio.stream = jump_sounds.pick_random()
+	jump_audio.pitch_scale = randf_range(0.9, 1.1)
+	jump_audio.play()
 	
 func apply_balloon_push(dir: Vector3, strength: float):
 	velocity += dir * strength
@@ -358,7 +377,16 @@ func reset_head_bob(delta):
 # SHOOTING
 #__________________________________________________________________________________________________#
 func shoot():
-	$WeaponManager.fire(self)
+	if not $WeaponManager.fire(self):
+		return
+		
+	var throw_audio = get_node_or_null(\"ThrowSounds\")
+	if throw_audio == null:
+		return
+
+	throw_audio.stream = throw_sounds.pick_random()
+	throw_audio.pitch_scale = randf_range(0.9, 1.1)
+	throw_audio.play()
 	
 
 #__________________________________________________________________________________________________#
@@ -393,6 +421,13 @@ func play_footstep():
 
 func take_damage(amount):
 	print(\"Player took damage:\", amount)
+	var hurt_audio = get_node_or_null(\"HurtSounds\")
+	if hurt_audio == null:
+		return
+
+	hurt_audio.stream = hurt_sounds.pick_random()
+	hurt_audio.pitch_scale = randf_range(0.9, 1.1)
+	hurt_audio.play()
 
 	health -= amount
 	health = clamp(health, 0, max_health)
@@ -424,6 +459,9 @@ script = SubResource("GDScript_fkybt")
 KEY_BIND_MOUSE_SENS = 0.005
 KEY_BIND_DOWN = "move_backward"
 footstep_sounds = Array[AudioStream]([ExtResource("2_x3wgy"), ExtResource("3_3smsa"), ExtResource("4_8erm5"), ExtResource("5_f1ek2")])
+hurt_sounds = Array[AudioStream]([ExtResource("5_ukyrk"), ExtResource("6_7dp3o"), ExtResource("7_h4iuc")])
+jump_sounds = Array[AudioStream]([ExtResource("9_f1ek2"), ExtResource("9_fd4e3"), ExtResource("10_7dp3o")])
+throw_sounds = Array[AudioStream]([ExtResource("11_qqcod"), ExtResource("12_igrcy"), ExtResource("13_fs7ks")])
 
 [node name="Head" parent="." unique_id=619649086 instance=ExtResource("2_6t5aa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5665753, 0)
@@ -453,3 +491,11 @@ script = ExtResource("6_x3wgy")
 [node name="UpgradeManager" type="Node3D" parent="." unique_id=524729004]
 script = ExtResource("7_3smsa")
 buff_label_scene = ExtResource("8_8erm5")
+
+[node name="HurtSounds" type="AudioStreamPlayer3D" parent="." unique_id=1549058425]
+
+[node name="JumpSounds" type="AudioStreamPlayer3D" parent="." unique_id=973899408]
+stream = ExtResource("9_f1ek2")
+volume_db = -25.0
+
+[node name="ThrowSounds" type="AudioStreamPlayer3D" parent="." unique_id=1245883276]
