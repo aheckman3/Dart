@@ -2,31 +2,122 @@
 
 [ext_resource type="Script" uid="uid://dqh65taedyqko" path="res://Scripts/first_boss.gd" id="1_e8ksu"]
 [ext_resource type="PackedScene" uid="uid://dd7i0iw4ffor7" path="res://Scenes/enemymodel.tscn" id="2_lxb3b"]
-[ext_resource type="PackedScene" uid="uid://esak11a2ol1p" path="res://Assets/Art/enemymodel.glb" id="3_cylyx"]
+[ext_resource type="ArrayMesh" uid="uid://b0loedhaqle4b" path="res://Assets/Art/BossMesh.tres" id="3_kuchj"]
+[ext_resource type="Texture2D" uid="uid://unebpifxxm5t" path="res://Assets/Art/T_fire01.png" id="4_kuchj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kuchj"]
-size = Vector3(1.9102783, 2.4084473, 1.6663818)
+size = Vector3(1.9038696, 2.4084473, 1.8493042)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6xi7"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("4_kuchj")
+albedo_texture_force_srgb = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_rukdg"]
+_data = [Vector2(0.0093458, 0), 0.0, 0.0, 0, 0, Vector2(0.55140185, 0.4044944), 1.6246591, 1.6246591, 0, 0, Vector2(0.8644859, 1), 0.0, 0.0, 0, 0, Vector2(0.9719625, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_0ptbj"]
+curve = SubResource("Curve_rukdg")
+
+[sub_resource type="Gradient" id="Gradient_2kgjo"]
+offsets = PackedFloat32Array(0, 0.5319149, 1)
+colors = PackedColorArray(0.98234254, 0.9823423, 0.9823424, 1, 0.51718444, 0.5171845, 0.5171844, 1, 0.12591085, 0.12591085, 0.12591082, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fa8m1"]
+gradient = SubResource("Gradient_2kgjo")
+
+[sub_resource type="Curve" id="Curve_3ttef"]
+_data = [Vector2(0, 0.49438208), 0.0, 2.2542133, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qo4xa"]
+curve = SubResource("Curve_3ttef")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ydadi"]
+particle_flag_rotate_y = true
+emission_shape_scale = Vector3(11.44, 10.3, 8.74)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -179.99998
+angle_max = 177.50002
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 1, 0)
+scale_min = 0.29999998
+scale_max = 10.61
+scale_curve = SubResource("CurveTexture_qo4xa")
+color = Color(0.6723092, 0, 0, 0.2509804)
+color_ramp = SubResource("GradientTexture1D_fa8m1")
+alpha_curve = SubResource("CurveTexture_0ptbj")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0lxqb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cylyx"]
+radius = 1.015
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lxb3b"]
-radius = 0.31256872
+radius = 0.273
 
-[node name="FirstBoss" type="Area3D" unique_id=297085036]
+[node name="FirstBoss" type="CharacterBody3D" unique_id=1395290947 groups=["target"]]
+collision_layer = 4
 script = ExtResource("1_e8ksu")
+max_health = 10
 minion_scene = ExtResource("2_lxb3b")
 
-[node name="Visuals" type="Node3D" parent="." unique_id=1191684144]
-
-[node name="enemymodel" parent="Visuals" unique_id=2094460842 instance=ExtResource("3_cylyx")]
-transform = Transform3D(0.749428, 0, 3.7406662, 0, 3.815, 0, -3.7406662, 0, 0.749428, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=728398084]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014099121, 0.03684759, -0.09161377)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=728398084]
+transform = Transform3D(0.99999994, 0, -1.490116e-08, 0, 0.99999994, 0, 1.490116e-08, 0, 0.99999994, -0.017303465, -4.320856, -0.00015259534)
 shape = SubResource("BoxShape3D_kuchj")
 
+[node name="Visuals" type="Node3D" parent="." unique_id=1191684144]
+transform = Transform3D(2.635, 0, 0, 0, 2.635, 0, 0, 0, 2.635, 0, 5.3648977, 0)
+
+[node name="BossMesh" type="MeshInstance3D" parent="Visuals" unique_id=249553070]
+transform = Transform3D(0.6350583, 0, 1.8859483, 0, 1.99, 0, -1.8859483, 0, 0.6350583, 0, 0, 0)
+mesh = ExtResource("3_kuchj")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Visuals" unique_id=1415777370]
+transform = Transform3D(-0.9998415, 0.0001180768, -0.017802807, -0.0178032, -0.0066317716, 0.9998195, 0, 0.99997795, 0.006632822, 0, 1.9786772, 0)
+light_color = Color(1, 0.5023, 0.43550968, 1)
+light_energy = 22.47
+spot_range = 8.255
+spot_angle = 27.25
+
+[node name="Fire" type="GPUParticles3D" parent="Visuals" unique_id=448070098]
+transform = Transform3D(0.13472487, 0, 0, 0, 0.13472487, 0, 0, 0, 0.13472487, -0.0015180268, -0.7116612, -0.0037950666)
+material_override = SubResource("StandardMaterial3D_f6xi7")
+amount = 500
+lifetime = 0.35000000000000003
+speed_scale = 0.25
+randomness = 1.0
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_ydadi")
+draw_pass_1 = SubResource("QuadMesh_0lxqb")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=172311677 groups=["hitbox"]]
+transform = Transform3D(5.81, 0, 0, 0, 5.81, 0, 0, 0, 5.81, 0, 4.991275, -0.146)
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=182240044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.092360675, 0)
+shape = SubResource("SphereShape3D_cylyx")
+
 [node name="DodgeDetector" type="Area3D" parent="." unique_id=1535624044]
+transform = Transform3D(4.85, 0, 0, 0, 4.85, 0, 0, 0, 4.85, 0, 4.251444, 0)
+collision_layer = 64
+collision_mask = 17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DodgeDetector" unique_id=1518723864]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("SphereShape3D_lxb3b")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

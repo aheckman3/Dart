@@ -1,4 +1,4 @@
-extends Area3D
+extends CharacterBody3D
 
 @onready var dodge_detector: Area3D = $DodgeDetector
 @onready var mesh: Node3D = $Visuals
@@ -21,9 +21,9 @@ extends Area3D
 @export var dodge_speed := 20.0
 @export var dodge_duration := 0.25
 @export var dodge_chance := 0.4
-@export var hover_height := 2.5
+@export var hover_height := 4
 
-var health := 500
+var health := 10
 var has_spawned_minions := false
 var minion_spawn_timer := 0.0
 var dodge_timer := 0.0
@@ -47,6 +47,20 @@ func _ready():
 	print("Enemy _ready()")
 	player = get_tree().get_first_node_in_group("player")
 	dodge_detector.body_entered.connect(_on_dodge_detector_entered)
+	var bossmesh := $Visuals/BossMesh
+	for i in bossmesh.get_surface_override_material_count():
+		var mat: StandardMaterial3D = bossmesh.get_surface_override_material(i)
+		
+		if mat == null:
+			var base_mat : StandardMaterial3D = bossmesh.mesh.surface_get_material(i)
+			if base_mat:
+				mat = base_mat.duplicate()
+				bossmesh.set_surface_override_material(i, mat)
+				
+		if mat:
+			mat.emission_enabled = true
+			mat.emission = Color(4, 0, 0, 0.1)
+			mat.emission_energy = 2
 
 	
 func _physics_process(delta):
@@ -54,11 +68,12 @@ func _physics_process(delta):
 		return
 		
 	var dir = (player.global_position - global_position).normalized()
-	var move = dir * speed * delta
-	move.y = 0 
-	global_position += move
 
-	global_position.y = move_toward(global_position.y, hover_height, delta * 1)
+	velocity = dir * speed
+	
+	move_and_slide()
+	
+	
 	
 	alive_time += delta
 	if alive_time >= speed_increase_delay:
@@ -71,6 +86,7 @@ func _physics_process(delta):
 
 	bob_time += delta
 	var bob_offset = sin(bob_time * bob_speed) * bob_height
+	global_position.y =  hover_height
 	mesh.position.y = bob_offset
 	
 	mesh.rotation.z = sin(bob_time * 1.5) * deg_to_rad(10)
@@ -172,3 +188,13 @@ func try_dodge():
 	if randf() <= dodge_chance:
 		start_dodge()
 	
+
+
+func _on_hitbox_body_entered(body: Node3D) -> void:
+	if body.is_in_group("dart"):
+		take_damage(body.damage)
+		body.queue_free()
+
+	if body.is_in_group("player"):
+		body.take_damage(25)
+		

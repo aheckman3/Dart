@@ -82,8 +82,8 @@ alpha_curve = SubResource("CurveTexture_0ptbj")
 radius = 0.6027282
 
 [node name="orb" unique_id=58128623 instance=ExtResource("1_ryljl")]
-collision_layer = 4
-collision_mask = 2
+collision_layer = 32
+collision_mask = 3
 script = ExtResource("2_r3x0a")
 
 [node name="Sphere" parent="." index="0" unique_id=1880153076]

@@ -19,12 +19,17 @@ process_mode = 3
 script = ExtResource("1_qdvrb")
 
 [node name="HUD" type="Control" parent="." unique_id=2052930991]
+visibility_layer = 132
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Crosshair" type="Control" parent="HUD" unique_id=720142941]
+light_mask = 1023
+visibility_layer = 1023
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 1
 anchors_preset = 8

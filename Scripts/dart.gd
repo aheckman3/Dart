@@ -86,3 +86,7 @@ func _on_body_entered(body):
 	if body.is_in_group("floor"):
 		queue_free()
 		return
+		
+	if body.is_in_group("hitbox"):
+		body.take_damage(damage)
+		queue_free()

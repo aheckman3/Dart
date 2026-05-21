@@ -11,8 +11,8 @@ height = 0.295
 radius = 0.7945409
 
 [node name="dart" unique_id=1252082595 groups=["dart"] instance=ExtResource("1_drbt2")]
-collision_layer = 33
-collision_mask = 249
+collision_layer = 16
+collision_mask = 202
 gravity_scale = 0.0
 continuous_cd = true
 contact_monitor = true

@@ -2,9 +2,25 @@
 
 [ext_resource type="ArrayMesh" uid="uid://68mg1ef8c28c" path="res://Scenes/tree1_fixed.tres" id="1_dwapx"]
 
-[node name="Tree1" type="Node3D" unique_id=758007005 groups=["enemy_obstacles"]]
+[sub_resource type="BoxShape3D" id="BoxShape3D_dwapx"]
+size = Vector3(3.705, 8.705, 3.725)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8l6ah"]
+size = Vector3(9.895, 8.27, 4)
+
+[node name="Tree1" type="StaticBody3D" unique_id=919136519 groups=["enemy_obstacles"]]
+collision_layer = 2
+collision_mask = 0
 
 [node name="Tree1Fixed" type="MeshInstance3D" parent="." unique_id=2115612786]
 transform = Transform3D(0.01, 0, 0, 0, -4.3711387e-10, -0.01, 0, 0.01, -4.3711387e-10, 0, -0.47510338, 0)
 layers = 16
 mesh = ExtResource("1_dwapx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=546300445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0017004013, 3.7950082, 0)
+shape = SubResource("BoxShape3D_dwapx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=570490230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.200368, 0)
+shape = SubResource("BoxShape3D_8l6ah")

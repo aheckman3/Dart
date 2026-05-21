@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @onready var enemy_mesh := $"."
 @onready var grunt_player = $Grunt
-@onready var grunt_timer = $GruntTimer
+
 
 @export var bob_speed := 3.0
 @export var bob_height := 0.01
@@ -103,10 +103,6 @@ func take_damage(amount):
 	if health <= 0:
 		pop()
 
-
-func _on_grunt_timer_timeout() -> void:
-	if not player:
-		return
 		
 	var dist = global_position.distance_to(player.global_position)
 	
@@ -129,9 +125,5 @@ func play_random_death_sound():
 	audio.play()
 
 
-func _on_grunt_finished() -> void:
-	_start_next_grunt_timer()
+
 	
-func _start_next_grunt_timer():
-	grunt_timer.wait_time = randf_range(1.0, 3.0)
-	grunt_timer.start()

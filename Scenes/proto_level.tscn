@@ -156,8 +156,8 @@ shader_parameter/cirrus_absorption = 2.0
 shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.901174, 0.901174)
-shader_parameter/cirrus_position2 = Vector2(0.901174, 0.901174)
+shader_parameter/cirrus_position1 = Vector2(0.011054412, 0.011054412)
+shader_parameter/cirrus_position2 = Vector2(0.011054412, 0.011054412)
 shader_parameter/cirrus_texture = ExtResource("13_6jr2x")
 shader_parameter/cumulus_visible = true
 shader_parameter/cumulus_intensity = 0.6
@@ -167,7 +167,7 @@ shader_parameter/cumulus_absorption = 2.0
 shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(4.5065856, 4.5065856)
+shader_parameter/cumulus_position = Vector2(0.055271912, 0.055271912)
 shader_parameter/cumulus_texture = ExtResource("14_854h1")
 shader_parameter/cumulus_partial_mie_phase = Vector3(0.957564, 1.042436, 0.412)
 shader_parameter/cumulus_mie_intensity = 1.0
@@ -190,6 +190,8 @@ ambient_light_color = Color(1, 1, 1, 1)
 reflected_light_source = 2
 tonemap_mode = 3
 tonemap_white = 6.0
+glow_enabled = true
+glow_normalized = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_14udr"]
 
@@ -213,8 +215,8 @@ script = ExtResource("1_b0lxd")
 data_directory = "res://WorldMapData"
 material = SubResource("Terrain3DMaterial_int50")
 assets = SubResource("Terrain3DAssets_67jr4")
-collision_layer = 19
-collision_mask = 3
+collision_layer = 2
+collision_mask = 133
 top_level = true
 metadata/_edit_lock_ = true
 
@@ -224,7 +226,7 @@ camera_attributes = SubResource("CameraAttributesPractical_14udr")
 script = ExtResource("19_010tl")
 editor_time_enabled = false
 current_time = 13.851
-minutes_per_day = 1.0
+minutes_per_day = 6.0
 wind_direction = 2.35619451204804
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
@@ -250,7 +252,7 @@ cirrus_coverage = 0.0
 script = ExtResource("21_r8j1q")
 editor_time_enabled = false
 dome_path = NodePath("../SkyDome")
-minutes_per_day = 1.0
+minutes_per_day = 6.0
 current_time = 13.851
 day = 14
 month = 5
@@ -304,7 +306,7 @@ spawn_radius = 60.0
 [node name="BossSpawner" parent="Spawners" unique_id=350657093 instance=ExtResource("5_wkkq1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.429553, 7.8010087, -10.91517)
 scene_to_spawn = ExtResource("8_wkkq1")
-spawn_interval = 900.0
+spawn_interval = 10.0
 spawn_once = true
 
 [node name="GameMusic" type="AudioStreamPlayer2D" parent="." unique_id=697785024]
