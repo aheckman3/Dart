@@ -18,7 +18,9 @@ extends CharacterBody3D
 @export var death_sounds: Array[AudioStream]
 var health := 10
 var launch_velocity: Vector3 = Vector3.ZERO
-
+var launch_time := 0.6
+var launch_timer := 0.0
+var launched := false
 
 var bob_time := 0.0
 var player : Node3D = null
@@ -33,6 +35,11 @@ func _ready():
 	
 func _physics_process(delta):
 	if not player:
+		return
+		
+	if launch_timer < launch_time:
+		launch_timer += delta
+		global_position += launch_velocity * delta
 		return
 		
 	var chase_dir = (player.global_transform.origin - global_transform.origin).normalized()
@@ -55,9 +62,7 @@ func _physics_process(delta):
 			dir = chase_dir.lerp(dir, 0.5)
 	velocity = dir * speed
 
-	if launch_velocity.length() > 0.01:
-		velocity += launch_velocity
-		launch_velocity = launch_velocity.move_toward(Vector3.ZERO, delta * 2.0)
+
 	move_and_slide()
 
 	

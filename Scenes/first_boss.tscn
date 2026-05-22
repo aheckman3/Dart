@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dqh65taedyqko" path="res://Scripts/first_boss.gd" id="1_e8ksu"]
 [ext_resource type="PackedScene" uid="uid://dd7i0iw4ffor7" path="res://Scenes/enemymodel.tscn" id="2_lxb3b"]
-[ext_resource type="ArrayMesh" uid="uid://b0loedhaqle4b" path="res://Assets/Art/BossMesh.tres" id="3_kuchj"]
+[ext_resource type="ArrayMesh" uid="uid://dk6w3wmnqkqq4" path="res://blimpmesh.tres" id="4_f6xi7"]
 [ext_resource type="Texture2D" uid="uid://unebpifxxm5t" path="res://Assets/Art/T_fire01.png" id="4_kuchj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kuchj"]
@@ -74,25 +74,21 @@ max_health = 10
 minion_scene = ExtResource("2_lxb3b")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=728398084]
-transform = Transform3D(0.99999994, 0, -1.490116e-08, 0, 0.99999994, 0, 1.490116e-08, 0, 0.99999994, -0.017303465, -4.320856, -0.00015259534)
+transform = Transform3D(0.99999994, 0, -1.490116e-08, 0, 0.99999994, 0, 1.490116e-08, 0, 0.99999994, -0.017303465, 4.481474, -0.00015259534)
 shape = SubResource("BoxShape3D_kuchj")
 
 [node name="Visuals" type="Node3D" parent="." unique_id=1191684144]
 transform = Transform3D(2.635, 0, 0, 0, 2.635, 0, 0, 0, 2.635, 0, 5.3648977, 0)
-
-[node name="BossMesh" type="MeshInstance3D" parent="Visuals" unique_id=249553070]
-transform = Transform3D(0.6350583, 0, 1.8859483, 0, 1.99, 0, -1.8859483, 0, 0.6350583, 0, 0, 0)
-mesh = ExtResource("3_kuchj")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Visuals" unique_id=1415777370]
 transform = Transform3D(-0.9998415, 0.0001180768, -0.017802807, -0.0178032, -0.0066317716, 0.9998195, 0, 0.99997795, 0.006632822, 0, 1.9786772, 0)
 light_color = Color(1, 0.5023, 0.43550968, 1)
 light_energy = 22.47
 spot_range = 8.255
-spot_angle = 27.25
+spot_angle = 58.106007
 
 [node name="Fire" type="GPUParticles3D" parent="Visuals" unique_id=448070098]
-transform = Transform3D(0.13472487, 0, 0, 0, 0.13472487, 0, 0, 0, 0.13472487, -0.0015180268, -0.7116612, -0.0037950666)
+transform = Transform3D(0.43, 0, 0, 0, 0.43, 0, 0, 0, 0.43, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_f6xi7")
 amount = 500
 lifetime = 0.35000000000000003
@@ -101,6 +97,16 @@ randomness = 1.0
 fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_ydadi")
 draw_pass_1 = SubResource("QuadMesh_0lxqb")
+
+[node name="BossMesh" type="MeshInstance3D" parent="Visuals" unique_id=311007632]
+transform = Transform3D(-1.162723e-07, 0, 4.603, 0, 2.66, 0, -2.66, 0, -2.0120353e-07, 0, 0, 0)
+mesh = ExtResource("4_f6xi7")
+
+[node name="CannonLeft" type="Node3D" parent="Visuals" unique_id=696797932]
+transform = Transform3D(1.0000004, 0, 0, 0, 1.0000004, 0, 0, 0, 1.0000004, -1.0353552, -3.4838305, 0)
+
+[node name="CannonRight" type="Node3D" parent="Visuals" unique_id=1637015474]
+transform = Transform3D(1.000001, 0, 0, 0, 1.000001, 0, 0, 0, 1.000001, 1.0804813, -3.4806404, -0.00066845433)
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=172311677 groups=["hitbox"]]
 transform = Transform3D(5.81, 0, 0, 0, 5.81, 0, 0, 0, 5.81, 0, 4.991275, -0.146)

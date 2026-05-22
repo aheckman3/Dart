@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 @onready var dodge_detector: Area3D = $DodgeDetector
 @onready var mesh: Node3D = $Visuals
+@onready var cannon_left: Node3D = $Visuals/CannonLeft
+@onready var cannon_right: Node3D = $Visuals/CannonRight
 
 @export var bob_speed := 3.0
 @export var bob_height := 0.01
@@ -18,12 +20,13 @@ extends CharacterBody3D
 @export var minion_count := 10
 @export var minion_spawn_interval := 20.0
 @export var dodge_interval := 5.0
-@export var dodge_speed := 20.0
+@export var dodge_speed := 45.0
 @export var dodge_duration := 0.25
 @export var dodge_chance := 0.4
-@export var hover_height := 4
+@export var hover_height := 10
 
-var health := 10
+
+var health := 500
 var has_spawned_minions := false
 var minion_spawn_timer := 0.0
 var dodge_timer := 0.0
@@ -59,8 +62,8 @@ func _ready():
 				
 		if mat:
 			mat.emission_enabled = true
-			mat.emission = Color(4, 0, 0, 0.1)
-			mat.emission_energy = 2
+			mat.emission = Color(1, 0, 0, 0.2)
+			mat.emission_energy = 5
 
 	
 func _physics_process(delta):
@@ -124,20 +127,19 @@ func spawn_minions():
 	if minion_scene == null:
 		push_error("Boss: minion_scene not assigned")
 		return
+		
 	for i in range(minion_count):
 		var minion = minion_scene.instantiate()
 		get_tree().current_scene.add_child(minion)
 		
-		var angle = randf() * TAU
-		var radius = 3.0
-		var offset = Vector3(cos(angle), 0, sin(angle)) * radius
+		var cannon = cannon_left if randf() < 0.5 else cannon_right
 		
-		minion.global_position = global_position + offset
+		minion.global_position = cannon.global_position
 		
-		var launch_speed = randf_range(3.0, 10.0)
-		var launch_dir = offset.normalized()
+		var launch_speed = randf_range(8.0, 14.0)
+		var launch_dir = -cannon.global_transform.basis.y.normalized()
 		minion.launch_velocity = launch_dir * launch_speed
-		minion.launch_velocity.y = randf_range(1.0, 4.0)
+		minion.launch_velocity.y = randf_range(-2.0, -6.0)
 		
 	print("Boss has spawned minions!")
 	
