@@ -60,8 +60,8 @@ func _physics_process(delta):
 				dir = right
 
 			dir = chase_dir.lerp(dir, 0.5)
-	velocity = dir * speed
 
+	velocity = dir * speed
 
 	move_and_slide()
 

@@ -6,7 +6,7 @@ extends Node3D
 
 
 func _ready():
-	pass
+	GameManager.register_sky($"../Sky3D")
 	
 func _process(_delta):
 	if GameManager.game_state == "paused":

@@ -39,7 +39,10 @@ func _enter_tree():
 # PLAYER SETTINGS
 #__________________________________________________________________________________________________#
 signal player_ready
+signal player_died
 @export var CAPTURE_ON_START := true
+@onready var cam: Camera3D = $Head/Camera3D
+
 
 @export_category(\"Movement\")
 @export var BASE_SPEED := 3.0
@@ -88,7 +91,7 @@ var rotation_target_head := 0.0
 var head_start_pos : Vector3
 var tick := 0
 var max_health : int = 100
-var health : int = 100
+var health : int = 10
 var DartScene := preload(\"res://Scenes/dart.tscn\")
 var can_shoot := true
 var last_bob_sign := 0
@@ -102,6 +105,9 @@ var can_air_control := true
 var has_pyramid_shot := false
 var upgrades
 var sensitivity := 1.0
+var dead := false
+var input_locked := false
+
 #__________________________________________________________________________________________________#
 # STATE MACHINE
 #__________________________________________________________________________________________________#
@@ -188,6 +194,8 @@ func _process(delta):
 #__________________________________________________________________________________________________#
 func _input(event):
 	if Engine.is_editor_hint():
+		return
+	if input_locked:
 		return
 		
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -431,6 +439,8 @@ func take_damage(amount):
 
 	health -= amount
 	health = clamp(health, 0, max_health)
+	if health <= 0:
+		die()
 	
 	ui = get_tree().get_first_node_in_group(\"ui\")
 	ui.set_health(health)
@@ -443,7 +453,62 @@ func _shake(amount := 0.2):
 	shake_strength = amount
 	shake_time = 0.0
 	
+func die():
+	if dead:
+		return
+	dead = true
+	emit_signal(\"player_died\")
+	input_locked = true
+
+	# --- Progressive slow motion ---
+	var slow_time := 0.6
+	var t := 0.0
+	while t < slow_time:
+		t += get_process_delta_time()
+		var alpha := t / slow_time
+		Engine.time_scale = lerp(1.0, 0.4, alpha)
+		await get_tree().process_frame
+	Engine.time_scale = 0.4
+
+	# Stop player control
+	set_physics_process(false)
+	set_process(false)
+
+	# --- Camera fall-back animation ---
+	var fall_time := .4
+	t = 0.0
+
+	var start_rot := cam.rotation
+	var end_rot := start_rot + Vector3(deg_to_rad(70), 0, deg_to_rad(12))  
+	# ↑ 70° tilt upward, 12° twist to the right
 	
+
+	
+	while t < fall_time:
+		t += get_process_delta_time()
+		
+		var alpha := t / fall_time
+		
+		cam.rotation = start_rot.lerp(end_rot, alpha)
+		
+		await get_tree().process_frame
+
+	# --- Fade back to normal time ---
+	var restore_time := 0.4
+	t = 0.0
+	while t < restore_time:
+		t += get_process_delta_time()
+		var alpha := t / restore_time
+		Engine.time_scale = lerp(0.4, 1.0, alpha)
+		await get_tree().process_frame
+	Engine.time_scale = 1.0
+
+	# Small pause before Game Over
+	await get_tree().create_timer(2.0).timeout
+
+	await Transition.fade_out()
+	get_tree().change_scene_to_file(\"res://Scenes/game_over.tscn\")
+	await Transition.fade_in()
 "
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vgqql"]

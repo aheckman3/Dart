@@ -5,10 +5,14 @@ var game_state := "menu"
 var score := 0 
 var recapture_mouse := false
 
+var sky : Node = null
+
+
 func _ready():
 	game_state = "playing"
 	$Ambience.play()
 	print(game_state)
+	get_tree().node_added.connect(_on_node_added)
 
 	
 func _input(event):
@@ -62,3 +66,25 @@ func add_score(amount):
 func minus_score(amount):
 	score -= amount
 	emit_signal("score_changed", score)
+	
+func _on_player_died():
+	if sky == null:
+		return
+	
+	var start_time: float = sky.current_time
+	var end_time: float = 19.0
+	var duration := 1.5
+	var t := 0.0
+	
+	while t < duration:
+		t += get_process_delta_time()
+		var alpha := t / duration
+		sky.current_time = lerp(start_time, end_time, alpha)
+		await get_tree().process_frame
+
+func _on_node_added(node):
+	if node.is_in_group("player"):
+		node.player_died.connect(_on_player_died)
+	
+func register_sky(s):
+	sky = s
