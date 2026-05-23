@@ -76,6 +76,9 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
+	var horizontal_velocity := Vector3(velocity.x, 0, velocity.z)
+	if horizontal_velocity.length() < 0.1 and dodge_time_left <= 0.0:
+		try_dodge()
 	
 	
 	alive_time += delta

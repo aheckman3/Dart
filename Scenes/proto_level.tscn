@@ -156,8 +156,8 @@ shader_parameter/cirrus_absorption = 2.0
 shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.07044902, 0.07044902)
-shader_parameter/cirrus_position2 = Vector2(0.07044902, 0.07044902)
+shader_parameter/cirrus_position1 = Vector2(0.7632307, 0.7632307)
+shader_parameter/cirrus_position2 = Vector2(0.7632307, 0.7632307)
 shader_parameter/cirrus_texture = ExtResource("13_6jr2x")
 shader_parameter/cumulus_visible = true
 shader_parameter/cumulus_intensity = 0.6
@@ -167,7 +167,7 @@ shader_parameter/cumulus_absorption = 2.0
 shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(20.40125, 20.40125)
+shader_parameter/cumulus_position = Vector2(3.8165195, 3.8165195)
 shader_parameter/cumulus_texture = ExtResource("14_854h1")
 shader_parameter/cumulus_partial_mie_phase = Vector3(0.957564, 1.042436, 0.412)
 shader_parameter/cumulus_mie_intensity = 1.0
@@ -215,6 +215,7 @@ script = ExtResource("1_b0lxd")
 data_directory = "res://WorldMapData"
 material = SubResource("Terrain3DMaterial_int50")
 assets = SubResource("Terrain3DAssets_67jr4")
+collision_mode = 3
 collision_layer = 2
 collision_mask = 133
 top_level = true
@@ -226,7 +227,7 @@ camera_attributes = SubResource("CameraAttributesPractical_14udr")
 script = ExtResource("19_010tl")
 editor_time_enabled = false
 current_time = 13.851
-minutes_per_day = 6.0
+minutes_per_day = 1.0
 wind_direction = 2.35619451204804
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
@@ -237,7 +238,6 @@ shadow_enabled = true
 [node name="MoonLight" type="DirectionalLight3D" parent="Sky3D" unique_id=1266351692]
 transform = Transform3D(0, -0.48978266, -0.8718446, -0.17724836, -0.8580399, 0.4820275, -0.98416615, 0.15453303, -0.086813174, -0.8718446, 0.4820275, -0.086813174)
 light_color = Color(0.572549, 0.776471, 0.956863, 1)
-light_energy = 0.0
 
 [node name="SkyDome" type="Node" parent="Sky3D" unique_id=190792539]
 script = ExtResource("20_805sa")
@@ -252,7 +252,7 @@ cirrus_coverage = 0.0
 script = ExtResource("21_r8j1q")
 editor_time_enabled = false
 dome_path = NodePath("../SkyDome")
-minutes_per_day = 6.0
+minutes_per_day = 1.0
 current_time = 13.851
 day = 14
 month = 5
@@ -279,7 +279,7 @@ transform = Transform3D(0.8972705, 0, 1.7537975, 0, 1.97, 0, -1.7537975, 0, 0.89
 transform = Transform3D(1.235664, 0, -1.3225862, 0, 1.81, 0, 1.3225862, 0, 1.235664, -47.867085, 0, 64.660736)
 
 [node name="Tree9" parent="SetDeco" unique_id=919136519 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(-0.46576902, 0, 0.8849063, 0, 1, 0, -0.8849063, 0, -0.46576902, 9.846335, 0, 58.70725)
+transform = Transform3D(-0.46576902, 0, 0.8849063, 0, 1, 0, -0.8849063, 0, -0.46576902, 9.846335, -0.10226822, 58.70725)
 
 [node name="Tree10" parent="SetDeco" unique_id=1454117530 instance=ExtResource("24_1l8ud")]
 transform = Transform3D(-0.46576902, 0, 0.8849063, 0, 1, 0, -0.8849063, 0, -0.46576902, 3.8856983, 0, 69.20921)
@@ -287,20 +287,32 @@ transform = Transform3D(-0.46576902, 0, 0.8849063, 0, 1, 0, -0.8849063, 0, -0.46
 [node name="Tree11" parent="SetDeco" unique_id=2141365390 instance=ExtResource("24_1l8ud")]
 transform = Transform3D(-1.4537598, 0, 1.329467, 0, 1.97, 0, -1.329467, 0, -1.4537598, 17.899008, 0, 51.169872)
 
+[node name="Tree17" parent="SetDeco" unique_id=33534843 instance=ExtResource("24_1l8ud")]
+transform = Transform3D(-1.4537598, 0, 1.329467, 0, 1.97, 0, -1.329467, 0, -1.4537598, 5.017727, 0, 1.2957726)
+
 [node name="Tree12" parent="SetDeco" unique_id=2028415329 instance=ExtResource("24_1l8ud")]
 transform = Transform3D(1.6024743, 0, 0.8415319, 0, 1.8100002, 0, -0.8415319, 0, 1.6024743, 5.0502667, 0, 79.62454)
 
 [node name="Tree13" parent="SetDeco" unique_id=1013919236 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(1.0401558, 0, 0.48913696, 0, 1.2412744, 0, -0.5260816, 0, 0.9671097, 6.954427, 0, 65.450645)
+transform = Transform3D(0.89235747, 0, 0.45132938, 0, 1, 0, -0.45132938, 0, 0.89235747, 6.954427, 0, 65.450645)
 
 [node name="Tree14" parent="SetDeco" unique_id=1428470431 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(1.0401558, 0, 0.48913696, 0, 1.2412744, 0, -0.5260816, 0, 0.9671097, -5.380295, 0, 59.32016)
+transform = Transform3D(0.89235747, 0, 0.45132938, 0, 1, 0, -0.45132938, 0, 0.89235747, -5.380295, -0.10226822, 59.32016)
+
+[node name="Tree18" parent="SetDeco" unique_id=1516959799 instance=ExtResource("24_1l8ud")]
+transform = Transform3D(0.543277, 0, 0.8395535, 0, 1, 0, -0.8395535, 0, 0.543277, -36.527615, 0, -21.688778)
+
+[node name="Tree19" parent="SetDeco" unique_id=1319311272 instance=ExtResource("24_1l8ud")]
+transform = Transform3D(-0.6658166, 0, 0.7461154, 0, 1, 0, -0.7461154, 0, -0.6658166, -2.5485916, -0.10226822, -35.34737)
+
+[node name="Tree20" parent="SetDeco" unique_id=8752416 instance=ExtResource("24_1l8ud")]
+transform = Transform3D(0.7568353, 0, 0.6536057, 0, 1, 0, -0.6536057, 0, 0.7568353, -17.17577, -0.10226822, -31.072838)
 
 [node name="Tree15" parent="SetDeco" unique_id=46761594 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(1.5253636, 0, 1.6251593, 0, 2.4453108, 0, -1.6144936, 0, 1.5354403, 15.734479, 0, 73.624725)
+transform = Transform3D(0.68675774, 0, 0.7268864, 0, 1, 0, -0.7268864, 0, 0.68675774, 15.734479, 0, 73.624725)
 
 [node name="Tree16" parent="SetDeco" unique_id=819443701 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(0.74720645, 0, -1.8837062, 0, 2.2467067, 0, 1.4808224, 0, 0.95049703, -17.749575, 0, 60.315342)
+transform = Transform3D(0.45048806, 0, -0.89278245, 0, 1, 0, 0.89278245, 0, 0.45048806, -17.749575, 0, 60.315342)
 
 [node name="Tree8" parent="SetDeco" unique_id=1417434818 instance=ExtResource("24_1l8ud")]
 transform = Transform3D(-1.821089, 0, -1.4694335, 0, 2.34, 0, 1.4694335, 0, -1.821089, -55.777187, 0, 55.17415)
@@ -328,7 +340,7 @@ scene_to_spawn = ExtResource("7_wkkq1")
 spawn_radius = 60.0
 
 [node name="BossSpawner" parent="Spawners" unique_id=350657093 instance=ExtResource("5_wkkq1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.429553, 7.8010087, -10.91517)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.192215, 13.741617, -51.17823)
 scene_to_spawn = ExtResource("8_wkkq1")
 spawn_interval = 10.0
 spawn_once = true
@@ -338,5 +350,3 @@ stream = ExtResource("28_010tl")
 volume_db = -25.0
 autoplay = true
 parameters/looping = true
-
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." unique_id=104379046]

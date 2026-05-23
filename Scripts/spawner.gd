@@ -52,7 +52,3 @@ func spawn():
 		var dist = randf() * spawn_radius
 		offset = Vector3(cos(angle) * dist, 0, sin(angle) * dist)
 	inst.global_transform.origin = global_transform.origin + offset
-
-
-
-		

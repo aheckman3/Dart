@@ -91,7 +91,7 @@ var rotation_target_head := 0.0
 var head_start_pos : Vector3
 var tick := 0
 var max_health : int = 100
-var health : int = 10
+var health : int = 100
 var DartScene := preload(\"res://Scenes/dart.tscn\")
 var can_shoot := true
 var last_bob_sign := 0

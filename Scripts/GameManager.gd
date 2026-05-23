@@ -21,8 +21,13 @@ func _input(event):
 		recapture_mouse = false
 		
 	if event.is_action_pressed("pause"):
-		var ui := get_tree().current_scene.get_node("GameUI")
+		var ui := get_tree().current_scene.get_node_or_null("GameUI")
+		if ui == null:
+			return
+		
 		var settings := ui.get_node("SettingsMenu")
+		if settings == null:
+			return
 	
 		if settings.visible:
 			settings.visible = false
