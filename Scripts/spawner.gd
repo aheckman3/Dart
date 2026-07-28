@@ -22,9 +22,8 @@ func _physics_process(delta):
 	if spawn_once and has_spawned:
 		return
 
-
-		
 	timer += delta
+	
 	if timer >= spawn_interval:
 		spawn()
 		timer = 0.0

@@ -156,8 +156,8 @@ shader_parameter/cirrus_absorption = 2.0
 shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.4824815, 0.4824815)
-shader_parameter/cirrus_position2 = Vector2(0.4824815, 0.4824815)
+shader_parameter/cirrus_position1 = Vector2(0.2764854, 0.2764854)
+shader_parameter/cirrus_position2 = Vector2(0.2764854, 0.2764854)
 shader_parameter/cirrus_texture = ExtResource("13_6jr2x")
 shader_parameter/cumulus_visible = true
 shader_parameter/cumulus_intensity = 0.6
@@ -167,7 +167,7 @@ shader_parameter/cumulus_absorption = 2.0
 shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(17.448526, 17.448526)
+shader_parameter/cumulus_position = Vector2(1.3823498, 1.3823498)
 shader_parameter/cumulus_texture = ExtResource("14_854h1")
 shader_parameter/cumulus_partial_mie_phase = Vector3(0.957564, 1.042436, 0.412)
 shader_parameter/cumulus_mie_intensity = 1.0
@@ -324,9 +324,6 @@ transform = Transform3D(-1.821089, 0, -1.4694335, 0, 2.34, 0, 1.4694335, 0, -1.8
 
 [node name="Tree2" parent="SetDeco" unique_id=836781953 instance=ExtResource("25_duanm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.758986, 0, 53.823776)
-
-[node name="Tree4" parent="SetDeco" unique_id=3752100 instance=ExtResource("25_duanm")]
-transform = Transform3D(-0.2938068, 0, -0.95586485, 0, 1, 0, 0.95586485, 0, -0.2938068, 96.28909, 0, -45.56447)
 
 [node name="Firepit" parent="SetDeco" unique_id=108055294 instance=ExtResource("26_duanm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.776041, -0.022162199, 45.795067)

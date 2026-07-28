@@ -10,10 +10,13 @@ var direction: Vector3 = Vector3.ZERO
 
 func _ready():
 	connect("body_entered", Callable(self, "_on_body_entered"))
+	
 	if direction != Vector3.ZERO:
 		linear_velocity = direction.normalized() * speed
+
 	await get_tree().create_timer(lifetime).timeout
 	queue_free()
+	
 	print("Dart loaded from:", get_stack())
 
 func _physics_process(_delta):
