@@ -156,8 +156,8 @@ shader_parameter/cirrus_absorption = 2.0
 shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.040823214, 0.040823214)
-shader_parameter/cirrus_position2 = Vector2(0.040823214, 0.040823214)
+shader_parameter/cirrus_position1 = Vector2(0.15503265, 0.15503265)
+shader_parameter/cirrus_position2 = Vector2(0.15503265, 0.15503265)
 shader_parameter/cirrus_texture = ExtResource("13_6jr2x")
 shader_parameter/cumulus_visible = true
 shader_parameter/cumulus_intensity = 0.6
@@ -167,7 +167,7 @@ shader_parameter/cumulus_absorption = 2.0
 shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(0.20412038, 0.20412038)
+shader_parameter/cumulus_position = Vector2(10.7862425, 10.7862425)
 shader_parameter/cumulus_texture = ExtResource("14_854h1")
 shader_parameter/cumulus_partial_mie_phase = Vector3(0.957564, 1.042436, 0.412)
 shader_parameter/cumulus_mie_intensity = 1.0
@@ -205,7 +205,7 @@ glow_normalized = true
 visible = false
 
 [node name="player" parent="." unique_id=1257616633 instance=ExtResource("1_1xis7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.580936, 4.147761, 40.698765)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.580936, -45.50331, 40.698765)
 
 [node name="GameController" type="Node3D" parent="." unique_id=1936967779]
 process_mode = 3
@@ -218,6 +218,7 @@ assets = SubResource("Terrain3DAssets_67jr4")
 collision_mode = 3
 collision_layer = 2
 collision_mask = 133
+mesh_size = 44
 top_level = true
 metadata/_edit_lock_ = true
 
@@ -232,11 +233,11 @@ wind_direction = 2.35619451204804
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
 [node name="SunLight" type="DirectionalLight3D" parent="Sky3D" unique_id=982957430]
-transform = Transform3D(-0.427784, -0.8980457, 0.102541655, 0, 0.11344597, 0.99354416, -0.903881, 0.4250223, -0.04853037, 0.102541655, 0.99354416, -0.04853037)
+transform = Transform3D(-0.427784, -0.8980457, 0.10254165, 0, 0.11344597, 0.99354416, -0.903881, 0.4250223, -0.048530366, 0.102541655, -48.657528, -0.04853037)
 shadow_enabled = true
 
 [node name="MoonLight" type="DirectionalLight3D" parent="Sky3D" unique_id=1266351692]
-transform = Transform3D(0, -0.89867264, -0.43862006, 0.048679363, -0.43810007, 0.8976072, -0.99881446, -0.021351745, 0.04374681, -0.43862006, 0.8976072, 0.04374681)
+transform = Transform3D(0, -0.89867264, -0.43862006, 0.048679363, -0.43810007, 0.8976072, -0.99881446, -0.021351745, 0.04374681, -0.43862006, -48.753468, 0.04374681)
 light_color = Color(0.572549, 0.776471, 0.956863, 1)
 light_energy = 0.0
 
@@ -266,67 +267,67 @@ light_energy = 0.255
 [node name="SetDeco" type="Node" parent="." unique_id=689425568]
 
 [node name="House" parent="SetDeco" unique_id=639323824 instance=ExtResource("23_854h1")]
-transform = Transform3D(-0.30451524, 0, 0.95250744, 0, 1, 0, -0.95250744, 0, -0.30451524, -29.314737, -0.08427906, 40.968643)
+transform = Transform3D(-0.6796206, 0, 0.7335639, 0, 1, 0, -0.7335639, 0, -0.6796206, -133.58208, -50.035835, 123.41702)
 
 [node name="Tree1" parent="SetDeco" unique_id=758007005 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(0.73006684, 0, 0.6833757, 0, 1, 0, -0.6833757, 0, 0.73006684, -38.131443, 0, 30.791183)
+transform = Transform3D(0.73006684, 0, 0.6833757, 0, 1, 0, -0.6833757, 0, 0.73006684, -138.91254, -50.053947, 69.55373)
 
 [node name="Tree7" parent="SetDeco" unique_id=1560698860 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(0.73006684, 0, 0.6833757, 0, 1, 0, -0.6833757, 0, 0.73006684, -26.426357, 0, 63.749348)
+transform = Transform3D(0.73006684, 0, 0.6833757, 0, 1, 0, -0.6833757, 0, 0.73006684, -26.426357, -49.651073, 167.64056)
 
 [node name="Tree6" parent="SetDeco" unique_id=1945291247 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(0.73006684, 0, 0.6833757, 0, 1, 0, -0.6833757, 0, 0.73006684, -38.131443, 0, 60.78096)
+transform = Transform3D(0.73006684, 0, 0.6833757, 0, 1, 0, -0.6833757, 0, 0.73006684, -38.131443, -50.053947, -101.209946)
 
 [node name="Tree5" parent="SetDeco" unique_id=365231653 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(0.8972705, 0, 1.7537975, 0, 1.97, 0, -1.7537975, 0, 0.8972705, -17.026402, 0, 69.51983)
+transform = Transform3D(0.8972705, 0, 1.7537975, 0, 1.97, 0, -1.7537975, 0, 0.8972705, -17.026402, -49.312393, -49.266884)
 
 [node name="Tree3" parent="SetDeco" unique_id=412487424 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(1.235664, 0, -1.3225862, 0, 1.81, 0, 1.3225862, 0, 1.235664, -47.867085, 0, 64.660736)
+transform = Transform3D(1.235664, 0, -1.3225862, 0, 1.81, 0, 1.3225862, 0, 1.235664, 117.97084, -49.330814, 64.660736)
 
 [node name="Tree9" parent="SetDeco" unique_id=919136519 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(-0.46576902, 0, 0.8849063, 0, 1, 0, -0.8849063, 0, -0.46576902, 9.846335, -0.10226822, 58.70725)
+transform = Transform3D(-0.46576902, 0, 0.8849063, 0, 1, 0, -0.8849063, 0, -0.46576902, 9.846335, -50.156216, 104.27672)
 
 [node name="Tree10" parent="SetDeco" unique_id=1454117530 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(-0.46576902, 0, 0.8849063, 0, 1, 0, -0.8849063, 0, -0.46576902, 3.8856983, 0, 69.20921)
+transform = Transform3D(-0.46576902, 0, 0.8849063, 0, 1, 0, -0.8849063, 0, -0.46576902, 3.8856983, -49.651073, 69.20921)
 
 [node name="Tree11" parent="SetDeco" unique_id=2141365390 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(-1.4537598, 0, 1.329467, 0, 1.97, 0, -1.329467, 0, -1.4537598, 17.899008, 0, 51.169872)
+transform = Transform3D(-1.4537598, 0, 1.329467, 0, 1.97, 0, -1.329467, 0, -1.4537598, 66.8525, -49.651073, 51.169872)
 
 [node name="Tree17" parent="SetDeco" unique_id=33534843 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(-1.4537598, 0, 1.329467, 0, 1.97, 0, -1.329467, 0, -1.4537598, 5.017727, 0, 1.2957726)
+transform = Transform3D(-1.4537598, 0, 1.329467, 0, 1.97, 0, -1.329467, 0, -1.4537598, 5.017727, -49.504562, 169.25015)
 
 [node name="Tree12" parent="SetDeco" unique_id=2028415329 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(1.6024743, 0, 0.8415319, 0, 1.8100002, 0, -0.8415319, 0, 1.6024743, 5.0502667, 0, 79.62454)
+transform = Transform3D(1.6024743, 0, 0.8415319, 0, 1.8100002, 0, -0.8415319, 0, 1.6024743, -99.459755, -49.651073, -46.2917)
 
 [node name="Tree13" parent="SetDeco" unique_id=1013919236 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(0.89235747, 0, 0.45132938, 0, 1, 0, -0.45132938, 0, 0.89235747, 6.954427, 0, 65.450645)
+transform = Transform3D(0.89235747, 0, 0.45132938, 0, 1, 0, -0.45132938, 0, 0.89235747, 68.841675, -49.651073, 125.20289)
 
 [node name="Tree14" parent="SetDeco" unique_id=1428470431 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(0.89235747, 0, 0.45132938, 0, 1, 0, -0.45132938, 0, 0.89235747, -5.380295, -0.10226822, 59.32016)
+transform = Transform3D(0.9401752, 0, 0.34069145, 0, 1, 0, -0.34069145, 0, 0.9401752, 83.53018, -49.75334, -68.455864)
 
 [node name="Tree18" parent="SetDeco" unique_id=1516959799 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(0.543277, 0, 0.8395535, 0, 1, 0, -0.8395535, 0, 0.543277, -36.527615, 0, -21.688778)
+transform = Transform3D(0.543277, 0, 0.8395535, 0, 1, 0, -0.8395535, 0, 0.543277, -88.417496, -49.651073, -21.688778)
 
 [node name="Tree19" parent="SetDeco" unique_id=1319311272 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(-0.6658166, 0, 0.7461154, 0, 1, 0, -0.7461154, 0, -0.6658166, -2.5485916, -0.10226822, -35.34737)
+transform = Transform3D(-0.6658166, 0, 0.7461154, 0, 1, 0, -0.7461154, 0, -0.6658166, 79.584755, -49.75334, -35.34737)
 
 [node name="Tree20" parent="SetDeco" unique_id=8752416 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(0.7568353, 0, 0.6536057, 0, 1, 0, -0.6536057, 0, 0.7568353, -17.17577, -0.10226822, -31.072838)
+transform = Transform3D(0.7568353, 0, 0.6536057, 0, 1, 0, -0.6536057, 0, 0.7568353, 28.91698, -49.75334, -114.44207)
 
 [node name="Tree15" parent="SetDeco" unique_id=46761594 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(0.68675774, 0, 0.7268864, 0, 1, 0, -0.7268864, 0, 0.68675774, 15.734479, 0, 73.624725)
+transform = Transform3D(0.68675774, 0, 0.7268864, 0, 1, 0, -0.7268864, 0, 0.68675774, 14.005898, -49.651073, -40.48987)
 
 [node name="Tree16" parent="SetDeco" unique_id=819443701 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(0.45048806, 0, -0.89278245, 0, 1, 0, 0.89278245, 0, 0.45048806, -17.749575, 0, 60.315342)
+transform = Transform3D(0.45048806, 0, -0.89278245, 0, 1, 0, 0.89278245, 0, 0.45048806, -17.749575, -49.651073, 174.16837)
 
 [node name="Tree8" parent="SetDeco" unique_id=1417434818 instance=ExtResource("24_1l8ud")]
-transform = Transform3D(-1.821089, 0, -1.4694335, 0, 2.34, 0, 1.4694335, 0, -1.821089, -55.777187, 0, 55.17415)
+transform = Transform3D(-1.821089, 0, -1.4694335, 0, 2.34, 0, 1.4694335, 0, -1.821089, -55.777187, -50.039803, 154.22273)
 
 [node name="Tree2" parent="SetDeco" unique_id=836781953 instance=ExtResource("25_duanm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.758986, 0, 53.823776)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.758986, -49.651073, 53.823776)
 
 [node name="Firepit" parent="SetDeco" unique_id=108055294 instance=ExtResource("26_duanm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.776041, -0.022162199, 45.795067)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -119.63722, -50.114506, 119.204735)
 
 [node name="Spawners" type="Node" parent="." unique_id=1843966099]
 
