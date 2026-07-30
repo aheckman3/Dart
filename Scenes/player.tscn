@@ -529,7 +529,7 @@ jump_sounds = Array[AudioStream]([ExtResource("9_f1ek2"), ExtResource("9_fd4e3")
 throw_sounds = Array[AudioStream]([ExtResource("11_qqcod"), ExtResource("12_igrcy"), ExtResource("13_fs7ks")])
 
 [node name="Head" parent="." unique_id=619649086 instance=ExtResource("2_6t5aa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5665753, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1663213, -0.2919774)
 
 [node name="ShootPoint" type="Marker3D" parent="Head" unique_id=145327761]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.030359805, -0.00888741, -0.77035856)
