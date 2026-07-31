@@ -93,3 +93,7 @@ func _on_node_added(node):
 	
 func register_sky(s):
 	sky = s
+	
+func _on_boss_phase_started():
+	#change game music to boss music
+	pass

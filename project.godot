@@ -22,7 +22,6 @@ Transition="*uid://hmk186cm2bcw"
 [debug]
 
 settings/stdout/print_fps=true
-settings/stdout/print_gpu_profile=true
 
 [display]
 

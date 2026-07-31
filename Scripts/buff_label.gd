@@ -10,5 +10,3 @@ func setup(buff_name_in: String, duration_seconds: float):
 	duration = duration_seconds
 	time_left = duration
 	$BuffName.text = buff_name
-
-

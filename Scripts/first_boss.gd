@@ -46,7 +46,12 @@ var dodge_start_scale := 1.0
 func _enter_tree():
 	scale = Vector3.ONE
 	print("Boss has Spawned!")
+	
 func _ready():
+	var rm = get_tree().get_first_node_in_group("round_manager")
+	if rm:
+		rm.boss_phase_started.connect(_on_boss_phase_started)
+		
 	print("Enemy _ready()")
 	player = get_tree().get_first_node_in_group("player")
 	dodge_detector.body_entered.connect(_on_dodge_detector_entered)
@@ -64,6 +69,11 @@ func _ready():
 			mat.emission_enabled = true
 			mat.emission = Color(1, 0, 0, 0.2)
 			mat.emission_energy = 5
+			
+func _on_boss_phase_started():
+	speed = 0
+	await get_tree().create_timer(1.5).timeout
+	speed = speed_after_time
 
 	
 func _physics_process(delta):
@@ -157,6 +167,11 @@ func _on_body_entered(body):
 		
 func pop():
 	GameManager.add_score(100)
+	
+	var rm = get_tree().get_first_node_in_group("round_manager")
+	if rm:
+		rm.boss_defeated()
+		
 	queue_free()
 	
 func take_damage(amount: int):

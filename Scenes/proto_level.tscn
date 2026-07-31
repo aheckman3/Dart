@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c13uekqinggon"]
 
 [ext_resource type="PackedScene" uid="uid://cq0kblluuykdp" path="res://Scenes/player.tscn" id="1_1xis7"]
+[ext_resource type="PackedScene" uid="uid://cg10rknaefqjf" path="res://Scenes/round_manager.tscn" id="1_805sa"]
 [ext_resource type="Script" uid="uid://2anrh100v1qr" path="res://Scripts/GameController.gd" id="1_b0lxd"]
 [ext_resource type="PackedScene" uid="uid://yo7xrj1nt6o1" path="res://Scenes/ui.tscn" id="1_kcxld"]
 [ext_resource type="PackedScene" uid="uid://dh864rfcs72v2" path="res://Scenes/settings_menu.tscn" id="3_mo6li"]
@@ -156,8 +157,8 @@ shader_parameter/cirrus_absorption = 2.0
 shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.15503265, 0.15503265)
-shader_parameter/cirrus_position2 = Vector2(0.15503265, 0.15503265)
+shader_parameter/cirrus_position1 = Vector2(0.58216614, 0.58216614)
+shader_parameter/cirrus_position2 = Vector2(0.58216614, 0.58216614)
 shader_parameter/cirrus_texture = ExtResource("13_6jr2x")
 shader_parameter/cumulus_visible = true
 shader_parameter/cumulus_intensity = 0.6
@@ -167,7 +168,7 @@ shader_parameter/cumulus_absorption = 2.0
 shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(10.7862425, 10.7862425)
+shader_parameter/cumulus_position = Vector2(7.9101567, 7.9101567)
 shader_parameter/cumulus_texture = ExtResource("14_854h1")
 shader_parameter/cumulus_partial_mie_phase = Vector3(0.957564, 1.042436, 0.412)
 shader_parameter/cumulus_mie_intensity = 1.0
@@ -197,6 +198,11 @@ glow_normalized = true
 
 [node name="proto_level" type="Node3D" unique_id=84065362]
 
+[node name="roundManager" parent="." unique_id=1415787005 node_paths=PackedStringArray("early_spawners", "boss_spawner") instance=ExtResource("1_805sa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 365.9407, 0, -269.755)
+early_spawners = [NodePath("../Spawners/Balloonspawner")]
+boss_spawner = NodePath("../Spawners/BossSpawner")
+
 [node name="GameUI" parent="." unique_id=766366771 instance=ExtResource("1_kcxld")]
 
 [node name="PauseMenu" parent="GameUI" unique_id=78794224 instance=ExtResource("6_0gqda")]
@@ -205,7 +211,7 @@ glow_normalized = true
 visible = false
 
 [node name="player" parent="." unique_id=1257616633 instance=ExtResource("1_1xis7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.580936, -45.50331, 40.698765)
+transform = Transform3D(0.6683391, 0, -0.7438568, 0, 1, 0, 0.7438568, 0, 0.6683391, -126.925995, -47.546486, 114.17307)
 
 [node name="GameController" type="Node3D" parent="." unique_id=1936967779]
 process_mode = 3
@@ -233,11 +239,11 @@ wind_direction = 2.35619451204804
 metadata/_custom_type_script = "uid://deo0gxkmk2ahd"
 
 [node name="SunLight" type="DirectionalLight3D" parent="Sky3D" unique_id=982957430]
-transform = Transform3D(-0.427784, -0.8980457, 0.10254165, 0, 0.11344597, 0.99354416, -0.903881, 0.4250223, -0.048530366, 0.102541655, -48.657528, -0.04853037)
+transform = Transform3D(-0.427784, -0.8980457, 0.102541655, 0, 0.11344597, 0.99354416, -0.903881, 0.4250223, -0.04853037, 0.102541655, 0.99354416, -0.04853037)
 shadow_enabled = true
 
 [node name="MoonLight" type="DirectionalLight3D" parent="Sky3D" unique_id=1266351692]
-transform = Transform3D(0, -0.89867264, -0.43862006, 0.048679363, -0.43810007, 0.8976072, -0.99881446, -0.021351745, 0.04374681, -0.43862006, -48.753468, 0.04374681)
+transform = Transform3D(0, -0.89867264, -0.43862006, 0.048679363, -0.43810007, 0.8976072, -0.99881446, -0.021351745, 0.04374681, -0.43862006, 0.8976072, 0.04374681)
 light_color = Color(0.572549, 0.776471, 0.956863, 1)
 light_energy = 0.0
 
@@ -332,18 +338,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -119.63722, -50.114506, 119.2
 [node name="Spawners" type="Node" parent="." unique_id=1843966099]
 
 [node name="Balloonspawner" parent="Spawners" unique_id=1676879371 instance=ExtResource("5_wkkq1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.894754, -1.0185995, 0.11698151)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.894754, -49.216106, 0.11698151)
 scene_to_spawn = ExtResource("6_wkkq1")
-spawn_interval = 0.07
-spawn_radius = 50.0
+spawn_interval = 0.5
+spawn_radius = 150.0
 
 [node name="EnemySpawner" parent="Spawners" unique_id=710262119 instance=ExtResource("5_wkkq1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.054487, 6.3186054, -0.9486313)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.054487, -48.455917, -0.9486313)
 scene_to_spawn = ExtResource("7_wkkq1")
 spawn_radius = 60.0
 
 [node name="BossSpawner" parent="Spawners" unique_id=350657093 instance=ExtResource("5_wkkq1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.647873, 13.741617, -5.537757)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 294.2757, 13.741617, -139.9704)
 scene_to_spawn = ExtResource("8_wkkq1")
 spawn_interval = 10.0
 spawn_once = true

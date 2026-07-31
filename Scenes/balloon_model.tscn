@@ -12,7 +12,7 @@
 emission_energy_multiplier = 10.82
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0rny4"]
-radius = 0.3131252
+radius = 0.454208
 
 [sub_resource type="Gradient" id="Gradient_0rny4"]
 offsets = PackedFloat32Array(0.14797688, 0.33410406, 0.5618497, 0.77572256, 1)

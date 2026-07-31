@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cg10rknaefqjf"]
+
+[ext_resource type="Script" uid="uid://bugm1js66fqse" path="res://round_manager.gd" id="1_1vgcg"]
+
+[node name="roundManager" type="Node3D" unique_id=1415787005 groups=["round_manager"]]
+script = ExtResource("1_1vgcg")
+
+[node name="bossTimer" type="Timer" parent="." unique_id=2034415056]
+
+[node name="difficultyTimer" type="Timer" parent="." unique_id=1517069790]
+
+[node name="phaseController" type="Node3D" parent="." unique_id=1733505810]
+
+[connection signal="timeout" from="bossTimer" to="." method="_on_boss_timer_timeout"]
+[connection signal="timeout" from="difficultyTimer" to="." method="_on_difficulty_timer_timeout"]

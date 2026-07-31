@@ -45,12 +45,12 @@ signal player_died
 
 
 @export_category(\"Movement\")
-@export var BASE_SPEED := 3.0
+@export var BASE_SPEED := 8.0
 @export var ACCEL := 50.0
 @export var IN_AIR_SPEED := 3.0
 @export var IN_AIR_ACCEL := 5.0
 @export var JUMP_VELOCITY := 8.5
-@export var SPRINT_SPEED := 8
+@export var SPRINT_SPEED := 10.0
 
 @export_category(\"Head Bob\")
 @export var HEAD_BOB := true

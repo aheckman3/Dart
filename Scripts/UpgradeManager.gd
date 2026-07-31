@@ -139,4 +139,3 @@ func remove_buff(buff_name: String):
 			remove_speed_boost(2.0)
 		"jump_boost":
 			remove_jump_boost(2.0)
-
