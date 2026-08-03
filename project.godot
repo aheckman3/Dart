@@ -19,10 +19,6 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 GameManager="*uid://bkapslk8p2vcy"
 Transition="*uid://hmk186cm2bcw"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/mode=3

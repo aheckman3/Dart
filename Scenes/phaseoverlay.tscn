@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cry2s5rahuvrb"]
+
+[ext_resource type="Script" uid="uid://di4ckfjnyjq0r" path="res://phaseoverlay.gd" id="1_5kd76"]
+[ext_resource type="FontFile" uid="uid://b0m3absd73hyc" path="res://Assets/Fonts/PaperHand-Regular-Black.ttf" id="2_jdaah"]
+
+[node name="Phaseoverlay" type="CanvasLayer" unique_id=451732998]
+script = ExtResource("1_5kd76")
+
+[node name="Control" type="Control" parent="." unique_id=1850281226]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1495543076]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.2)
+
+[node name="Label" type="Label" parent="Control" unique_id=1174128779]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_jdaah")
+theme_override_font_sizes/font_size = 50

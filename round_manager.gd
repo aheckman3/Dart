@@ -7,7 +7,7 @@ var phase := Phase.EARLY
 @export var enemy_spawners: Array[Node3D]
 @export var boss_spawner: Node3D
 
-@export var boss_time := 10.0
+@export var boss_time := 180.0
 var timer := 0.0
 
 @onready var bossTimer = $bossTimer
@@ -21,12 +21,14 @@ func _ready():
 	bossTimer.wait_time = boss_time
 	bossTimer.start()
 	
+	
 func _process(delta):
 	timer += delta
 	if timer >= 60.0 and phase == Phase.EARLY:
 		start_mid_phase()
 		
 func start_early_phase():
+	show_phase_message("Enjoy!")
 	phase = Phase.EARLY
 	
 	for s in early_spawners:
@@ -44,6 +46,7 @@ func boss_defeated():
 	
 	
 func start_mid_phase():
+	show_phase_message("Turn it up!")
 	phase = Phase.MID
 	timer = 0.0
 	
@@ -55,6 +58,7 @@ func start_mid_phase():
 	print("mid-phase started")
 	
 func start_boss_phase():
+	show_phase_message("HERE HE COMES!")
 	phase = Phase.BOSS
 	print("boss phase started")
 	
@@ -80,3 +84,11 @@ func _on_boss_timer_timeout() -> void:
 func _on_difficulty_timer_timeout() -> void:
 	emit_signal("difficulty_increased")
 	increase_difficulty()
+	
+func show_phase_message(text):
+	var overlay = get_tree().get_first_node_in_group("overlay")
+	print("overlay script: ", overlay.get_script())
+	print("Overlay is: ", overlay)
+	if overlay:
+		print("overlay ready?", overlay.is_inside_tree())
+		overlay.show_message(text)

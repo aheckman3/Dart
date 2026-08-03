@@ -28,7 +28,6 @@ var alive_time := 0.0
 
 
 func _ready():
-	print("Enemy _ready()")
 	player = get_tree().get_first_node_in_group("player")
 
 

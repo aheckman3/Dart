@@ -26,6 +26,7 @@ extends CharacterBody3D
 @export var hover_height := 10
 
 
+var spawn_height := 6
 var health := 500
 var has_spawned_minions := false
 var minion_spawn_timer := 0.0
@@ -48,6 +49,8 @@ func _enter_tree():
 	print("Boss has Spawned!")
 	
 func _ready():
+	global_position.y = spawn_height
+	
 	var rm = get_tree().get_first_node_in_group("round_manager")
 	if rm:
 		rm.boss_phase_started.connect(_on_boss_phase_started)
@@ -85,6 +88,9 @@ func _physics_process(delta):
 	velocity = dir * speed
 	
 	move_and_slide()
+
+	var desired_y = player.global_position.y + hover_height
+	global_position.y = lerp(global_position.y, desired_y, delta * 1.0)
 	
 	var horizontal_velocity := Vector3(velocity.x, 0, velocity.z)
 	if horizontal_velocity.length() < 0.1 and dodge_time_left <= 0.0:
@@ -102,7 +108,6 @@ func _physics_process(delta):
 
 	bob_time += delta
 	var bob_offset = sin(bob_time * bob_speed) * bob_height
-	global_position.y =  hover_height
 	mesh.position.y = bob_offset
 	
 	mesh.rotation.z = sin(bob_time * 1.5) * deg_to_rad(10)
@@ -134,6 +139,8 @@ func _physics_process(delta):
 	if minion_spawn_timer >= minion_spawn_interval:
 		spawn_minions()
 		minion_spawn_timer = 0.0
+		
+
 		
 		
 func spawn_minions():

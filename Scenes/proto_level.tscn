@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://kph4q2dfrb8a" path="res://Scenes/tree_2.tscn" id="25_duanm"]
 [ext_resource type="PackedScene" uid="uid://b06s1trdw3573" path="res://Scenes/firepit.tscn" id="26_duanm"]
 [ext_resource type="AudioStream" uid="uid://bs4fpvttotj7n" path="res://Assets/SFX/nojisuma-pleasure-12039.mp3" id="28_010tl"]
+[ext_resource type="PackedScene" uid="uid://cry2s5rahuvrb" path="res://Scenes/phaseoverlay.tscn" id="30_r8j1q"]
 
 [sub_resource type="Gradient" id="Gradient_wkkq1"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -157,8 +158,8 @@ shader_parameter/cirrus_absorption = 2.0
 shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.58216614, 0.58216614)
-shader_parameter/cirrus_position2 = Vector2(0.58216614, 0.58216614)
+shader_parameter/cirrus_position1 = Vector2(0.8308126, 0.8308126)
+shader_parameter/cirrus_position2 = Vector2(0.8308126, 0.8308126)
 shader_parameter/cirrus_texture = ExtResource("13_6jr2x")
 shader_parameter/cumulus_visible = true
 shader_parameter/cumulus_intensity = 0.6
@@ -168,7 +169,7 @@ shader_parameter/cumulus_absorption = 2.0
 shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(7.9101567, 7.9101567)
+shader_parameter/cumulus_position = Vector2(9.15869, 9.15869)
 shader_parameter/cumulus_texture = ExtResource("14_854h1")
 shader_parameter/cumulus_partial_mie_phase = Vector3(0.957564, 1.042436, 0.412)
 shader_parameter/cumulus_mie_intensity = 1.0
@@ -197,6 +198,8 @@ glow_normalized = true
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_14udr"]
 
 [node name="proto_level" type="Node3D" unique_id=84065362]
+
+[node name="Phaseoverlay" parent="." unique_id=451732998 groups=["overlay"] instance=ExtResource("30_r8j1q")]
 
 [node name="roundManager" parent="." unique_id=1415787005 node_paths=PackedStringArray("early_spawners", "boss_spawner") instance=ExtResource("1_805sa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 365.9407, 0, -269.755)
@@ -349,7 +352,7 @@ scene_to_spawn = ExtResource("7_wkkq1")
 spawn_radius = 60.0
 
 [node name="BossSpawner" parent="Spawners" unique_id=350657093 instance=ExtResource("5_wkkq1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 294.2757, 13.741617, -139.9704)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.282104, -27.420906, -20.844559)
 scene_to_spawn = ExtResource("8_wkkq1")
 spawn_interval = 10.0
 spawn_once = true
