@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cry2s5rahuvrb"]
 
-[ext_resource type="Script" uid="uid://di4ckfjnyjq0r" path="res://phaseoverlay.gd" id="1_5kd76"]
+[ext_resource type="Script" uid="uid://di4ckfjnyjq0r" path="res://Scripts/phaseoverlay.gd" id="1_5kd76"]
 [ext_resource type="FontFile" uid="uid://b0m3absd73hyc" path="res://Assets/Fonts/PaperHand-Regular-Black.ttf" id="2_jdaah"]
 
 [node name="Phaseoverlay" type="CanvasLayer" unique_id=451732998]

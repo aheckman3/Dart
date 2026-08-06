@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cg10rknaefqjf"]
 
-[ext_resource type="Script" uid="uid://bugm1js66fqse" path="res://round_manager.gd" id="1_1vgcg"]
+[ext_resource type="Script" uid="uid://bugm1js66fqse" path="res://Scripts/round_manager.gd" id="1_1vgcg"]
 
 [node name="roundManager" type="Node3D" unique_id=1415787005 groups=["round_manager"]]
 script = ExtResource("1_1vgcg")
