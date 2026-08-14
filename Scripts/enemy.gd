@@ -13,7 +13,7 @@ extends CharacterBody3D
 @export var grow_radius := 4.0
 @export var grow_speed := 0.5
 @export var max_scale := 5.0
-@export var min_scale := 1.0
+@export var min_scale := 2.0
 @export var max_health := 10
 @export var death_sounds: Array[AudioStream]
 var health := 10

@@ -26,7 +26,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_5vqhp"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4766355, 0.9101124), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7515528, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_k7n8i"]
@@ -34,10 +34,17 @@ curve = SubResource("Curve_5vqhp")
 
 [sub_resource type="Gradient" id="Gradient_1726w"]
 offsets = PackedFloat32Array(0, 0.5319149, 1)
-colors = PackedColorArray(0.98234254, 0.9823423, 0.9823424, 1, 0.51718444, 0.5171845, 0.5171844, 1, 0.12591085, 0.12591085, 0.12591082, 1)
+colors = PackedColorArray(0.98234254, 0.9823423, 0.9823424, 1, 0.82565635, 0, 0.12762263, 1, 0.24641657, 0.043219216, 0.002528164, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ugoyu"]
 gradient = SubResource("Gradient_1726w")
+
+[sub_resource type="Curve" id="Curve_aoxs8"]
+_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveTexture" id="CurveTexture_x4gt6"]
+curve = SubResource("Curve_aoxs8")
 
 [sub_resource type="Curve" id="Curve_0frio"]
 _data = [Vector2(0, 0.49438208), 0.0, 2.2542133, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -63,9 +70,11 @@ gravity = Vector3(0, 1, 0)
 scale_min = 0.9
 scale_max = 1.4
 scale_curve = SubResource("CurveTexture_gdtea")
-color = Color(0.076875016, 0.03680848, 0.0037989921, 0.3019608)
+color = Color(1, 0.2568333, 0.089999974, 0.8901961)
 color_ramp = SubResource("GradientTexture1D_ugoyu")
 alpha_curve = SubResource("CurveTexture_k7n8i")
+emission_curve = SubResource("CurveTexture_x4gt6")
+turbulence_enabled = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_x4gt6"]
 
@@ -73,6 +82,7 @@ alpha_curve = SubResource("CurveTexture_k7n8i")
 radius = 0.34
 
 [node name="enemymodel" unique_id=958358574 groups=["target"] instance=ExtResource("1_t80wj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 5
 collision_mask = 3
 script = ExtResource("2_k3c5i")

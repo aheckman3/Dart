@@ -50,7 +50,7 @@ signal player_died
 @export var IN_AIR_SPEED := 3.0
 @export var IN_AIR_ACCEL := 5.0
 @export var JUMP_VELOCITY := 8.5
-@export var SPRINT_SPEED := 10.0
+@export var SPRINT_SPEED := 13.0
 
 @export_category(\"Head Bob\")
 @export var HEAD_BOB := true
@@ -521,6 +521,7 @@ albedo_color = Color(1, 1, 0.023529412, 1)
 [node name="player" type="CharacterBody3D" unique_id=1257616633 groups=["player"]]
 collision_mask = 230
 script = SubResource("GDScript_fkybt")
+SPRINT_SPEED = 10.0
 KEY_BIND_MOUSE_SENS = 0.005
 KEY_BIND_DOWN = "move_backward"
 footstep_sounds = Array[AudioStream]([ExtResource("2_x3wgy"), ExtResource("3_3smsa"), ExtResource("4_8erm5"), ExtResource("5_f1ek2")])
