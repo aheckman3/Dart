@@ -27,7 +27,7 @@ extends CharacterBody3D
 
 
 var spawn_height := 6
-var health := 500
+var health := 300
 var has_spawned_minions := false
 var minion_spawn_timer := 0.0
 var dodge_timer := 0.0
@@ -214,7 +214,6 @@ func _on_dodge_detector_entered(body):
 func try_dodge():
 	if randf() <= dodge_chance:
 		start_dodge()
-	
 
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
