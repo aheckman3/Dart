@@ -16,8 +16,7 @@ func _ready():
 
 	await get_tree().create_timer(lifetime).timeout
 	queue_free()
-	
-	print("Dart loaded from:", get_stack())
+
 
 func _physics_process(_delta):
 	if stuck:
@@ -59,7 +58,6 @@ func stick_to_surface(state):
 	if collider_node and collider_node.is_in_group("dart"):
 		return
 
-	print("Groups:", collider_node.get_groups())
 		
 	var xf = state.get_transform()
 	xf.origin = world_pos
@@ -69,7 +67,6 @@ func stick_to_surface(state):
 	if collider_node:
 		call_deferred("reparent_to", collider_node)
 
-	print("Hit:", collider_node)
 		
 func reparent_to(new_parent):
 	var old_transform = global_transform

@@ -34,7 +34,6 @@ func _enter_tree():
 		add_child(s)
 		s.owner = get_tree().edited_scene_root
 		addedHead = true
-	print(\"Player _enter_tree()\")
 #__________________________________________________________________________________________________#
 # PLAYER SETTINGS
 #__________________________________________________________________________________________________#
@@ -107,6 +106,8 @@ var upgrades
 var sensitivity := 1.0
 var dead := false
 var input_locked := false
+var shoot_sound_cooldown := 0.0
+var shoot_sound_delay := 0.15 
 
 #__________________________________________________________________________________________________#
 # STATE MACHINE
@@ -117,7 +118,6 @@ var state := PlayerState.IDLE
 
 func _ready():
 	upgrades = get_node(\"UpgradeManager\")
-	print(\"UPGRADES:\", upgrades)
 	if Engine.is_editor_hint():
 		return
 	var config := ConfigFile.new()
@@ -130,7 +130,6 @@ func _ready():
 	
 	call_deferred(\"_find_ui\")
 	emit_signal(\"player_ready\")
-	print(\"Player _ready()\")
 	
 func _find_ui():
 	ui = get_tree().get_first_node_in_group(\"ui\")
@@ -171,6 +170,9 @@ func _physics_process(delta):
 		
 	if HEAD_BOB and is_on_floor() and velocity.length() > 0.2:
 		check_footstep()
+		
+	if shoot_sound_cooldown > 0.0:
+		shoot_sound_cooldown -= delta
 			
 
 func _process(delta):
@@ -205,7 +207,6 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
 	if event.is_action_pressed(\"shoot\"):
-		print(\"SHOOT INPUT RECEIVED\")
 		shoot()
 	
 	if event.is_action_pressed(\"pyramid\"):
@@ -388,13 +389,14 @@ func shoot():
 	if not $WeaponManager.fire(self):
 		return
 		
-	var throw_audio = get_node_or_null(\"ThrowSounds\")
-	if throw_audio == null:
-		return
-
-	throw_audio.stream = throw_sounds.pick_random()
-	throw_audio.pitch_scale = randf_range(0.9, 1.1)
-	throw_audio.play()
+	if shoot_sound_cooldown <= 0.0:
+		var throw_audio = get_node_or_null(\"ThrowSounds\")
+		if throw_audio:
+			throw_audio.stream = throw_sounds.pick_random()
+			throw_audio.pitch_scale = randf_range(0.9, 1.1)
+			throw_audio.play()
+		
+		shoot_sound_cooldown = shoot_sound_delay
 	
 
 #__________________________________________________________________________________________________#

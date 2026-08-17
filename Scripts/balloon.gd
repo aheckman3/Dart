@@ -90,7 +90,7 @@ func play_random_pop():
 	
 	audio.pitch_scale = randf_range(0.9, 1.1)
 	audio.play()
-	print("POP SOUND CALLED")
+
 
 
 func pop():

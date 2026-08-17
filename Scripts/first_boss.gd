@@ -46,7 +46,6 @@ var dodge_start_scale := 1.0
 
 func _enter_tree():
 	scale = Vector3.ONE
-	print("Boss has Spawned!")
 	
 func _ready():
 	global_position.y = spawn_height
@@ -55,7 +54,6 @@ func _ready():
 	if rm:
 		rm.boss_phase_started.connect(_on_boss_phase_started)
 		
-	print("Enemy _ready()")
 	player = get_tree().get_first_node_in_group("player")
 	dodge_detector.body_entered.connect(_on_dodge_detector_entered)
 	var bossmesh := $Visuals/BossMesh
@@ -161,7 +159,6 @@ func spawn_minions():
 		minion.launch_velocity = launch_dir * launch_speed
 		minion.launch_velocity.y = randf_range(-2.0, -6.0)
 		
-	print("Boss has spawned minions!")
 	
 func _on_body_entered(body):
 	if body.is_in_group("dart"):

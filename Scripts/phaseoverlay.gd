@@ -5,13 +5,10 @@ extends CanvasLayer
 @onready var bg = $Control/ColorRect
 
 func _ready():
-	print("overlay ready")
-	print("label node is: ", label)
-	print("bg node is: ", bg)
+	pass
 	
 func _enter_tree():
-	print("PhaseOverlay ENTER TREE")
-	print("is CanvasLayer?: ", self is CanvasLayer)
+	pass
 
 func show_message(text: String, duration := 2.0):
 	label.text = text

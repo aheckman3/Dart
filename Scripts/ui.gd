@@ -17,7 +17,6 @@ func _ready():
 	health_bar_original_pos = health_bar_container.position
 	health_bar.max_value = 100
 	health_bar.value = displayed_health
-	print("READY BAR:", health_bar.value, "/", health_bar.max_value)
 	
 	GameManager.connect("score_changed", Callable(self, "update_score"))
 func set_health(new_health):

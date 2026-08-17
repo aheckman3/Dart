@@ -87,8 +87,5 @@ func _on_difficulty_timer_timeout() -> void:
 	
 func show_phase_message(text):
 	var overlay = get_tree().get_first_node_in_group("overlay")
-	print("overlay script: ", overlay.get_script())
-	print("Overlay is: ", overlay)
 	if overlay:
-		print("overlay ready?", overlay.is_inside_tree())
 		overlay.show_message(text)

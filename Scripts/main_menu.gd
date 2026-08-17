@@ -3,8 +3,8 @@ extends Control
 
 
 func _ready() -> void:
-	print("VIEWPORT TYPE:", get_viewport())
-
+	pass
+	
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 

@@ -100,26 +100,17 @@ func update_permanent_label(buff_name: String, stacks: int):
 
 func create_buff_label(buff_name: String, duration: float) -> Control:
 	var ui = get_tree().get_first_node_in_group("ui")
-	print("UI found:", ui)
 	if not ui:
 		push_error("UI node not found in scene tree")
 		return null
-	print("UI children:", ui.get_children())
 	var buff_list = ui.get_node("HUD/BuffList")
-	print("BuffList found:", buff_list)
 	if not buff_list:
 		push_error("BuffList node not found in HUD")
 		return null
 	var label = buff_label_scene.instantiate()
-	print("Buff label instantiated:", label)
-	print("Label size:", label.size)
-	print("Label global pos:", label.global_position)
-	print("Label local pos:", label.position)
-	print("Label rect pos:", label.get_rect().position)
 	label.get_node("BuffName").text = buff_name.replace("_", " ")
 	label.get_node("BuffTimer").text = "%.1f" % duration
 	buff_list.add_child(label)
-	print("BuffList child count after add:", buff_list.get_child_count())
 	return label
 
 func create_permanent_buff_label(buff_name: String, stacks: int) -> Control:
