@@ -4,7 +4,7 @@ extends Area3D
 @onready var confetti = $Confetti
 
 @export var float_speed: float = randf_range(0.3, 1.7)
-@export var lifetime: float = 10.0
+@export var lifetime: float = 13.0
 @export var wobble_amount: float = randf_range(0.3, 1.3)
 @export var wobble_speed: float = randf_range(0.4, 1.5)
 @export var pop_sounds: Array[AudioStream]
