@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://fvwmxba1owjh" path="res://Assets/SFX/PlayerThrow1.ogg" id="11_qqcod"]
 [ext_resource type="AudioStream" uid="uid://bop67etxu3wsa" path="res://Assets/SFX/PlayerThrow2.ogg" id="12_igrcy"]
 [ext_resource type="AudioStream" uid="uid://c71efronmwlii" path="res://Assets/SFX/PlayerThrow3.ogg" id="13_fs7ks"]
+[ext_resource type="PackedScene" uid="uid://ckwesdpou58yt" path="res://Scenes/viewmodel.tscn" id="18_igrcy"]
 
 [sub_resource type="GDScript" id="GDScript_fkybt"]
 script/source = "@tool
@@ -107,7 +108,8 @@ var sensitivity := 1.0
 var dead := false
 var input_locked := false
 var shoot_sound_cooldown := 0.0
-var shoot_sound_delay := 0.15 
+var shoot_sound_delay := 0.15
+var shooting := false
 
 #__________________________________________________________________________________________________#
 # STATE MACHINE
@@ -173,6 +175,9 @@ func _physics_process(delta):
 		
 	if shoot_sound_cooldown > 0.0:
 		shoot_sound_cooldown -= delta
+		
+	if shooting:
+		shoot()
 			
 
 func _process(delta):
@@ -204,11 +209,14 @@ func _input(event):
 		set_rotation_target(event.relative)
 		
 	if event is InputEventMouseButton and event.pressed:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			
 	if event.is_action_pressed(\"shoot\"):
-		shoot()
-	
+		shooting = true
+		
+	if event.is_action_released(\"shoot\"):
+		shooting = false
+		
 	if event.is_action_pressed(\"pyramid\"):
 		$WeaponManager.has_pyramid_shot = true
 	
@@ -568,3 +576,6 @@ stream = ExtResource("9_f1ek2")
 volume_db = -25.0
 
 [node name="ThrowSounds" type="AudioStreamPlayer3D" parent="." unique_id=1245883276]
+
+[node name="Viewmodel" parent="." unique_id=1842390146 instance=ExtResource("18_igrcy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.4019913, -0.37983078)

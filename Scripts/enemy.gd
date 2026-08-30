@@ -7,8 +7,8 @@ extends CharacterBody3D
 @export var bob_speed := 3.0
 @export var bob_height := 0.01
 @export var rotate_speed := 20.0
-@export var speed := randf_range(2.5, 4.5)
-@export var speed_after_time := randf_range(5.0, 7.0)
+@export var speed := randf_range(6.5, 8.5)
+@export var speed_after_time := randf_range(10.0, 12.0)
 @export var speed_increase_delay := 15.0
 @export var grow_radius := 4.0
 @export var grow_speed := 0.5

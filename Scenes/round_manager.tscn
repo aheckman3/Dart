@@ -7,9 +7,4 @@ script = ExtResource("1_1vgcg")
 
 [node name="bossTimer" type="Timer" parent="." unique_id=2034415056]
 
-[node name="difficultyTimer" type="Timer" parent="." unique_id=1517069790]
-
 [node name="phaseController" type="Node3D" parent="." unique_id=1733505810]
-
-[connection signal="timeout" from="bossTimer" to="." method="_on_boss_timer_timeout"]
-[connection signal="timeout" from="difficultyTimer" to="." method="_on_difficulty_timer_timeout"]

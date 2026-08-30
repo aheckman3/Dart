@@ -13,7 +13,7 @@ var timer := 0.0
 var has_spawned := false
 
 func _ready():
-	timer = -start_delay 
+	timer = -start_delay
 	
 func _physics_process(delta):
 	if not enabled:

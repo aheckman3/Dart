@@ -182,8 +182,8 @@ shader_parameter/cirrus_absorption = 2.0
 shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.34131008, 0.34131008)
-shader_parameter/cirrus_position2 = Vector2(0.34131008, 0.34131008)
+shader_parameter/cirrus_position1 = Vector2(0.34449252, 0.34449252)
+shader_parameter/cirrus_position2 = Vector2(0.34449252, 0.34449252)
 shader_parameter/cirrus_texture = ExtResource("13_6jr2x")
 shader_parameter/cumulus_visible = true
 shader_parameter/cumulus_intensity = 0.6
@@ -193,7 +193,7 @@ shader_parameter/cumulus_absorption = 2.0
 shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(21.760008, 21.760008)
+shader_parameter/cumulus_position = Vector2(21.775972, 21.775972)
 shader_parameter/cumulus_texture = ExtResource("14_854h1")
 shader_parameter/cumulus_partial_mie_phase = Vector3(0.957564, 1.042436, 0.412)
 shader_parameter/cumulus_mie_intensity = 1.0
@@ -351,9 +351,9 @@ size = Vector3(200, 1, 320)
 
 [node name="Phaseoverlay" parent="." unique_id=451732998 groups=["overlay"] instance=ExtResource("30_r8j1q")]
 
-[node name="roundManager" parent="." unique_id=1415787005 node_paths=PackedStringArray("early_spawners", "enemy_spawners", "boss_spawner") instance=ExtResource("1_805sa")]
+[node name="roundManager" parent="." unique_id=1415787005 node_paths=PackedStringArray("balloon_spawners", "enemy_spawners", "boss_spawner") instance=ExtResource("1_805sa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 365.9407, 0, -269.755)
-early_spawners = [NodePath("../Spawners/Balloonspawner")]
+balloon_spawners = [NodePath("../Spawners/Balloonspawner")]
 enemy_spawners = [NodePath("../Spawners/EnemySpawner")]
 boss_spawner = NodePath("../Spawners/BossSpawner")
 
@@ -451,6 +451,7 @@ scene_to_spawn = ExtResource("8_wkkq1")
 spawn_interval = 10.0
 spawn_once = true
 start_delay = 30.0
+enabled = false
 
 [node name="GameMusic" type="AudioStreamPlayer2D" parent="." unique_id=697785024]
 stream = ExtResource("28_010tl")
