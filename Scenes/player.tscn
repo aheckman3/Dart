@@ -42,6 +42,7 @@ signal player_ready
 signal player_died
 @export var CAPTURE_ON_START := true
 @onready var cam: Camera3D = $Head/Camera3D
+@onready var viewmodel = $Head/Viewmodel
 
 
 @export_category(\"Movement\")
@@ -397,6 +398,9 @@ func shoot():
 	if not $WeaponManager.fire(self):
 		return
 		
+	viewmodel.play_throw()
+	
+		
 	if shoot_sound_cooldown <= 0.0:
 		var throw_audio = get_node_or_null(\"ThrowSounds\")
 		if throw_audio:
@@ -550,6 +554,9 @@ target_position = Vector3(0, 0, -100)
 collision_mask = 132
 collide_with_areas = true
 
+[node name="Viewmodel" parent="Head" unique_id=1842390146 instance=ExtResource("18_igrcy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.07765183, -1.6736935, -0.045828193)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=523599340]
 shape = SubResource("CapsuleShape3D_vgqql")
 
@@ -576,6 +583,3 @@ stream = ExtResource("9_f1ek2")
 volume_db = -25.0
 
 [node name="ThrowSounds" type="AudioStreamPlayer3D" parent="." unique_id=1245883276]
-
-[node name="Viewmodel" parent="." unique_id=1842390146 instance=ExtResource("18_igrcy")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.4019913, -0.37983078)
